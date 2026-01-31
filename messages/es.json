@@ -1,0 +1,25 @@
+{
+  "nav": {
+    "about": "Sobre mí",
+    "projects": "Proyectos",
+    "studies": "Estudios",
+    "contact": "Contacto",
+    "education": "Escolaridad"
+  },
+  "hero": {
+    "greeting": "Hola, soy",
+    "role": "Desarrollador Full Stack",
+    "typing": [
+      "Quiero desarrollar",
+      "Quiero aprender",
+      "Quiero ayudar",
+      "Quiero crear",
+      "Quiero innovar",
+      "Quiero compartir",
+      "Quiero construir",
+      "Quiero crecer",
+      "Quiero programar"
+    ],
+    "scrollDown": "Ver proyectos"
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "nav": {
+    "about": "About me",
+    "projects": "Projects",
+    "studies": "Studies",
+    "contact": "Contact",
+    "education": "Education"
+  },
+  "hero": {
+    "greeting": "Hi, I'm",
+    "role": "Full Stack Developer",
+    "typing": [
+      "I want to develop",
+      "I want to learn",
+      "I want to help",
+      "I want to create",
+      "I want to innovate",
+      "I want to share",
+      "I want to build",
+      "I want to grow",
+      "I want to code"
+    ],
+    "scrollDown": "View projects"
+  }
+}
