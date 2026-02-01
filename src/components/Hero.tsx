@@ -5,6 +5,18 @@ import { useTranslations } from 'next-intl';
 import HoverableText from './HoverableText';
 import { useColors } from '@/contexts/ColorContext';
 
+// Planet data based on our solar system
+const planets = [
+  { name: 'Mercury', color: '#8C7853', size: 8, distance: 80, duration: 88, moons: 0 },
+  { name: 'Venus', color: '#FFC649', size: 12, distance: 120, duration: 225, moons: 0 },
+  { name: 'Earth', color: '#4A90E2', size: 13, distance: 160, duration: 365, moons: 1 },
+  { name: 'Mars', color: '#E27B58', size: 10, distance: 200, duration: 687, moons: 2 },
+  { name: 'Jupiter', color: '#C88B3A', size: 28, distance: 280, duration: 4333, moons: 79 },
+  { name: 'Saturn', color: '#FAD5A5', size: 24, distance: 360, duration: 10759, moons: 82, hasRings: true },
+  { name: 'Uranus', color: '#4FD0E7', size: 18, distance: 420, duration: 30687, moons: 27 },
+  { name: 'Neptune', color: '#4166F5', size: 17, distance: 480, duration: 60190, moons: 14 },
+];
+
 const Hero = () => {
   const t = useTranslations('hero');
   const { setColors } = useColors();
@@ -19,6 +31,18 @@ const Hero = () => {
   const circleRef = useRef<HTMLDivElement>(null);
   const scrollButtonRef = useRef<HTMLButtonElement>(null);
   const typingPhrases = t.raw('typing') as string[];
+
+  // Generate random stars for the galaxy background
+  const stars = useMemo(() => {
+    return Array.from({ length: 200 }, (_, i) => ({
+      id: i,
+      x: Math.random() * 100,
+      y: Math.random() * 100,
+      size: Math.random() * 2 + 0.5,
+      opacity: Math.random() * 0.7 + 0.3,
+      twinkleDelay: Math.random() * 5,
+    }));
+  }, []);
 
   // Mouse tracking for the "eyes", color calculation, and cursor aura
   useEffect(() => {
@@ -150,9 +174,131 @@ const Hero = () => {
   return (
     <section
       ref={heroRef}
-      className="relative block flex h-screen items-center justify-center bg-gradient-to-b from-white to-zinc-50 dark:from-black dark:to-zinc-950"
+      className="relative block flex h-screen items-center justify-center overflow-hidden"
+      style={{
+        background: 'linear-gradient(to bottom, #000000, #0a0a1a, #050510)',
+      }}
     >
-      <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+      {/* Stars Background */}
+      <div className="absolute inset-0 overflow-hidden">
+        {stars.map((star) => (
+          <div
+            key={star.id}
+            className="absolute rounded-full bg-white animate-twinkle"
+            style={{
+              left: `${star.x}%`,
+              top: `${star.y}%`,
+              width: `${star.size}px`,
+              height: `${star.size}px`,
+              opacity: star.opacity,
+              animationDelay: `${star.twinkleDelay}s`,
+              boxShadow: `0 0 ${star.size * 2}px rgba(255, 255, 255, ${star.opacity})`,
+            }}
+          />
+        ))}
+      </div>
+
+      {/* Solar System Container */}
+      <div className="absolute inset-0 flex items-center justify-center">
+        {/* Sun */}
+        <div
+          className="absolute z-10 rounded-full"
+          style={{
+            width: '60px',
+            height: '60px',
+            background: 'radial-gradient(circle, #FDB813 0%, #FF6B00 50%, #C1440E 100%)',
+            boxShadow: '0 0 60px #FDB813, 0 0 100px #FF6B00, 0 0 140px rgba(253, 184, 19, 0.5)',
+            animation: 'pulse 4s ease-in-out infinite',
+          }}
+        />
+
+        {/* Planets with Orbits */}
+        {planets.map((planet, index) => (
+          <div key={planet.name}>
+            {/* Orbit path */}
+            <div
+              className="absolute rounded-full border border-opacity-20"
+              style={{
+                width: `${planet.distance * 2}px`,
+                height: `${planet.distance * 2}px`,
+                borderColor: 'rgba(255, 255, 255, 0.1)',
+                left: '50%',
+                top: '50%',
+                transform: 'translate(-50%, -50%)',
+              }}
+            />
+
+            {/* Planet */}
+            <div
+              className="absolute"
+              style={{
+                width: `${planet.distance * 2}px`,
+                height: `${planet.distance * 2}px`,
+                left: '50%',
+                top: '50%',
+                transform: 'translate(-50%, -50%)',
+                animation: `orbit ${planet.duration / 30}s linear infinite`,
+              }}
+            >
+              <div
+                className="absolute rounded-full"
+                style={{
+                  width: `${planet.size}px`,
+                  height: `${planet.size}px`,
+                  background: planet.color,
+                  boxShadow: `0 0 ${planet.size}px ${planet.color}80, inset -${planet.size / 4}px -${planet.size / 4}px ${planet.size / 2}px rgba(0,0,0,0.3)`,
+                  left: '50%',
+                  top: '0',
+                  transform: 'translateX(-50%)',
+                }}
+              >
+                {/* Saturn's Rings */}
+                {planet.hasRings && (
+                  <div
+                    className="absolute"
+                    style={{
+                      width: `${planet.size * 2}px`,
+                      height: `${planet.size * 0.3}px`,
+                      border: `2px solid ${planet.color}`,
+                      borderRadius: '50%',
+                      left: '50%',
+                      top: '50%',
+                      transform: 'translate(-50%, -50%) rotateX(75deg)',
+                      opacity: 0.6,
+                    }}
+                  />
+                )}
+
+                {/* Earth's Moon */}
+                {planet.name === 'Earth' && (
+                  <div
+                    className="absolute rounded-full bg-gray-300"
+                    style={{
+                      width: '4px',
+                      height: '4px',
+                      top: '50%',
+                      left: '50%',
+                      transform: 'translate(-50%, -50%)',
+                      animation: 'moonOrbit 2s linear infinite',
+                    }}
+                  />
+                )}
+              </div>
+            </div>
+          </div>
+        ))}
+
+        {/* Milky Way Galaxy Glow */}
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background: 'radial-gradient(ellipse at center, rgba(139, 92, 246, 0.15) 0%, transparent 50%)',
+          }}
+        />
+      </div>
+
+      {/* Content overlay */}
+      <div className="relative z-20 mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
         <div className="flex flex-col items-center justify-center gap-12 text-center">
           {/* Interactive Code Brackets with Eyes */}
           <div className="relative">
@@ -165,7 +311,7 @@ const Hero = () => {
             <div className="relative flex items-center justify-center gap-8">
               {/* Left bracket */}
               <div 
-                className="text-8xl font-bold text-zinc-400 transition-all duration-300 dark:text-zinc-600 sm:text-9xl"
+                className="text-8xl font-bold text-zinc-400 transition-all duration-300 sm:text-9xl drop-shadow-lg"
                 onMouseEnter={(e) => {
                   e.currentTarget.style.color = primaryColor;
                 }}
@@ -182,7 +328,7 @@ const Hero = () => {
                 className="relative flex h-40 w-40 items-center justify-center sm:h-48 sm:w-48"
               >
                 {/* Outer ring */}
-                <div className="absolute inset-0 rounded-full border-4 border-zinc-300 dark:border-zinc-700 transition-colors duration-300" />
+                <div className="absolute inset-0 rounded-full border-4 border-zinc-500 transition-colors duration-300 shadow-lg" style={{ borderColor: `${primaryColor}40` }} />
                 
                 {/* Inner circle with dynamic color */}
                 <div 
@@ -190,6 +336,7 @@ const Hero = () => {
                   style={{
                     background: `linear-gradient(135deg, ${primaryColor}, ${secondaryColor})`,
                     transition: 'background 0.2s ease-out',
+                    boxShadow: `0 0 30px ${primaryColor}, 0 0 60px ${secondaryColor}`,
                   }}
                 />
 
@@ -239,7 +386,7 @@ const Hero = () => {
 
               {/* Right bracket */}
               <div 
-                className="text-8xl font-bold text-zinc-400 transition-all duration-300 dark:text-zinc-600 sm:text-9xl"
+                className="text-8xl font-bold text-zinc-400 transition-all duration-300 sm:text-9xl drop-shadow-lg"
                 onMouseEnter={(e) => {
                   e.currentTarget.style.color = primaryColor;
                 }}
@@ -252,11 +399,11 @@ const Hero = () => {
             </div>
 
             {/* Forward slash */}
-            <div className="mt-4 text-center text-6xl font-bold text-zinc-300 dark:text-zinc-700">
+            <div className="mt-4 text-center text-6xl font-bold text-zinc-300">
                 
             </div>
             <div 
-              className="text-center text-6xl font-bold text-zinc-300 transition-all duration-300 dark:text-zinc-700"
+              className="text-center text-6xl font-bold text-zinc-400 transition-all duration-300 drop-shadow-lg"
               onMouseEnter={(e) => {
                 e.currentTarget.style.color = primaryColor;
               }}
@@ -270,7 +417,7 @@ const Hero = () => {
 
           {/* Text content */}
           <div className="flex flex-col gap-4">
-            <h1 className="text-4xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50 sm:text-6xl">
+            <h1 className="text-4xl font-bold tracking-tight text-white sm:text-6xl drop-shadow-lg">
               {t('greeting')}{' '}
               <HoverableText
                 primaryColor={primaryColor}
@@ -281,7 +428,7 @@ const Hero = () => {
                 Gastón Varela
               </HoverableText>
             </h1>
-            <p className="text-xl text-zinc-600 dark:text-zinc-400 sm:text-2xl">
+            <p className="text-xl text-zinc-300 sm:text-2xl drop-shadow-md">
               {t('role')}
             </p>
 
@@ -333,12 +480,6 @@ const Hero = () => {
         </div>
       </div>
 
-      {/* Decorative elements */}
-      <div className="pointer-events-none absolute inset-0 overflow-hidden">
-        <div className="absolute -top-40 -left-40 h-80 w-80 rounded-full blur-3xl" style={{ backgroundColor: `${primaryColor}20` }} />
-        <div className="absolute -bottom-40 -right-40 h-80 w-80 rounded-full blur-3xl" style={{ backgroundColor: `${secondaryColor}20` }} />
-      </div>
-
       {/* Cursor aura/follower */}
       {cursorAuraColor !== 'transparent' && (
         <div
@@ -355,6 +496,51 @@ const Hero = () => {
           }}
         />
       )}
+
+      {/* CSS Animations */}
+      <style jsx>{`
+        @keyframes orbit {
+          from {
+            transform: translate(-50%, -50%) rotate(0deg);
+          }
+          to {
+            transform: translate(-50%, -50%) rotate(360deg);
+          }
+        }
+
+        @keyframes moonOrbit {
+          from {
+            transform: translate(-50%, -50%) rotate(0deg) translateX(20px) rotate(0deg);
+          }
+          to {
+            transform: translate(-50%, -50%) rotate(360deg) translateX(20px) rotate(-360deg);
+          }
+        }
+
+        @keyframes pulse {
+          0%, 100% {
+            transform: scale(1);
+            opacity: 1;
+          }
+          50% {
+            transform: scale(1.05);
+            opacity: 0.9;
+          }
+        }
+
+        @keyframes twinkle {
+          0%, 100% {
+            opacity: 0.3;
+          }
+          50% {
+            opacity: 1;
+          }
+        }
+
+        .animate-twinkle {
+          animation: twinkle 3s ease-in-out infinite;
+        }
+      `}</style>
     </section>
   );
 };
