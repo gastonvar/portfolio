@@ -29,6 +29,16 @@ const Header = () => {
     router.replace(pathname, { locale: newLocale });
   };
 
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault();
+    const targetId = href.replace('#', '');
+    const element = document.getElementById(targetId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+    setIsMenuOpen(false);
+  };
+
   const navLinks = [
     { href: '#about', label: t('about') },
     { href: '#projects', label: t('projects') },
@@ -39,7 +49,7 @@ const Header = () => {
 
   const socialLinks = [
     {
-      href: 'https://github.com',
+      href: 'https://github.com/gastonvar',
       label: 'GitHub',
       icon: (
         <svg
@@ -57,7 +67,7 @@ const Header = () => {
       ),
     },
     {
-      href: 'https://linkedin.com',
+      href: 'https://www.linkedin.com/in/gaston-varela-78a299357/',
       label: 'LinkedIn',
       icon: (
         <svg
@@ -85,21 +95,32 @@ const Header = () => {
             <a
               key={link.href}
               href={link.href}
+              onClick={(e) => handleNavClick(e, link.href)}
               className="text-sm font-medium text-zinc-600 transition-colors hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-50"
             >
               {link.label}
             </a>
           ))}
 
-          {/* CV Link */}
-          <a
-            href="/Curriculum/Gaston-CV.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="ml-4 rounded-md px-3 py-1.5 text-sm font-medium text-zinc-600 transition-colors hover:bg-zinc-100 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-800 dark:hover:text-zinc-50"
-          >
-            {t('cv')}
-          </a>
+          {/* CV and Escolaridad Links */}
+          <div className="ml-4 flex items-center gap-2 border-l border-zinc-200 pl-4 dark:border-zinc-800">
+            <a
+              href={locale === 'es' ? '/Curriculum/CV_PFP_ES.pdf' : '/Curriculum/CV_EN.pdf'}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="rounded-md px-3 py-1.5 text-sm font-medium text-zinc-600 transition-colors hover:bg-zinc-100 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-800 dark:hover:text-zinc-50"
+            >
+              {t('cv')}
+            </a>
+            <a
+              href="/Escolaridad/Escolaridad.png"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="rounded-md px-3 py-1.5 text-sm font-medium text-zinc-600 transition-colors hover:bg-zinc-100 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-800 dark:hover:text-zinc-50"
+            >
+              {t('education')}
+            </a>
+          </div>
 
           {/* Social Links */}
           <div className="ml-4 flex items-center gap-4 border-l border-zinc-200 pl-4 dark:border-zinc-800">
@@ -120,9 +141,23 @@ const Header = () => {
           {/* Language Toggle */}
           <button
             onClick={handleLanguageToggle}
-            className="ml-4 rounded-md px-3 py-1.5 text-sm font-medium text-zinc-600 transition-colors hover:bg-zinc-100 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-800 dark:hover:text-zinc-50"
+            className="ml-4 flex items-center gap-2 rounded-md px-3 py-1.5 text-sm font-medium text-zinc-600 transition-colors hover:bg-zinc-100 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-800 dark:hover:text-zinc-50"
             aria-label="Toggle language"
           >
+            <svg
+              className="h-4 w-4"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"
+              />
+            </svg>
             {locale === 'es' ? 'EN' : 'ES'}
           </button>
         </div>
@@ -132,9 +167,23 @@ const Header = () => {
           {/* Language Toggle - Mobile */}
           <button
             onClick={handleLanguageToggle}
-            className="rounded-md px-2 py-1 text-sm font-medium text-zinc-600 transition-colors hover:bg-zinc-100 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-800 dark:hover:text-zinc-50"
+            className="flex items-center gap-2 rounded-md px-2 py-1 text-sm font-medium text-zinc-600 transition-colors hover:bg-zinc-100 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-800 dark:hover:text-zinc-50"
             aria-label="Toggle language"
           >
+            <svg
+              className="h-4 w-4"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"
+              />
+            </svg>
             {locale === 'es' ? 'EN' : 'ES'}
           </button>
 
@@ -185,23 +234,34 @@ const Header = () => {
               <a
                 key={link.href}
                 href={link.href}
-                onClick={handleCloseMenu}
+                onClick={(e) => handleNavClick(e, link.href)}
                 className="block text-sm font-medium text-zinc-600 transition-colors hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-50"
               >
                 {link.label}
               </a>
             ))}
 
-            {/* CV Link - Mobile */}
-            <a
-              href="/Curriculum/Gaston-CV.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={handleCloseMenu}
-              className="block text-sm font-medium text-zinc-600 transition-colors hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-50 pt-4 border-t border-zinc-200 dark:border-zinc-800"
-            >
-              {t('cv')}
-            </a>
+            {/* CV and Escolaridad Links - Mobile */}
+            <div className="pt-4 border-t border-zinc-200 dark:border-zinc-800 space-y-2">
+              <a
+                href={locale === 'es' ? '/Curriculum/CV_PFP_ES.pdf' : '/Curriculum/CV_EN.pdf'}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={handleCloseMenu}
+                className="block text-sm font-medium text-zinc-600 transition-colors hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-50"
+              >
+                {t('cv')}
+              </a>
+              <a
+                href="/Escolaridad/Escolaridad.png"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={handleCloseMenu}
+                className="block text-sm font-medium text-zinc-600 transition-colors hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-50"
+              >
+                {t('education')}
+              </a>
+            </div>
 
             {/* Social Links - Mobile */}
             <div className="flex items-center gap-4 pt-4 border-t border-zinc-200 dark:border-zinc-800">
