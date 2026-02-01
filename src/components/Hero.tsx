@@ -85,7 +85,7 @@ const Hero = () => {
   const handleScrollDown = () => {
     const projectsSection = document.getElementById('projects');
     if (projectsSection) {
-      projectsSection.scrollIntoView({ behavior: 'smooth' });
+      projectsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   };
 
@@ -159,7 +159,7 @@ const Hero = () => {
   return (
     <section
       ref={heroRef}
-      className="relative flex min-h-screen items-center justify-center bg-gradient-to-b from-white to-zinc-50 dark:from-black dark:to-zinc-950"
+      className="relative block flex h-screen items-center justify-center bg-gradient-to-b from-white to-zinc-50 dark:from-black dark:to-zinc-950"
     >
       <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
         <div className="flex flex-col items-center justify-center gap-12 text-center">

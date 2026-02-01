@@ -2,6 +2,7 @@
   "nav": {
     "about": "Sobre mí",
     "projects": "Proyectos",
+    "skills": "Habilidades",
     "studies": "Estudios",
     "contact": "Contacto",
     "education": "Escolaridad",
@@ -13,7 +14,50 @@
     "name": "Gastón Varela",
     "currentStatus": "Actualmente soy estudiante avanzado de la carrera Analista en tecnologías de la información en la universidad ORT Uruguay.",
     "description": "Soy estudiante de Análisis de Tecnologías de la Información, con un enfoque meticuloso y exigente tanto en mis estudios como en mi trabajo. Me esfuerzo constantemente por alcanzar un alto nivel de conocimiento, desarrollando tanto habilidades técnicas como blandas que me permiten destacar en el ámbito tecnológico, estudiantil y profesional.",
-    "downloadCV": "Descargar CV"
+    "downloadCV": "Descargar CV",
+    "languages": {
+      "title": "Idiomas",
+      "spanish": "Español Nativo",
+      "english": "Inglés Certificado"
+    },
+    "technologies": {
+      "title": "Tecnologías y Habilidades",
+      "frontend": {
+        "title": "Frontend",
+        "list": "HTML, CSS, JavaScript, React, NextJS, Tailwind, Bootstrap, Razor."
+      },
+      "backend": {
+        "title": "Backend",
+        "list": ".NET, ASP.NET, C#, Java, SQL, MongoDB, API REST, CQRS, NodeJS, ExpressJS."
+      },
+      "devops": {
+        "title": "DevOps & Tools",
+        "list": "GitHub Actions, Terraform, Docker, Postman, CI/CD, AWS, Azure, Bash, Cursor, GitHub Copilot."
+      }
+    }
+  },
+  "skills": {
+    "title": "Idiomas y Tecnologías",
+    "languages": {
+      "title": "Idiomas",
+      "spanish": "Español Nativo",
+      "english": "Inglés Certificado"
+    },
+    "technologies": {
+      "title": "Tecnologías y Habilidades",
+      "frontend": {
+        "title": "Frontend",
+        "list": "HTML, CSS, JavaScript, React, NextJS, Tailwind, Bootstrap, Razor."
+      },
+      "backend": {
+        "title": "Backend",
+        "list": ".NET, ASP.NET, C#, Java, SQL, MongoDB, API REST, CQRS, NodeJS, ExpressJS."
+      },
+      "devops": {
+        "title": "DevOps & Tools",
+        "list": "GitHub Actions, Terraform, Docker, Postman, CI/CD, AWS, Azure, Bash, Cursor, GitHub Copilot."
+      }
+    }
   },
   "hero": {
     "greeting": "Hola, soy",
@@ -74,6 +118,7 @@
     "noImage": "Imagen no disponible",
     "techStack": "Stack Tecnológico",
     "mainFeatures": "Características Principales",
+    "scrollToAbout": "Ver sobre mí",
     "personal": {
       "title": "Proyectos Personales y Universitarios",
       "subtitle": "Proyectos que he desarrollado para aprendizaje y uso personal",

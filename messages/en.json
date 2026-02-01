@@ -2,6 +2,7 @@
   "nav": {
     "about": "About me",
     "projects": "Projects",
+    "skills": "Skills",
     "studies": "Studies",
     "contact": "Contact",
     "education": "Education",
@@ -13,7 +14,50 @@
     "name": "Gastón Varela",
     "currentStatus": "I am currently an advanced student in the Information Technology Analyst program at ORT Uruguay University.",
     "description": "I am an Information Technology Analysis student, with a meticulous and demanding approach both in my studies and in my work. I constantly strive to achieve a high level of knowledge, developing both technical and soft skills that allow me to excel in the technological, academic, and professional fields.",
-    "downloadCV": "Download CV"
+    "downloadCV": "Download CV",
+    "languages": {
+      "title": "Languages",
+      "spanish": "Native Spanish",
+      "english": "Certified English"
+    },
+    "technologies": {
+      "title": "Technologies & Skills",
+      "frontend": {
+        "title": "Frontend",
+        "list": "HTML, CSS, JavaScript, React, NextJS, Tailwind, Bootstrap, Razor."
+      },
+      "backend": {
+        "title": "Backend",
+        "list": ".NET, ASP.NET, C#, Java, SQL, MongoDB, API REST, CQRS, NodeJS, ExpressJS."
+      },
+      "devops": {
+        "title": "DevOps & Tools",
+        "list": "GitHub Actions, Terraform, Docker, Postman, CI/CD, AWS, Azure, Bash, Cursor, GitHub Copilot."
+      }
+    }
+  },
+  "skills": {
+    "title": "Languages & Technologies",
+    "languages": {
+      "title": "Languages",
+      "spanish": "Native Spanish",
+      "english": "Certified English"
+    },
+    "technologies": {
+      "title": "Technologies & Skills",
+      "frontend": {
+        "title": "Frontend",
+        "list": "HTML, CSS, JavaScript, React, NextJS, Tailwind, Bootstrap, Razor."
+      },
+      "backend": {
+        "title": "Backend",
+        "list": ".NET, ASP.NET, C#, Java, SQL, MongoDB, API REST, CQRS, NodeJS, ExpressJS."
+      },
+      "devops": {
+        "title": "DevOps & Tools",
+        "list": "GitHub Actions, Terraform, Docker, Postman, CI/CD, AWS, Azure, Bash, Cursor, GitHub Copilot."
+      }
+    }
   },
   "hero": {
     "greeting": "Hi, I'm",
@@ -74,6 +118,7 @@
     "noImage": "Image not available",
     "techStack": "Tech Stack",
     "mainFeatures": "Main Features",
+    "scrollToAbout": "View about me",
     "personal": {
       "title": "Personal & University Projects",
       "subtitle": "Projects I've developed for learning and personal use",

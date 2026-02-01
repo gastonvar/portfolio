@@ -1,7 +1,8 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useTranslations } from 'next-intl';
+import type { CarouselApi } from '@/components/ui/carousel';
 import Image from 'next/image';
 import {
   Carousel,
@@ -111,6 +112,15 @@ const Projects = () => {
   const { primaryColor, secondaryColor } = useColors();
   const [activeTab, setActiveTab] = useState<'professional' | 'personal'>('professional');
   const [personalCategory, setPersonalCategory] = useState<'programacion' | 'disenoWeb' | 'baseDatos'>('programacion');
+  const [api, setApi] = useState<CarouselApi>();
+  const [hoveredScrollButton, setHoveredScrollButton] = useState(false);
+
+  // Reset carousel to first slide when tab or category changes
+  useEffect(() => {
+    if (api) {
+      api.scrollTo(0);
+    }
+  }, [activeTab, personalCategory, api]);
 
   const professionalProjects = [
     {
@@ -266,7 +276,7 @@ const Projects = () => {
 
   const renderProjects = (projects: any[]) => {
     return (
-      <Carousel className="w-full">
+      <Carousel className="w-full" setApi={setApi}>
         <CarouselContent>
           {projects.map((project) => (
             <CarouselItem key={project.id} className="md:basis-1/2 lg:basis-2/3">
@@ -288,9 +298,9 @@ const Projects = () => {
                   }}
                 />
 
-                <div className="relative z-10 flex flex-col gap-6 p-6">
+                <div className="relative z-10 flex flex-col gap-4 p-5">
                   {/* Image Section */}
-                  <div className="relative aspect-video w-full overflow-hidden rounded-xl bg-gradient-to-br from-zinc-200 to-zinc-100 shadow-inner dark:from-zinc-800 dark:to-zinc-900">
+                  <div className="relative aspect-[16/9] w-full max-h-64 overflow-hidden rounded-xl bg-gradient-to-br from-zinc-200 to-zinc-100 shadow-inner dark:from-zinc-800 dark:to-zinc-900">
                     {/* Decorative corner element */}
                     <div 
                       className="absolute left-0 top-0 h-2 w-12 opacity-80 transition-all duration-300 group-hover:w-20 z-10"
@@ -355,10 +365,10 @@ const Projects = () => {
                   </div>
 
                   {/* Content Section */}
-                  <div className="flex flex-col space-y-4">
+                  <div className="flex flex-col space-y-3">
                     <CardHeader className="px-0 pt-0">
-                      <div className="mb-3 flex flex-wrap items-start gap-3">
-                        <CardTitle className="flex-1 text-2xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50">
+                      <div className="mb-2 flex flex-wrap items-start gap-3">
+                        <CardTitle className="flex-1 text-xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50">
                           {project.title}
                         </CardTitle>
                         {project.role && (
@@ -374,7 +384,7 @@ const Projects = () => {
                           </Badge>
                         )}
                       </div>
-                      <CardDescription className="whitespace-pre-line text-base leading-relaxed text-zinc-600 dark:text-zinc-400">
+                      <CardDescription className="whitespace-pre-line text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
                         {project.description}
                       </CardDescription>
                     </CardHeader>
@@ -382,7 +392,7 @@ const Projects = () => {
                     <CardContent className="px-0">
                       {/* Tech Stack Section */}
                       {project.stack && (
-                        <div className="space-y-3">
+                        <div className="space-y-2">
                           <div className="flex items-center gap-2">
                             <div 
                               className="h-1 w-1 rounded-full"
@@ -431,26 +441,26 @@ const Projects = () => {
   return (
     <section
       id="projects"
-      className="min-h-screen bg-white py-20 dark:bg-black"
+      className="relative block flex h-screen items-center bg-white dark:bg-black"
     >
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="mb-12 text-center">
+      <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="mb-4 text-center">
           <HoverableText
             as="h2"
             primaryColor={primaryColor}
             secondaryColor={secondaryColor}
             defaultColor="rgb(37, 99, 235)"
-            className="mb-4 text-4xl font-bold tracking-tight sm:text-5xl"
+            className="mb-2 text-3xl font-bold tracking-tight sm:text-4xl"
           >
             {activeTab === 'professional' ? t('title') : t('personal.title')}
           </HoverableText>
-          <p className="text-lg text-zinc-600 dark:text-zinc-400">
+          <p className="text-base text-zinc-600 dark:text-zinc-400">
             {activeTab === 'professional' ? t('subtitle') : t('personal.subtitle')}
           </p>
         </div>
 
         {/* Tab Navigation */}
-        <div className="mb-8 flex justify-center gap-4">
+        <div className="mb-4 flex justify-center gap-4">
           <Button
             onClick={() => setActiveTab('professional')}
             variant={activeTab === 'professional' ? 'default' : 'outline'}
@@ -489,7 +499,7 @@ const Projects = () => {
 
         {/* Personal Projects Category Tabs */}
         {activeTab === 'personal' && (
-          <div className="mb-8 flex justify-center gap-3">
+          <div className="mb-4 flex justify-center gap-3">
             <Button
               onClick={() => setPersonalCategory('programacion')}
               variant={personalCategory === 'programacion' ? 'default' : 'outline'}
@@ -552,6 +562,44 @@ const Projects = () => {
           ? renderProjects(professionalProjects)
           : renderProjects(getPersonalProjects())
         }
+
+        {/* Scroll to About Section Button */}
+        <div className="mt-8 flex justify-center">
+          <button
+            onClick={() => {
+              const aboutSection = document.getElementById('about');
+              if (aboutSection) {
+                aboutSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+              }
+            }}
+            className="group flex flex-col items-center gap-2 transition-all duration-300 hover:scale-110"
+            aria-label={t('scrollToAbout')}
+            onMouseEnter={() => setHoveredScrollButton(true)}
+            onMouseLeave={() => setHoveredScrollButton(false)}
+          >
+            <span
+              className="text-sm font-medium transition-colors duration-300"
+              style={{
+                color: hoveredScrollButton ? primaryColor : 'rgb(113, 113, 122)',
+              }}
+            >
+              {t('scrollToAbout')}
+            </span>
+            <div
+              className="flex h-12 w-8 items-start justify-center rounded-full border-2 p-2 transition-all duration-300"
+              style={{
+                borderColor: hoveredScrollButton ? primaryColor : 'rgb(161, 161, 170)',
+              }}
+            >
+              <div
+                className="h-2 w-2 animate-bounce rounded-full transition-colors duration-300"
+                style={{
+                  backgroundColor: hoveredScrollButton ? primaryColor : 'rgb(161, 161, 170)',
+                }}
+              />
+            </div>
+          </button>
+        </div>
       </div>
     </section>
   );
