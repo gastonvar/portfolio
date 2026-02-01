@@ -1,6 +1,6 @@
 'use client';
 
-import React, { createContext, useContext, useState, ReactNode } from 'react';
+import React, { createContext, useContext, useState, useCallback, useMemo, ReactNode } from 'react';
 
 interface ColorContextType {
   primaryColor: string;
@@ -14,13 +14,18 @@ export const ColorProvider = ({ children }: { children: ReactNode }) => {
   const [primaryColor, setPrimaryColor] = useState('rgb(37, 99, 235)');
   const [secondaryColor, setSecondaryColor] = useState('rgb(147, 51, 234)');
 
-  const setColors = (primary: string, secondary: string) => {
+  const setColors = useCallback((primary: string, secondary: string) => {
     setPrimaryColor(primary);
     setSecondaryColor(secondary);
-  };
+  }, []);
+
+  const value = useMemo(
+    () => ({ primaryColor, secondaryColor, setColors }),
+    [primaryColor, secondaryColor, setColors]
+  );
 
   return (
-    <ColorContext.Provider value={{ primaryColor, secondaryColor, setColors }}>
+    <ColorContext.Provider value={value}>
       {children}
     </ColorContext.Provider>
   );

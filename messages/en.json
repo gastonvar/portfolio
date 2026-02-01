@@ -205,6 +205,11 @@
   },
   "education": {
     "title": "Education",
+    "ort": {
+      "period": "2023 - 2026",
+      "institution": "ORT Uruguay",
+      "location": "Montevideo"
+    },
     "analista": {
       "period": "Mar 2023 - Jun 2026",
       "title": "Information Technology Analyst",
@@ -228,6 +233,18 @@
       "title": "Web Programmer",
       "institution": "ORT Uruguay",
       "location": "Montevideo"
+    },
+    "ingenieria": {
+      "period": "2022 - 2022",
+      "title": "Systems Engineering",
+      "institution": "Facultad de ingeniería UDELAR",
+      "location": "Montevideo"
+    },
+    "bachillerato": {
+      "period": "2019 - 2021",
+      "title": "High School - Physics / Mathematics Orientation",
+      "institution": "Liceo Santos Rabaquino Pacini",
+      "location": "Santa Lucía, Canelones"
     }
   }
 }
