@@ -167,7 +167,7 @@ const About = () => {
       <div className="relative z-10 mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-6xl">
           {/* Header Section - Enhanced */}
-          <div className="mb-12 text-center">
+          <div className="mb-6 text-center">
             <HoverableText
               as="h2"
               primaryColor={primaryColor}
@@ -283,55 +283,35 @@ const About = () => {
             {/* Download CV Card */}
             <Card className="group relative overflow-hidden border-zinc-200 bg-gradient-to-br from-white via-zinc-50 to-white shadow-lg transition-all duration-500 hover:shadow-xl dark:border-zinc-800 dark:from-zinc-950 dark:via-zinc-900 dark:to-zinc-950">
               <CardContent className="flex h-full flex-col items-center justify-center p-6 text-center sm:p-8">
-                <div 
-                  className="mb-4 flex h-20 w-20 items-center justify-center rounded-2xl shadow-lg transition-all duration-300 group-hover:scale-110 group-hover:shadow-xl"
-                  style={{
-                    background: `linear-gradient(135deg, ${primaryColor}, ${secondaryColor})`,
-                  }}
-                >
-                  <svg
-                    className="h-10 w-10 text-white"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
-                    />
-                  </svg>
-                </div>
-                <h3 className="mb-4 text-xl font-bold text-zinc-900 dark:text-zinc-50">
-                  {t('cvTitle')}
-                </h3>
-                <p className="mb-6 text-sm text-zinc-600 dark:text-zinc-400">
-                  {t('cvDescription')}
-                </p>
                 <a
                   href="/Curriculum/Gaston-CV.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2.5 rounded-lg px-6 py-3 text-sm font-medium text-white shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-xl"
-                  style={{
-                    background: `linear-gradient(135deg, ${primaryColor}, ${secondaryColor})`,
-                  }}
+                  className="group/icon flex flex-col items-center gap-4 transition-all duration-300 hover:scale-110"
                 >
-                  <svg
-                    className="h-5 w-5 transition-transform duration-200 group-hover:translate-y-1"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
+                  <div 
+                    className="flex h-20 w-20 items-center justify-center rounded-2xl shadow-lg transition-all duration-300 group-hover/icon:scale-110 group-hover/icon:shadow-xl"
+                    style={{
+                      background: `linear-gradient(135deg, ${primaryColor}, ${secondaryColor})`,
+                    }}
                   >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M12 10v6m0 0l-3-3m3 3l3-3"
-                    />
-                  </svg>
-                  {t('downloadCV')}
+                    <svg
+                      className="h-10 w-10 text-white transition-transform duration-200 group-hover/icon:translate-y-1"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                      />
+                    </svg>
+                  </div>
+                  <h3 className="text-xl font-bold text-zinc-900 dark:text-zinc-50">
+                    {t('cvTitle')}
+                  </h3>
                 </a>
               </CardContent>
             </Card>

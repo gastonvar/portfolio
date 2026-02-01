@@ -207,5 +207,32 @@
         }
       }
     }
+  },
+  "education": {
+    "title": "Estudios",
+    "analista": {
+      "period": "Mar 2023 - Jun 2026",
+      "title": "Analista en Tecnologías de la Información",
+      "institution": "ORT Uruguay",
+      "location": "Montevideo"
+    },
+    "devops": {
+      "period": "Ene 2025 - Jul 2025",
+      "title": "Especialización DevOps",
+      "institution": "ORT Uruguay",
+      "location": "Montevideo"
+    },
+    "programador": {
+      "period": "Ene 2023 - Jun 2026",
+      "title": "Analista Programador",
+      "institution": "ORT Uruguay",
+      "location": "Montevideo"
+    },
+    "web": {
+      "period": "Mar 2023 - Ago 2024",
+      "title": "Programador Web",
+      "institution": "ORT Uruguay",
+      "location": "Montevideo"
+    }
   }
 }
