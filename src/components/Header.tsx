@@ -91,6 +91,16 @@ const Header = () => {
             </a>
           ))}
 
+          {/* CV Link */}
+          <a
+            href="/Curriculum/Gaston-CV.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="ml-4 rounded-md px-3 py-1.5 text-sm font-medium text-zinc-600 transition-colors hover:bg-zinc-100 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-800 dark:hover:text-zinc-50"
+          >
+            {t('cv')}
+          </a>
+
           {/* Social Links */}
           <div className="ml-4 flex items-center gap-4 border-l border-zinc-200 pl-4 dark:border-zinc-800">
             {socialLinks.map((social) => (
@@ -181,6 +191,17 @@ const Header = () => {
                 {link.label}
               </a>
             ))}
+
+            {/* CV Link - Mobile */}
+            <a
+              href="/Curriculum/Gaston-CV.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={handleCloseMenu}
+              className="block text-sm font-medium text-zinc-600 transition-colors hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-50 pt-4 border-t border-zinc-200 dark:border-zinc-800"
+            >
+              {t('cv')}
+            </a>
 
             {/* Social Links - Mobile */}
             <div className="flex items-center gap-4 pt-4 border-t border-zinc-200 dark:border-zinc-800">

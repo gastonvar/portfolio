@@ -4,7 +4,16 @@
     "projects": "Proyectos",
     "studies": "Estudios",
     "contact": "Contacto",
-    "education": "Escolaridad"
+    "education": "Escolaridad",
+    "cv": "CV"
+  },
+  "about": {
+    "title": "Sobre mí",
+    "greeting": "Hola, mi nombre es",
+    "name": "Gastón Varela",
+    "currentStatus": "Actualmente soy estudiante avanzado de la carrera Analista en tecnologías de la información en la universidad ORT Uruguay.",
+    "description": "Soy estudiante de Análisis de Tecnologías de la Información, con un enfoque meticuloso y exigente tanto en mis estudios como en mi trabajo. Me esfuerzo constantemente por alcanzar un alto nivel de conocimiento, desarrollando tanto habilidades técnicas como blandas que me permiten destacar en el ámbito tecnológico, estudiantil y profesional.",
+    "downloadCV": "Descargar CV"
   },
   "hero": {
     "greeting": "Hola, soy",
@@ -21,5 +30,135 @@
       "Quiero programar"
     ],
     "scrollDown": "Ver proyectos"
+  },
+  "projects": {
+    "title": "Experiencia Profesional",
+    "subtitle": "Proyectos corporativos en los que he trabajado",
+    "blimann": {
+      "title": "Buildtracker",
+      "description": "Sistema completo de gestión para empresa de construcción. \nConstruí el frontend desde cero, eligiendo el stack tecnológico, diseñando componentes, arquitectura, jerarquía de carpetas, estilo, diseño y sistema de autenticación.\nImplementé características específicas de backend y correcciones.",
+      "role": "Desarrollador Frontend Lead",
+      "stack": "NextJS, TailwindCSS, Shadcn, Material UI, TypeScript, .NET",
+      "features": [
+        "Frontend construido desde cero",
+        "Arquitectura y diseño de componentes",
+        "Sistema de autenticación",
+        "Características de backend",
+        "Correcciones e implementaciones específicas"
+      ]
+    },
+    "horizon": {
+      "title": "Horizon",
+      "description": "Sistema completo de gestión interna. \nProyecto donde heredé el frontend y realicé mejoras de UI/UX en todas las páginas, correcciones generales, y agregué un sistema completo de filtrado y búsqueda que duplicó la velocidad de las consultas.",
+      "role": "Desarrollador Full-Stack",
+      "stack": "Sass, CSS, .NET, Razor, Bootstrap",
+      "features": [
+        "Mejoras de UI/UX en todas las páginas",
+        "Sistema de filtrado y búsqueda",
+        "Optimización de consultas (2x más rápido)",
+        "Correcciones generales"
+      ]
+    },
+    "simois": {
+      "title": "Barberias Simois",
+      "description": "Sistema completo de gestión para una empresa de barberías.\nImplementé gestión integral de citas, clientes, sucursales, barberos, stakeholders, productos, servicios, descuentos y horarios, incluyendo métricas de control operacional.\nDesarrollé aplicaciones separadas para clientes y empleados, adaptadas a flujos de trabajo y requisitos de acceso distintos.",
+      "role": "Desarrollador Full-Stack",
+      "stack": "React, TypeScript, .NET, SQL Server",
+      "features": [
+        "Gestión de citas y clientes",
+        "Soporte multi-sucursal",
+        "Aplicaciones separadas para clientes y empleados",
+        "Métricas de control operacional"
+      ]
+    },
+    "noImage": "Imagen no disponible",
+    "techStack": "Stack Tecnológico",
+    "mainFeatures": "Características Principales",
+    "personal": {
+      "title": "Proyectos Personales y Universitarios",
+      "subtitle": "Proyectos que he desarrollado para aprendizaje y uso personal",
+      "programacion": {
+        "title": "Programación",
+        "react": {
+          "title": "Baby Tracker",
+          "description": "Una aplicación de seguimiento de eventos diarios para bebés construida con React JS, CSS y React Charts. Esta aplicación ayuda a los padres a rastrear y monitorear las actividades diarias de su bebé.",
+          "stack": "React JS, CSS, React Charts"
+        },
+        "portfolioViejo": {
+          "title": "Portfolio Viejo",
+          "description": "Mi primera iteración de mi portfolio, construida con HTML, CSS y JavaScript. Este fue mi primer intento de crear un sitio web de portfolio personal.",
+          "stack": "HTML, CSS, JavaScript"
+        },
+        "macro": {
+          "title": "Macro de Automatización",
+          "description": "Una macro que construí para uso diario y automatización, que imita entradas de usuario. Esta herramienta ayuda a automatizar tareas repetitivas y optimizar flujos de trabajo diarios.",
+          "stack": "Automatización, Simulación de Entradas de Usuario"
+        },
+        "apiRest": {
+          "title": "API REST - Control de Stock",
+          "description": "Una API REST construida en C# y .NET con Entity Framework para control de stock. El proyecto también incluye una aplicación MVC que consume estos endpoints de API para gestionar inventario.",
+          "stack": "C#, .NET, Entity Framework, MVC"
+        },
+        "censo2023": {
+          "title": "Censo 2023",
+          "description": "Mi primer proyecto - una aplicación de censo para la población uruguaya. Construida con HTML, JavaScript y CSS, este proyecto fue mi introducción al desarrollo web.",
+          "stack": "HTML, JavaScript, CSS"
+        },
+        "socialNetwork": {
+          "title": "Red Social",
+          "description": "Un proyecto de red social construido con Razor, .NET, CSS y JavaScript. Incluye gestión de sesiones, publicaciones, comentarios, reacciones, amigos y otras características típicas de redes sociales.",
+          "stack": "Razor, .NET, CSS, JavaScript"
+        }
+      },
+      "disenoWeb": {
+        "title": "Diseño Web",
+        "dominosPizza": {
+          "title": "Domino's Pizza",
+          "description": "Proyecto de diseño web para Domino's Pizza."
+        },
+        "muebles": {
+          "title": "Muebles",
+          "description": "Proyecto de diseño web para tienda de muebles."
+        },
+        "navidad": {
+          "title": "Navidad",
+          "description": "Proyecto de diseño web con temática navideña."
+        },
+        "obligatorio": {
+          "title": "Obligatorio BG3",
+          "description": "Proyecto de diseño web obligatorio con tematica BG3."
+        },
+        "paris": {
+          "title": "Paris",
+          "description": "Proyecto de diseño web para Paris."
+        },
+        "pullBear": {
+          "title": "Pull & Bear",
+          "description": "Proyecto de diseño web para Pull & Bear."
+        },
+        "wimbledon": {
+          "title": "Wimbledon",
+          "description": "Proyecto de diseño web para Wimbledon."
+        }
+      },
+      "baseDatos": {
+        "title": "Base de Datos",
+        "obligatorioPS": {
+          "title": "Obligatorio PS",
+          "description": "Proyecto de base de datos para trabajo obligatorio.",
+          "stack": "Base de Datos"
+        },
+        "redSocial": {
+          "title": "Red Social",
+          "description": "Base de datos cuyo proceso de desarrollo consistió de un MER, MR, normalización y pasaje a tablas en SQLServer",
+          "stack": "SQL"
+        },
+        "restauranteInspection": {
+          "title": "Restaurante Inspection",
+          "description": "Base de datos SQL para control de inspecciones de restaurantes con vistas, transactions, stored procedures y base de datos en MongoDB para controlar conversaciones entre inspectores",
+          "stack": "SQL, MongoDB"
+        }
+      }
+    }
   }
 }

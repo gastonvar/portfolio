@@ -3,9 +3,11 @@
 import { useState, useEffect, useRef, useMemo } from 'react';
 import { useTranslations } from 'next-intl';
 import HoverableText from './HoverableText';
+import { useColors } from '@/contexts/ColorContext';
 
 const Hero = () => {
   const t = useTranslations('hero');
+  const { setColors } = useColors();
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [cursorScreenPosition, setCursorScreenPosition] = useState({ x: 0, y: 0 });
   const [cursorDistance, setCursorDistance] = useState(1);
@@ -139,6 +141,11 @@ const Hero = () => {
     };
   }, [cursorDistance]);
 
+  // Update global colors for other components
+  useEffect(() => {
+    setColors(primaryColor, secondaryColor);
+  }, [primaryColor, secondaryColor, setColors]);
+
   // Get cursor aura color based on hovered element (only for scroll button now)
   const getCursorAuraColor = () => {
     if (hoveredElement === 'scroll') {
@@ -239,7 +246,10 @@ const Hero = () => {
 
             {/* Forward slash */}
             <div className="mt-4 text-center text-6xl font-bold text-zinc-300 dark:text-zinc-700">
-              /
+                
+            </div>
+            <div className="text-center text-6xl font-bold text-zinc-300 dark:text-zinc-700">
+             U U
             </div>
           </div>
 

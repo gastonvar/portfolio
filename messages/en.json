@@ -4,7 +4,16 @@
     "projects": "Projects",
     "studies": "Studies",
     "contact": "Contact",
-    "education": "Education"
+    "education": "Education",
+    "cv": "CV"
+  },
+  "about": {
+    "title": "About me",
+    "greeting": "Hello, my name is",
+    "name": "Gastón Varela",
+    "currentStatus": "I am currently an advanced student in the Information Technology Analyst program at ORT Uruguay University.",
+    "description": "I am an Information Technology Analysis student, with a meticulous and demanding approach both in my studies and in my work. I constantly strive to achieve a high level of knowledge, developing both technical and soft skills that allow me to excel in the technological, academic, and professional fields.",
+    "downloadCV": "Download CV"
   },
   "hero": {
     "greeting": "Hi, I'm",
@@ -21,5 +30,130 @@
       "I want to code"
     ],
     "scrollDown": "View projects"
+  },
+  "projects": {
+    "title": "Professional Experience",
+    "subtitle": "Corporate projects I've worked on",
+    "blimann": {
+      "title": "Buildtracker",
+      "description": "Complete management system for a construction company. \nI built the frontend from the ground up, choosing the tech stack, designing components, architecture, folder hierarchy, style, design, and authentication system.\nImplemented specific backend features and fixes.",
+      "role": "Lead Frontend Developer",
+      "stack": "NextJS, TailwindCSS, Shadcn, Material UI, TypeScript, .NET",
+      "features": [
+        "Frontend built from scratch",
+        "Component architecture and design",
+        "Authentication system",
+        "Backend features",
+        "Fixes and specific implementations"
+      ]
+    },
+    "horizon": {
+      "title": "Horizon",
+      "description": "Complete internal management system. \nProject where I inherited the frontend and performed UI/UX improvements across all pages, overall fixes, and added a complete filtering and searching feature that doubled query speeds.",
+      "role": "Full-Stack Developer",
+      "stack": "Sass, CSS, .NET, Razor, Bootstrap",
+      "features": [
+        "UI/UX improvements across all pages",
+        "Filtering and searching system",
+        "Query optimization (2x faster)",
+        "Overall fixes"
+      ]
+    },
+    "simois": {
+      "title": "Barberias Simois",
+      "description": "Complete management system for a barber shop business.\nImplemented comprehensive management of appointments, clients, branches, barbers, stakeholders, products, services, discounts, and schedules, including operational control metrics.\nDeveloped separate applications for clients and employees, tailored to distinct workflows and access requirements.",
+      "role": "Full-Stack Developer",
+      "stack": "React, TypeScript, .NET, SQL Server",
+      "features": [
+        "Appointment and client management",
+        "Multi-branch support",
+        "Separate client and employee applications",
+        "Operational control metrics"
+      ]
+    },
+    "noImage": "Image not available",
+    "techStack": "Tech Stack",
+    "mainFeatures": "Main Features",
+    "personal": {
+      "title": "Personal & University Projects",
+      "subtitle": "Projects I've developed for learning and personal use",
+      "programacion": {
+        "title": "Programming",
+        "react": {
+          "title": "Baby Tracker",
+          "description": "A baby daily events tracking app built with React JS, CSS, and React Charts. This application helps parents track and monitor their baby's daily activities and events.",
+          "stack": "React JS, CSS, React Charts"
+        },
+        "portfolioViejo": {
+          "title": "Old Portfolio",
+          "description": "My first iteration of my portfolio, built with HTML, CSS, and JavaScript. This was my initial attempt at creating a personal portfolio website.",
+          "stack": "HTML, CSS, JavaScript"
+        },
+        "macro": {
+          "title": "Automation Macro",
+          "description": "A macro I built for daily use and automation, which mimics user inputs. This tool helps automate repetitive tasks and streamline daily workflows.",
+          "stack": "Automation, User Input Simulation"
+        },
+        "apiRest": {
+          "title": "API REST - Stock Control",
+          "description": "A REST API built in C# and .NET with Entity Framework for stock control. The project also includes an MVC application that consumes these API endpoints for managing inventory.",
+          "stack": "C#, .NET, Entity Framework, MVC"
+        },
+        "censo2023": {
+          "title": "Censo 2023",
+          "description": "My first ever project - a census application for the Uruguayan population. Built with HTML, JavaScript, and CSS, this project was my introduction to web development.",
+          "stack": "HTML, JavaScript, CSS"
+        },
+        "socialNetwork": {
+          "title": "Social Network",
+          "description": "A social network project built with Razor, .NET, CSS, and JavaScript. Features include session management, posts, comments, reactions, friends, and other typical social network features.",
+          "stack": "Razor, .NET, CSS, JavaScript"
+        }
+      },
+      "disenoWeb": {
+        "title": "Web Design",
+        "dominosPizza": {
+          "title": "Domino's Pizza",
+          "description": "Web design project for Domino's Pizza."
+        },
+        "muebles": {
+          "title": "Muebles",
+          "description": "Web design project for furniture store."
+        },
+        "navidad": {
+          "title": "Navidad",
+          "description": "Christmas-themed web design project."
+        },
+        "obligatorio": {
+          "title": "Obligatorio BG3",
+          "description": "Mandatory web design project with BG3 theme."
+        },
+        "paris": {
+          "title": "Paris",
+          "description": "Web design project for Paris."
+        },
+        "pullBear": {
+          "title": "Pull & Bear",
+          "description": "Web design project for Pull & Bear."
+        },
+        "wimbledon": {
+          "title": "Wimbledon",
+          "description": "Web design project for Wimbledon."
+        }
+      },
+      "baseDatos": {
+        "title": "Database",
+        "redSocial": {
+          "title": "Red Social",
+          "description": "Database whose development process consisted of an MER, MR, normalization and conversion to tables in SQL Server.",
+          "stack": "SQL"
+        },
+        "restauranteInspection": {
+          "title": "Restaurante Inspection",
+          "description": "SQL database for restaurant inspection control with views, transactions, stored procedures and MongoDB database to control conversations between inspectors.",
+          "stack": "SQL, MongoDB"
+        }
+      }
+    }
   }
 }
