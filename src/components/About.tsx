@@ -149,22 +149,6 @@ const About = () => {
 
   return (
     <section id="about" className="relative block flex min-h-screen items-center bg-gradient-to-b from-white to-zinc-50 py-20 dark:from-black dark:to-zinc-950">
-      {/* Decorative background elements - inspired by Hero */}
-      <div className="pointer-events-none absolute inset-0 overflow-hidden">
-        <div 
-          className="absolute -top-40 -left-40 h-80 w-80 rounded-full opacity-20 blur-3xl transition-opacity duration-1000"
-          style={{
-            background: `linear-gradient(135deg, ${primaryColor}, ${secondaryColor})`,
-          }}
-        />
-        <div 
-          className="absolute -bottom-40 -right-40 h-80 w-80 rounded-full opacity-20 blur-3xl transition-opacity duration-1000"
-          style={{
-            background: `linear-gradient(135deg, ${secondaryColor}, ${primaryColor})`,
-          }}
-        />
-      </div>
-
       <div className="relative z-10 mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-6xl">
           {/* Header Section - Enhanced */}
@@ -173,7 +157,7 @@ const About = () => {
               as="h2"
               primaryColor={primaryColor}
               secondaryColor={secondaryColor}
-              defaultColor="rgb(37, 99, 235)"
+              defaultColor="rgb(98, 250, 215)"
               className="mb-4 text-4xl font-bold tracking-tight sm:text-5xl"
             >
               {t('title')}
@@ -195,7 +179,7 @@ const About = () => {
                   <HoverableText
                     primaryColor={primaryColor}
                     secondaryColor={secondaryColor}
-                    defaultColor="rgb(37, 99, 235)"
+                    defaultColor="rgb(98, 250, 215)"
                     className="font-bold"
                   >
                     {t('name')}
@@ -384,6 +368,10 @@ const About = () => {
                     <h4 className="text-xl font-bold text-zinc-800 dark:text-zinc-200">
                       {t('technologies.frontend.title')}
                     </h4>
+                    <div 
+                      className="h-1 flex-1 rounded-full transition-all duration-300"
+                      style={{ backgroundColor: primaryColor }}
+                    />
                   </div>
                   <div className="flex flex-wrap gap-2.5">
                     {t('technologies.frontend.list').split(', ').map((tech: string) => (
@@ -402,6 +390,7 @@ const About = () => {
                       </Badge>
                     ))}
                   </div>
+                  
                 </div>
 
                 {/* Backend */}
@@ -421,6 +410,10 @@ const About = () => {
                     <h4 className="text-xl font-bold text-zinc-800 dark:text-zinc-200">
                       {t('technologies.backend.title')}
                     </h4>
+                    <div 
+                      className="h-1 flex-1 rounded-full transition-all duration-300"
+                      style={{ backgroundColor: secondaryColor }}
+                    />
                   </div>
                   <div className="flex flex-wrap gap-2.5">
                     {t('technologies.backend.list').split(', ').map((tech: string) => (
@@ -460,6 +453,12 @@ const About = () => {
                     <h4 className="text-xl font-bold text-zinc-800 dark:text-zinc-200">
                       {t('technologies.devops.title')}
                     </h4>
+                    <div 
+                      className="h-1 flex-1 rounded-full transition-all duration-300"
+                      style={{ 
+                        background: `linear-gradient(90deg, ${primaryColor}, ${secondaryColor})`,
+                      }}
+                    />
                   </div>
                   <div className="flex flex-wrap gap-2.5">
                     {t('technologies.devops.list').split(', ').map((tech: string) => (

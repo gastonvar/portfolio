@@ -3,12 +3,14 @@
 import { useState, useEffect } from 'react';
 import { useTranslations, useLocale } from 'next-intl';
 import { useRouter, usePathname } from '@/i18n/routing';
+import { useColors } from '@/contexts/ColorContext';
 
 const Header = () => {
   const t = useTranslations('nav');
   const locale = useLocale();
   const router = useRouter();
   const pathname = usePathname();
+  const { primaryColor } = useColors();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
 
@@ -44,7 +46,6 @@ const Header = () => {
     { href: '#projects', label: t('projects') },
     { href: '#studies', label: t('studies') },
     { href: '#contact', label: t('contact') },
-    { href: '#education', label: t('education') },
   ];
 
   const socialLinks = [
@@ -108,7 +109,16 @@ const Header = () => {
               href={locale === 'es' ? '/Curriculum/CV_PFP_ES.pdf' : '/Curriculum/CV_EN.pdf'}
               target="_blank"
               rel="noopener noreferrer"
-              className="rounded-md px-3 py-1.5 text-sm font-medium text-zinc-600 transition-colors hover:bg-zinc-100 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-800 dark:hover:text-zinc-50"
+              className="rounded-md px-3 py-1.5 text-sm font-medium text-zinc-600 transition-colors hover:bg-zinc-100 dark:text-zinc-400 dark:hover:bg-zinc-800"
+              style={{
+                color: 'inherit',
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.color = primaryColor;
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.color = '';
+              }}
             >
               {t('cv')}
             </a>
@@ -116,7 +126,16 @@ const Header = () => {
               href="/Escolaridad/Escolaridad.png"
               target="_blank"
               rel="noopener noreferrer"
-              className="rounded-md px-3 py-1.5 text-sm font-medium text-zinc-600 transition-colors hover:bg-zinc-100 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-800 dark:hover:text-zinc-50"
+              className="rounded-md px-3 py-1.5 text-sm font-medium text-zinc-600 transition-colors hover:bg-zinc-100 dark:text-zinc-400 dark:hover:bg-zinc-800"
+              style={{
+                color: 'inherit',
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.color = primaryColor;
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.color = '';
+              }}
             >
               {t('education')}
             </a>
@@ -248,7 +267,16 @@ const Header = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={handleCloseMenu}
-                className="block text-sm font-medium text-zinc-600 transition-colors hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-50"
+                className="block text-sm font-medium text-zinc-600 transition-colors dark:text-zinc-400"
+                style={{
+                  color: 'inherit',
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.color = primaryColor;
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.color = '';
+                }}
               >
                 {t('cv')}
               </a>
@@ -257,7 +285,16 @@ const Header = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={handleCloseMenu}
-                className="block text-sm font-medium text-zinc-600 transition-colors hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-50"
+                className="block text-sm font-medium text-zinc-600 transition-colors dark:text-zinc-400"
+                style={{
+                  color: 'inherit',
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.color = primaryColor;
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.color = '';
+                }}
               >
                 {t('education')}
               </a>

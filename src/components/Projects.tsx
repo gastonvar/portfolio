@@ -38,8 +38,6 @@ const ImageGallery = ({ images, title, primaryColor }: { images: string[]; title
           className="object-cover transition-transform duration-500 group-hover:scale-110"
           sizes="(max-width: 768px) 100vw, 50vw"
         />
-        {/* Image overlay gradient */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
       </div>
       
       {/* Navigation buttons */}
@@ -289,31 +287,10 @@ const Projects = () => {
                     zIndex: 0,
                   }}
                 />
-                
-                {/* Glowing corner accent */}
-                <div 
-                  className="absolute -right-10 -top-10 h-32 w-32 rounded-full opacity-20 blur-3xl transition-opacity duration-500 group-hover:opacity-40"
-                  style={{
-                    background: `linear-gradient(135deg, ${primaryColor}, ${secondaryColor})`,
-                  }}
-                />
 
                 <div className="relative z-10 flex flex-col gap-4 p-5 pb-4">
                   {/* Image Section */}
                   <div className="relative aspect-[16/9] w-full max-h-64 overflow-hidden rounded-xl bg-gradient-to-br from-zinc-200 to-zinc-100 shadow-inner dark:from-zinc-800 dark:to-zinc-900">
-                    {/* Decorative corner element */}
-                    <div 
-                      className="absolute left-0 top-0 h-2 w-12 opacity-80 transition-all duration-300 group-hover:w-20 z-10"
-                      style={{
-                        background: `linear-gradient(90deg, ${primaryColor}, transparent)`,
-                      }}
-                    />
-                    <div 
-                      className="absolute left-0 top-0 h-12 w-2 opacity-80 transition-all duration-300 group-hover:h-20 z-10"
-                      style={{
-                        background: `linear-gradient(180deg, ${primaryColor}, transparent)`,
-                      }}
-                    />
 
                     {(project as any).images && (project as any).images.length > 1 ? (
                       <ImageGallery 
@@ -330,8 +307,6 @@ const Projects = () => {
                           className="object-cover transition-transform duration-500 group-hover:scale-110"
                           sizes="(max-width: 768px) 100vw, 50vw"
                         />
-                        {/* Image overlay gradient */}
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
                       </div>
                     ) : (
                       <div className="flex h-full items-center justify-center">
@@ -449,7 +424,7 @@ const Projects = () => {
             as="h2"
             primaryColor={primaryColor}
             secondaryColor={secondaryColor}
-            defaultColor="rgb(37, 99, 235)"
+            defaultColor="rgb(98, 250, 215)"
             className="mb-2 text-3xl font-bold tracking-tight sm:text-4xl"
           >
             {activeTab === 'professional' ? t('title') : t('personal.title')}
@@ -470,6 +445,7 @@ const Projects = () => {
                 ? {
                     backgroundColor: primaryColor,
                     borderColor: primaryColor,
+                    color: '#000000',
                   }
                 : {
                     borderColor: `${primaryColor}40`,
@@ -487,6 +463,7 @@ const Projects = () => {
                 ? {
                     backgroundColor: primaryColor,
                     borderColor: primaryColor,
+                    color: '#000000',
                   }
                 : {
                     borderColor: `${primaryColor}40`,
@@ -510,6 +487,7 @@ const Projects = () => {
                   ? {
                       backgroundColor: primaryColor,
                       borderColor: primaryColor,
+                      color: '#000000',
                     }
                   : {
                       borderColor: `${primaryColor}40`,
@@ -528,6 +506,7 @@ const Projects = () => {
                   ? {
                       backgroundColor: primaryColor,
                       borderColor: primaryColor,
+                      color: '#000000',
                     }
                   : {
                       borderColor: `${primaryColor}40`,
@@ -546,6 +525,7 @@ const Projects = () => {
                   ? {
                       backgroundColor: primaryColor,
                       borderColor: primaryColor,
+                      color: '#000000',
                     }
                   : {
                       borderColor: `${primaryColor}40`,

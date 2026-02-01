@@ -58,22 +58,6 @@ const Education = () => {
       id="education"
       className="relative block flex min-h-screen items-center bg-gradient-to-b from-white to-zinc-50 py-20 dark:from-black dark:to-zinc-950"
     >
-      {/* Decorative background elements */}
-      <div className="pointer-events-none absolute inset-0 overflow-hidden">
-        <div
-          className="absolute -top-40 -left-40 h-80 w-80 rounded-full opacity-20 blur-3xl transition-opacity duration-1000"
-          style={{
-            background: `linear-gradient(135deg, ${primaryColor}, ${secondaryColor})`,
-          }}
-        />
-        <div
-          className="absolute -bottom-40 -right-40 h-80 w-80 rounded-full opacity-20 blur-3xl transition-opacity duration-1000"
-          style={{
-            background: `linear-gradient(135deg, ${secondaryColor}, ${primaryColor})`,
-          }}
-        />
-      </div>
-
       <div className="relative z-10 mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-4xl">
           {/* Header Section */}
@@ -82,7 +66,7 @@ const Education = () => {
               as="h2"
               primaryColor={primaryColor}
               secondaryColor={secondaryColor}
-              defaultColor="rgb(37, 99, 235)"
+              defaultColor="rgb(98, 250, 215)"
               className="mb-4 text-4xl font-bold tracking-tight sm:text-5xl"
             >
               {t('title')}

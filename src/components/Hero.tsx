@@ -93,19 +93,19 @@ const Hero = () => {
   const eyeY = (mousePosition.y - 50) * 0.3;
 
   // Calculate color based on cursor distance
-  // Closer = warmer colors (red/orange), farther = cooler colors (blue/purple)
+  // Closer = brighter cyan, farther = darker cyan
   const getColorFromDistance = (distance: number) => {
     // Invert distance so closer = higher value (0-1)
     const proximity = Math.max(0, Math.min(1, 1 - distance));
     
-    // More dramatic color transition
-    // Cool colors (far): Blue #3b82f6 to Purple #9333ea
-    // Warm colors (close): Red #ef4444 to Orange #f97316
+    // Cyan color transition (#62FAD7 = rgb(98, 250, 215))
+    // Far: Darker cyan rgb(0, 200, 180)
+    // Close: Bright cyan rgb(98, 250, 215)
     
-    // Linear interpolation between cool and warm
-    const r = Math.round(59 + proximity * 196); // 59 (blue) to 255 (red/orange)
-    const g = Math.round(130 - proximity * 62); // 130 (blue) to 68 (red)
-    const b = Math.round(246 - proximity * 224); // 246 (blue) to 22 (orange)
+    // Linear interpolation between dark and bright cyan
+    const r = Math.round(0 + proximity * 98); // 0 to 98
+    const g = Math.round(200 + proximity * 50); // 200 to 250
+    const b = Math.round(180 + proximity * 35); // 180 to 215
     
     return `rgb(${r}, ${g}, ${b})`;
   };
@@ -113,25 +113,16 @@ const Hero = () => {
   const getSecondaryColorFromDistance = (distance: number) => {
     const proximity = Math.max(0, Math.min(1, 1 - distance));
     
-    // Secondary color for gradient
-    // Cool: Purple #9333ea to Pink #ec4899
-    // Warm: Orange #f97316 to Yellow #fbbf24
+    // Secondary color for gradient - cyan variants
+    // Far: Darker cyan rgb(0, 200, 180)
+    // Close: Bright cyan rgb(0, 255, 200)
     
-    if (proximity > 0.5) {
-      // Warm secondary (orange to yellow)
-      const t = (proximity - 0.5) * 2;
-      const r = Math.round(249 + t * 6); // 249 to 255
-      const g = Math.round(115 + t * 140); // 115 to 255
-      const b = Math.round(22);
-      return `rgb(${r}, ${g}, ${b})`;
-    } else {
-      // Cool secondary (purple to pink)
-      const t = proximity * 2;
-      const r = Math.round(147 + t * 108); // 147 to 255
-      const g = Math.round(51 + t * 49); // 51 to 100
-      const b = Math.round(234 - t * 29); // 234 to 205
-      return `rgb(${r}, ${g}, ${b})`;
-    }
+    // Linear interpolation between dark and bright cyan
+    const r = Math.round(0);
+    const g = Math.round(200 + proximity * 55); // 200 to 255
+    const b = Math.round(180 + proximity * 20); // 180 to 200
+    
+    return `rgb(${r}, ${g}, ${b})`;
   };
 
   const { primaryColor, secondaryColor } = useMemo(() => {
@@ -167,13 +158,21 @@ const Hero = () => {
           <div className="relative">
             {/* Glow effect */}
             <div className="absolute inset-0 -z-10 flex items-center justify-center">
-              <div className="h-64 w-64 animate-pulse rounded-full bg-blue-500/20 blur-3xl dark:bg-blue-400/20" />
+              <div className="h-64 w-64 animate-pulse rounded-full blur-3xl" style={{ backgroundColor: `${primaryColor}30` }} />
             </div>
 
             {/* Code container */}
             <div className="relative flex items-center justify-center gap-8">
               {/* Left bracket */}
-              <div className="text-8xl font-bold text-zinc-400 transition-all duration-300 hover:text-blue-500 dark:text-zinc-600 dark:hover:text-blue-400 sm:text-9xl">
+              <div 
+                className="text-8xl font-bold text-zinc-400 transition-all duration-300 dark:text-zinc-600 sm:text-9xl"
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.color = primaryColor;
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.color = '';
+                }}
+              >
                 {'<'}
               </div>
 
@@ -231,15 +230,23 @@ const Hero = () => {
 
                 {/* Animated particles */}
                 <div className="absolute inset-0 animate-spin" style={{ animationDuration: '20s' }}>
-                  <div className="absolute top-0 left-1/2 h-2 w-2 -translate-x-1/2 rounded-full bg-blue-500" />
+                  <div className="absolute top-0 left-1/2 h-2 w-2 -translate-x-1/2 rounded-full" style={{ backgroundColor: primaryColor }} />
                 </div>
                 <div className="absolute inset-0 animate-spin" style={{ animationDuration: '15s', animationDirection: 'reverse' }}>
-                  <div className="absolute bottom-0 left-1/2 h-2 w-2 -translate-x-1/2 rounded-full bg-purple-500" />
+                  <div className="absolute bottom-0 left-1/2 h-2 w-2 -translate-x-1/2 rounded-full" style={{ backgroundColor: secondaryColor }} />
                 </div>
               </div>
 
               {/* Right bracket */}
-              <div className="text-8xl font-bold text-zinc-400 transition-all duration-300 hover:text-blue-500 dark:text-zinc-600 dark:hover:text-blue-400 sm:text-9xl">
+              <div 
+                className="text-8xl font-bold text-zinc-400 transition-all duration-300 dark:text-zinc-600 sm:text-9xl"
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.color = primaryColor;
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.color = '';
+                }}
+              >
                 {'>'}
               </div>
             </div>
@@ -248,7 +255,15 @@ const Hero = () => {
             <div className="mt-4 text-center text-6xl font-bold text-zinc-300 dark:text-zinc-700">
                 
             </div>
-            <div className="text-center text-6xl font-bold text-zinc-300 dark:text-zinc-700">
+            <div 
+              className="text-center text-6xl font-bold text-zinc-300 transition-all duration-300 dark:text-zinc-700"
+              onMouseEnter={(e) => {
+                e.currentTarget.style.color = primaryColor;
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.color = '';
+              }}
+            >
              U U
             </div>
           </div>
@@ -260,7 +275,7 @@ const Hero = () => {
               <HoverableText
                 primaryColor={primaryColor}
                 secondaryColor={secondaryColor}
-                defaultColor="rgb(37, 99, 235)"
+                defaultColor="rgb(98, 250, 215)"
                 className="transition-all duration-300"
               >
                 Gastón Varela
@@ -275,7 +290,7 @@ const Hero = () => {
               <HoverableText
                 as="p"
                 primaryColor={primaryColor}
-                defaultColor="rgb(37, 99, 235)"
+                defaultColor="rgb(98, 250, 215)"
                 className="font-mono text-lg font-medium sm:text-xl"
               >
                 {displayedText}
@@ -320,8 +335,8 @@ const Hero = () => {
 
       {/* Decorative elements */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
-        <div className="absolute -top-40 -left-40 h-80 w-80 rounded-full bg-purple-500/10 blur-3xl" />
-        <div className="absolute -bottom-40 -right-40 h-80 w-80 rounded-full bg-blue-500/10 blur-3xl" />
+        <div className="absolute -top-40 -left-40 h-80 w-80 rounded-full blur-3xl" style={{ backgroundColor: `${primaryColor}20` }} />
+        <div className="absolute -bottom-40 -right-40 h-80 w-80 rounded-full blur-3xl" style={{ backgroundColor: `${secondaryColor}20` }} />
       </div>
 
       {/* Cursor aura/follower */}

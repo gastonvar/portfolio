@@ -11,8 +11,8 @@ interface ColorContextType {
 const ColorContext = createContext<ColorContextType | undefined>(undefined);
 
 export const ColorProvider = ({ children }: { children: ReactNode }) => {
-  const [primaryColor, setPrimaryColor] = useState('rgb(37, 99, 235)');
-  const [secondaryColor, setSecondaryColor] = useState('rgb(147, 51, 234)');
+  const [primaryColor, setPrimaryColor] = useState('rgb(98, 250, 215)');
+  const [secondaryColor, setSecondaryColor] = useState('rgb(0, 255, 200)');
 
   const setColors = useCallback((primary: string, secondary: string) => {
     setPrimaryColor(primary);
