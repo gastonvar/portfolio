@@ -1,10 +1,11 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { useColors } from '@/contexts/ColorContext';
 import HoverableText from './HoverableText';
 import { Badge } from '@/components/ui/badge';
+import { Card, CardContent } from '@/components/ui/card';
 
 // Technology icon mapping
 const getTechIcon = (tech: string) => {
@@ -142,161 +143,329 @@ const getTechIcon = (tech: string) => {
 
 const About = () => {
   const t = useTranslations('about');
-  const { primaryColor } = useColors();
+  const { primaryColor, secondaryColor } = useColors();
+  const [hoveredCategory, setHoveredCategory] = useState<string | null>(null);
 
   return (
-    <section id="about" className="relative block flex h-screen items-center bg-gradient-to-b from-white to-zinc-50 dark:from-black dark:to-zinc-950">
-      <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-4xl">
-        <div className="mb-8">
-          <h2 className="mb-4 text-3xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50 sm:text-4xl">
-            {t('title')}
-          </h2>
-          <div 
-            className="h-0.5 w-16 rounded-full"
-            style={{ backgroundColor: primaryColor }}
-          />
-        </div>
-        
-        <div className="space-y-8 text-lg leading-relaxed text-zinc-700 dark:text-zinc-300 sm:text-xl">
-          <p className="text-2xl sm:text-3xl font-medium">
-            {t('greeting')}{' '}
+    <section id="about" className="relative block flex min-h-screen items-center bg-gradient-to-b from-white to-zinc-50 py-20 dark:from-black dark:to-zinc-950">
+      {/* Decorative background elements - inspired by Hero */}
+      <div className="pointer-events-none absolute inset-0 overflow-hidden">
+        <div 
+          className="absolute -top-40 -left-40 h-80 w-80 rounded-full opacity-20 blur-3xl transition-opacity duration-1000"
+          style={{
+            background: `linear-gradient(135deg, ${primaryColor}, ${secondaryColor})`,
+          }}
+        />
+        <div 
+          className="absolute -bottom-40 -right-40 h-80 w-80 rounded-full opacity-20 blur-3xl transition-opacity duration-1000"
+          style={{
+            background: `linear-gradient(135deg, ${secondaryColor}, ${primaryColor})`,
+          }}
+        />
+      </div>
+
+      <div className="relative z-10 mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-6xl">
+          {/* Header Section - Enhanced */}
+          <div className="mb-12 text-center">
             <HoverableText
+              as="h2"
               primaryColor={primaryColor}
-              secondaryColor={primaryColor}
+              secondaryColor={secondaryColor}
               defaultColor="rgb(37, 99, 235)"
-              className="font-bold"
+              className="mb-4 text-4xl font-bold tracking-tight sm:text-5xl"
             >
-              {t('name')}
+              {t('title')}
             </HoverableText>
-            .
-          </p>
-          <p className="leading-8">{t('description')}</p>
-        </div>
-
-        {/* Languages Section */}
-        <div className="mt-10">
-          <h3 className="mb-4 text-xl font-semibold text-zinc-900 dark:text-zinc-50">
-            {t('languages.title')}
-          </h3>
-          <div className="space-y-2">
-            <div className="text-base text-zinc-700 dark:text-zinc-300">
-              {t('languages.spanish')}
-            </div>
-            <div className="text-base text-zinc-700 dark:text-zinc-300">
-              <a
-                href="https://cert.efset.org/6upzXT"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="font-medium transition-colors hover:underline"
-                style={{ color: primaryColor }}
-              >
-                {t('languages.english')}
-              </a>
-            </div>
+            <div 
+              className="mx-auto h-1 w-24 rounded-full transition-all duration-300"
+              style={{ 
+                background: `linear-gradient(90deg, ${primaryColor}, ${secondaryColor})`,
+              }}
+            />
           </div>
-        </div>
+          
+          {/* Introduction Card - Inspired by Projects cards */}
+          <Card className="group relative mb-6 overflow-hidden border-zinc-200 bg-gradient-to-br from-white via-zinc-50 to-white shadow-xl transition-all duration-500 hover:shadow-2xl dark:border-zinc-800 dark:from-zinc-950 dark:via-zinc-900 dark:to-zinc-950">
+            <CardContent className="relative z-10 p-8 sm:p-10">
+              <div className="space-y-6 text-lg leading-relaxed text-zinc-700 dark:text-zinc-300">
+                <p className="text-2xl font-medium sm:text-3xl">
+                  {t('greeting')}{' '}
+                  <HoverableText
+                    primaryColor={primaryColor}
+                    secondaryColor={secondaryColor}
+                    defaultColor="rgb(37, 99, 235)"
+                    className="font-bold"
+                  >
+                    {t('name')}
+                  </HoverableText>
+                  .
+                </p>
+                <p className="text-base leading-8 sm:text-lg">{t('description')}</p>
+              </div>
+            </CardContent>
+          </Card>
 
-        {/* Technologies Section */}
-        <div className="mt-10">
-          <h3 className="mb-6 text-xl font-semibold text-zinc-900 dark:text-zinc-50">
-            {t('technologies.title')}
-          </h3>
-          <div className="space-y-6">
-            {/* Frontend */}
-            <div>
-              <h4 className="mb-3 text-base font-semibold text-zinc-800 dark:text-zinc-200">
-                {t('technologies.frontend.title')}:
-              </h4>
-              <div className="flex flex-wrap gap-2">
-                {t('technologies.frontend.list').split(', ').map((tech: string) => (
-                  <Badge
-                    key={tech}
-                    variant="outline"
-                    className="inline-flex items-center gap-1.5 border-zinc-300 bg-white/50 px-3 py-1.5 text-xs font-medium backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:border-zinc-400 hover:shadow-md dark:border-zinc-700 dark:bg-zinc-900/50 dark:hover:border-zinc-600"
+          {/* Languages & Technologies Grid */}
+          <div className="mb-6 grid gap-8 md:grid-cols-2">
+            {/* Languages Card */}
+            <Card className="group relative overflow-hidden border-zinc-200 bg-gradient-to-br from-white via-zinc-50 to-white shadow-lg transition-all duration-500 hover:shadow-xl dark:border-zinc-800 dark:from-zinc-950 dark:via-zinc-900 dark:to-zinc-950">
+              <CardContent className="p-6 sm:p-8">
+                <div className="mb-4 flex items-center gap-3">
+                  <div 
+                    className="flex h-10 w-10 items-center justify-center rounded-lg shadow-lg transition-all duration-300 group-hover:scale-110"
                     style={{
-                      borderColor: `${primaryColor}40`,
+                      background: `linear-gradient(135deg, ${primaryColor}30, ${secondaryColor}30)`,
                     }}
                   >
-                    {getTechIcon(tech)}
-                    <span>{tech}</span>
-                  </Badge>
-                ))}
-              </div>
-            </div>
-
-            {/* Backend */}
-            <div>
-              <h4 className="mb-3 text-base font-semibold text-zinc-800 dark:text-zinc-200">
-                {t('technologies.backend.title')}:
-              </h4>
-              <div className="flex flex-wrap gap-2">
-                {t('technologies.backend.list').split(', ').map((tech: string) => (
-                  <Badge
-                    key={tech}
-                    variant="outline"
-                    className="inline-flex items-center gap-1.5 border-zinc-300 bg-white/50 px-3 py-1.5 text-xs font-medium backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:border-zinc-400 hover:shadow-md dark:border-zinc-700 dark:bg-zinc-900/50 dark:hover:border-zinc-600"
-                    style={{
-                      borderColor: `${primaryColor}40`,
-                    }}
+                    <svg
+                      className="h-6 w-6 text-zinc-700 dark:text-zinc-300"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"
+                      />
+                    </svg>
+                  </div>
+                  <h3 className="text-2xl font-bold text-zinc-900 dark:text-zinc-50">
+                    {t('languages.title')}
+                  </h3>
+                </div>
+                <div className="space-y-3">
+                  <div className="flex items-center gap-3 rounded-lg bg-zinc-100/50 p-3 transition-colors duration-300 hover:bg-zinc-100 dark:bg-zinc-800/50 dark:hover:bg-zinc-800">
+                    <div 
+                      className="h-2 w-2 rounded-full"
+                      style={{ backgroundColor: primaryColor }}
+                    />
+                    <span className="text-base font-medium text-zinc-700 dark:text-zinc-300">
+                      {t('languages.spanish')}
+                    </span>
+                  </div>
+                  <a
+                    href="https://cert.efset.org/6upzXT"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-3 rounded-lg bg-zinc-100/50 p-3 transition-all duration-300 hover:scale-[1.02] hover:bg-zinc-100 hover:shadow-md dark:bg-zinc-800/50 dark:hover:bg-zinc-800"
                   >
-                    {getTechIcon(tech)}
-                    <span>{tech}</span>
-                  </Badge>
-                ))}
-              </div>
-            </div>
+                    <div 
+                      className="h-2 w-2 rounded-full"
+                      style={{ backgroundColor: secondaryColor }}
+                    />
+                    <span 
+                      className="text-base font-medium transition-colors"
+                      style={{ color: primaryColor }}
+                    >
+                      {t('languages.english')}
+                    </span>
+                    <svg
+                      className="ml-auto h-4 w-4 text-zinc-500 transition-transform group-hover:translate-x-1 dark:text-zinc-400"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                      />
+                    </svg>
+                  </a>
+                </div>
+              </CardContent>
+            </Card>
 
-            {/* DevOps & Tools */}
-            <div>
-              <h4 className="mb-3 text-base font-semibold text-zinc-800 dark:text-zinc-200">
-                {t('technologies.devops.title')}:
-              </h4>
-              <div className="flex flex-wrap gap-2">
-                {t('technologies.devops.list').split(', ').map((tech: string) => (
-                  <Badge
-                    key={tech}
-                    variant="outline"
-                    className="inline-flex items-center gap-1.5 border-zinc-300 bg-white/50 px-3 py-1.5 text-xs font-medium backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:border-zinc-400 hover:shadow-md dark:border-zinc-700 dark:bg-zinc-900/50 dark:hover:border-zinc-600"
-                    style={{
-                      borderColor: `${primaryColor}40`,
-                    }}
+            {/* Download CV Card */}
+            <Card className="group relative overflow-hidden border-zinc-200 bg-gradient-to-br from-white via-zinc-50 to-white shadow-lg transition-all duration-500 hover:shadow-xl dark:border-zinc-800 dark:from-zinc-950 dark:via-zinc-900 dark:to-zinc-950">
+              <CardContent className="flex h-full flex-col items-center justify-center p-6 text-center sm:p-8">
+                <div 
+                  className="mb-4 flex h-20 w-20 items-center justify-center rounded-2xl shadow-lg transition-all duration-300 group-hover:scale-110 group-hover:shadow-xl"
+                  style={{
+                    background: `linear-gradient(135deg, ${primaryColor}, ${secondaryColor})`,
+                  }}
+                >
+                  <svg
+                    className="h-10 w-10 text-white"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
                   >
-                    {getTechIcon(tech)}
-                    <span>{tech}</span>
-                  </Badge>
-                ))}
-              </div>
-            </div>
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                    />
+                  </svg>
+                </div>
+                <h3 className="mb-4 text-xl font-bold text-zinc-900 dark:text-zinc-50">
+                  {t('cvTitle')}
+                </h3>
+                <p className="mb-6 text-sm text-zinc-600 dark:text-zinc-400">
+                  {t('cvDescription')}
+                </p>
+                <a
+                  href="/Curriculum/Gaston-CV.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2.5 rounded-lg px-6 py-3 text-sm font-medium text-white shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-xl"
+                  style={{
+                    background: `linear-gradient(135deg, ${primaryColor}, ${secondaryColor})`,
+                  }}
+                >
+                  <svg
+                    className="h-5 w-5 transition-transform duration-200 group-hover:translate-y-1"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M12 10v6m0 0l-3-3m3 3l3-3"
+                    />
+                  </svg>
+                  {t('downloadCV')}
+                </a>
+              </CardContent>
+            </Card>
           </div>
-        </div>
 
-        <div className="mt-10">
-          <a
-            href="/Curriculum/Gaston-CV.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group inline-flex items-center gap-2.5 rounded-lg px-6 py-3.5 text-sm font-medium text-white shadow-md transition-all duration-200 hover:shadow-lg hover:scale-[1.02]"
-            style={{
-              backgroundColor: primaryColor,
-            }}
-          >
-            <svg
-              className="h-5 w-5 transition-transform duration-200 group-hover:scale-110"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
-              />
-            </svg>
-            {t('downloadCV')}
-          </a>
-        </div>
+          {/* Technologies Section - Enhanced with hover states */}
+          <Card className="relative overflow-hidden border-zinc-200 bg-gradient-to-br from-white via-zinc-50 to-white shadow-xl transition-all duration-500 hover:shadow-2xl dark:border-zinc-800 dark:from-zinc-950 dark:via-zinc-900 dark:to-zinc-950">
+            <CardContent className="p-8 sm:p-10">
+              <div className="mb-2 text-center">
+                <h3 className="mb-2 text-3xl font-bold text-zinc-900 dark:text-zinc-50">
+                  {t('technologies.title')}
+                </h3>
+                <div 
+                  className="mx-auto h-1 w-16 rounded-full transition-all duration-300"
+                  style={{ backgroundColor: primaryColor }}
+                />
+              </div>
+
+              <div className="">
+                {/* Frontend */}
+                <div 
+                  className="group/category rounded-xl p-6 transition-all duration-300"
+                  onMouseEnter={() => setHoveredCategory('frontend')}
+                  onMouseLeave={() => setHoveredCategory(null)}
+                  style={{
+                    backgroundColor: hoveredCategory === 'frontend' ? `${primaryColor}05` : 'transparent',
+                  }}
+                >
+                  <div className="mb-4 flex items-center gap-3">
+                    <div 
+                      className="h-1 w-8 rounded-full transition-all duration-300 group-hover/category:w-12"
+                      style={{ backgroundColor: primaryColor }}
+                    />
+                    <h4 className="text-xl font-bold text-zinc-800 dark:text-zinc-200">
+                      {t('technologies.frontend.title')}
+                    </h4>
+                  </div>
+                  <div className="flex flex-wrap gap-2.5">
+                    {t('technologies.frontend.list').split(', ').map((tech: string) => (
+                      <Badge
+                        key={tech}
+                        variant="outline"
+                        className="inline-flex items-center gap-2 border-zinc-300 bg-white px-4 py-2 text-sm font-medium shadow-sm backdrop-blur-sm transition-all duration-300 hover:scale-110 hover:shadow-lg dark:border-zinc-700 dark:bg-zinc-900/80"
+                        style={{
+                          borderColor: `${primaryColor}40`,
+                        }}
+                      >
+                        <span className="transition-transform duration-300 hover:rotate-12">
+                          {getTechIcon(tech)}
+                        </span>
+                        <span>{tech}</span>
+                      </Badge>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Backend */}
+                <div 
+                  className="group/category rounded-xl p-6 transition-all duration-300"
+                  onMouseEnter={() => setHoveredCategory('backend')}
+                  onMouseLeave={() => setHoveredCategory(null)}
+                  style={{
+                    backgroundColor: hoveredCategory === 'backend' ? `${secondaryColor}05` : 'transparent',
+                  }}
+                >
+                  <div className="mb-4 flex items-center gap-3">
+                    <div 
+                      className="h-1 w-8 rounded-full transition-all duration-300 group-hover/category:w-12"
+                      style={{ backgroundColor: secondaryColor }}
+                    />
+                    <h4 className="text-xl font-bold text-zinc-800 dark:text-zinc-200">
+                      {t('technologies.backend.title')}
+                    </h4>
+                  </div>
+                  <div className="flex flex-wrap gap-2.5">
+                    {t('technologies.backend.list').split(', ').map((tech: string) => (
+                      <Badge
+                        key={tech}
+                        variant="outline"
+                        className="inline-flex items-center gap-2 border-zinc-300 bg-white px-4 py-2 text-sm font-medium shadow-sm backdrop-blur-sm transition-all duration-300 hover:scale-110 hover:shadow-lg dark:border-zinc-700 dark:bg-zinc-900/80"
+                        style={{
+                          borderColor: `${secondaryColor}40`,
+                        }}
+                      >
+                        <span className="transition-transform duration-300 hover:rotate-12">
+                          {getTechIcon(tech)}
+                        </span>
+                        <span>{tech}</span>
+                      </Badge>
+                    ))}
+                  </div>
+                </div>
+
+                {/* DevOps & Tools */}
+                <div 
+                  className="group/category rounded-xl p-6 transition-all duration-300"
+                  onMouseEnter={() => setHoveredCategory('devops')}
+                  onMouseLeave={() => setHoveredCategory(null)}
+                  style={{
+                    backgroundColor: hoveredCategory === 'devops' ? `${primaryColor}05` : 'transparent',
+                  }}
+                >
+                  <div className="mb-4 flex items-center gap-3">
+                    <div 
+                      className="h-1 w-8 rounded-full transition-all duration-300 group-hover/category:w-12"
+                      style={{ 
+                        background: `linear-gradient(90deg, ${primaryColor}, ${secondaryColor})`,
+                      }}
+                    />
+                    <h4 className="text-xl font-bold text-zinc-800 dark:text-zinc-200">
+                      {t('technologies.devops.title')}
+                    </h4>
+                  </div>
+                  <div className="flex flex-wrap gap-2.5">
+                    {t('technologies.devops.list').split(', ').map((tech: string) => (
+                      <Badge
+                        key={tech}
+                        variant="outline"
+                        className="inline-flex items-center gap-2 border-zinc-300 bg-white px-4 py-2 text-sm font-medium shadow-sm backdrop-blur-sm transition-all duration-300 hover:scale-110 hover:shadow-lg dark:border-zinc-700 dark:bg-zinc-900/80"
+                        style={{
+                          borderColor: `${primaryColor}40`,
+                        }}
+                      >
+                        <span className="transition-transform duration-300 hover:rotate-12">
+                          {getTechIcon(tech)}
+                        </span>
+                        <span>{tech}</span>
+                      </Badge>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
         </div>
       </div>
     </section>

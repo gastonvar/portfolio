@@ -298,7 +298,7 @@ const Projects = () => {
                   }}
                 />
 
-                <div className="relative z-10 flex flex-col gap-4 p-5">
+                <div className="relative z-10 flex flex-col gap-4 p-5 pb-4">
                   {/* Image Section */}
                   <div className="relative aspect-[16/9] w-full max-h-64 overflow-hidden rounded-xl bg-gradient-to-br from-zinc-200 to-zinc-100 shadow-inner dark:from-zinc-800 dark:to-zinc-900">
                     {/* Decorative corner element */}
@@ -389,7 +389,7 @@ const Projects = () => {
                       </CardDescription>
                     </CardHeader>
 
-                    <CardContent className="px-0">
+                    <CardContent className="px-0 pb-0">
                       {/* Tech Stack Section */}
                       {project.stack && (
                         <div className="space-y-2">

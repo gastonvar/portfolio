@@ -15,6 +15,8 @@
     "currentStatus": "Actualmente soy estudiante avanzado de la carrera Analista en tecnologías de la información en la universidad ORT Uruguay.",
     "description": "Soy estudiante de Análisis de Tecnologías de la Información, con un enfoque meticuloso y exigente tanto en mis estudios como en mi trabajo. Me esfuerzo constantemente por alcanzar un alto nivel de conocimiento, desarrollando tanto habilidades técnicas como blandas que me permiten destacar en el ámbito tecnológico, estudiantil y profesional.",
     "downloadCV": "Descargar CV",
+    "cvTitle": "Resumen / CV",
+    "cvDescription": "Descarga mi curriculum vitae para conocer más sobre mi experiencia y calificaciones",
     "languages": {
       "title": "Idiomas",
       "spanish": "Español Nativo",
@@ -47,15 +49,15 @@
       "title": "Tecnologías y Habilidades",
       "frontend": {
         "title": "Frontend",
-        "list": "HTML, CSS, JavaScript, React, NextJS, Tailwind, Bootstrap, Razor."
+        "list": "HTML, CSS, JavaScript, React, NextJS, Tailwind, Bootstrap, Razor"
       },
       "backend": {
         "title": "Backend",
-        "list": ".NET, ASP.NET, C#, Java, SQL, MongoDB, API REST, CQRS, NodeJS, ExpressJS."
+        "list": ".NET, ASP.NET, C#, Java, SQL, MongoDB, API REST, CQRS, NodeJS, ExpressJS"
       },
       "devops": {
         "title": "DevOps & Tools",
-        "list": "GitHub Actions, Terraform, Docker, Postman, CI/CD, AWS, Azure, Bash, Cursor, GitHub Copilot."
+        "list": "GitHub Actions, Terraform, Docker, Postman, CI/CD, AWS, Azure, Bash, Cursor, GitHub Copilot"
       }
     }
   },

@@ -15,6 +15,8 @@
     "currentStatus": "I am currently an advanced student in the Information Technology Analyst program at ORT Uruguay University.",
     "description": "I am an Information Technology Analysis student, with a meticulous and demanding approach both in my studies and in my work. I constantly strive to achieve a high level of knowledge, developing both technical and soft skills that allow me to excel in the technological, academic, and professional fields.",
     "downloadCV": "Download CV",
+    "cvTitle": "Resume / CV",
+    "cvDescription": "Download my curriculum vitae to learn more about my experience and qualifications",
     "languages": {
       "title": "Languages",
       "spanish": "Native Spanish",
@@ -24,15 +26,15 @@
       "title": "Technologies & Skills",
       "frontend": {
         "title": "Frontend",
-        "list": "HTML, CSS, JavaScript, React, NextJS, Tailwind, Bootstrap, Razor."
+        "list": "HTML, CSS, JavaScript, React, NextJS, Tailwind, Bootstrap, Razor"
       },
       "backend": {
         "title": "Backend",
-        "list": ".NET, ASP.NET, C#, Java, SQL, MongoDB, API REST, CQRS, NodeJS, ExpressJS."
+        "list": ".NET, ASP.NET, C#, Java, SQL, MongoDB, API REST, CQRS, NodeJS, ExpressJS"
       },
       "devops": {
         "title": "DevOps & Tools",
-        "list": "GitHub Actions, Terraform, Docker, Postman, CI/CD, AWS, Azure, Bash, Cursor, GitHub Copilot."
+        "list": "GitHub Actions, Terraform, Docker, Postman, CI/CD, AWS, Azure, Bash, Cursor, GitHub Copilot"
       }
     }
   },
