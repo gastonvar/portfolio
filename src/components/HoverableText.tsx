@@ -106,8 +106,10 @@ const HoverableText = ({
         <span
           className="absolute inset-0 pointer-events-none overflow-hidden"
           style={{
-            background: `linear-gradient(110deg, transparent 30%, ${primaryColor}40 50%, transparent 70%)`,
+            backgroundImage: `linear-gradient(110deg, transparent 30%, ${primaryColor}40 50%, transparent 70%)`,
             backgroundSize: '200% 100%',
+            backgroundPosition: '0% 0%',
+            backgroundRepeat: 'no-repeat',
             WebkitBackgroundClip: 'text',
             WebkitTextFillColor: 'transparent',
             backgroundClip: 'text',
@@ -148,7 +150,10 @@ const HoverableText = ({
           <span
             className="absolute inset-0 pointer-events-none rounded-lg blur-xl"
             style={{
-              background: `radial-gradient(circle, ${primaryColor}40 0%, transparent 70%)`,
+              backgroundImage: `radial-gradient(circle, ${primaryColor}40 0%, transparent 70%)`,
+              backgroundPosition: 'center',
+              backgroundRepeat: 'no-repeat',
+              backgroundSize: 'cover',
               transform: 'scale(1.5)',
               animation: 'hoverable-pulse 2s ease-in-out infinite',
               zIndex: -1,
@@ -157,7 +162,10 @@ const HoverableText = ({
           <span
             className="absolute inset-0 pointer-events-none rounded-lg blur-2xl"
             style={{
-              background: `radial-gradient(circle, ${primaryColor}30 0%, transparent 70%)`,
+              backgroundImage: `radial-gradient(circle, ${primaryColor}30 0%, transparent 70%)`,
+              backgroundPosition: 'center',
+              backgroundRepeat: 'no-repeat',
+              backgroundSize: 'cover',
               transform: 'scale(2)',
               animation: 'hoverable-pulse 2s ease-in-out infinite 0.5s',
               zIndex: -2,
@@ -171,7 +179,10 @@ const HoverableText = ({
         <span
           className="absolute inset-0 pointer-events-none rounded-md"
           style={{
-            background: `linear-gradient(135deg, ${primaryColor}40, ${secondaryColor || primaryColor}40)`,
+            backgroundImage: `linear-gradient(135deg, ${primaryColor}40, ${secondaryColor || primaryColor}40)`,
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat',
+            backgroundSize: 'cover',
             padding: '2px',
             WebkitMask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
             WebkitMaskComposite: 'xor',

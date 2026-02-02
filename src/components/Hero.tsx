@@ -27,13 +27,15 @@ const Hero = () => {
   const [typingIndex, setTypingIndex] = useState(0);
   const [displayedText, setDisplayedText] = useState('');
   const [isDeleting, setIsDeleting] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
   const heroRef = useRef<HTMLDivElement>(null);
   const circleRef = useRef<HTMLDivElement>(null);
   const scrollButtonRef = useRef<HTMLButtonElement>(null);
   const typingPhrases = t.raw('typing') as string[];
 
-  // Generate random stars for the galaxy background
+  // Generate random stars for the galaxy background (only on client to avoid hydration mismatch)
   const stars = useMemo(() => {
+    if (!isMounted) return [];
     return Array.from({ length: 200 }, (_, i) => ({
       id: i,
       x: Math.random() * 100,
@@ -42,6 +44,11 @@ const Hero = () => {
       opacity: Math.random() * 0.7 + 0.3,
       twinkleDelay: Math.random() * 5,
     }));
+  }, [isMounted]);
+
+  // Set mounted state after component mounts (client-side only)
+  useEffect(() => {
+    setIsMounted(true);
   }, []);
 
   // Mouse tracking for the "eyes", color calculation, and cursor aura

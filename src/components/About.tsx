@@ -146,6 +146,7 @@ const About = () => {
   const locale = useLocale();
   const { primaryColor, secondaryColor } = useColors();
   const [hoveredCategory, setHoveredCategory] = useState<string | null>(null);
+  const [hoveredScrollButton, setHoveredScrollButton] = useState(false);
 
   return (
     <section id="about" className="relative block flex min-h-screen items-center bg-gradient-to-b from-white to-zinc-50 py-20 dark:from-black dark:to-zinc-950">
@@ -481,6 +482,44 @@ const About = () => {
               </div>
             </CardContent>
           </Card>
+        </div>
+
+        {/* Scroll to Education Section Button */}
+        <div className="mt-8 flex justify-center">
+          <button
+            onClick={() => {
+              const educationSection = document.getElementById('education');
+              if (educationSection) {
+                educationSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+              }
+            }}
+            className="group flex flex-col items-center gap-2 transition-all duration-300 hover:scale-110"
+            aria-label={t('scrollToEducation')}
+            onMouseEnter={() => setHoveredScrollButton(true)}
+            onMouseLeave={() => setHoveredScrollButton(false)}
+          >
+            <span
+              className="text-sm font-medium transition-colors duration-300"
+              style={{
+                color: hoveredScrollButton ? primaryColor : 'rgb(113, 113, 122)',
+              }}
+            >
+              {t('scrollToEducation')}
+            </span>
+            <div
+              className="flex h-12 w-8 items-start justify-center rounded-full border-2 p-2 transition-all duration-300"
+              style={{
+                borderColor: hoveredScrollButton ? primaryColor : 'rgb(161, 161, 170)',
+              }}
+            >
+              <div
+                className="h-2 w-2 animate-bounce rounded-full transition-colors duration-300"
+                style={{
+                  backgroundColor: hoveredScrollButton ? primaryColor : 'rgb(161, 161, 170)',
+                }}
+              />
+            </div>
+          </button>
         </div>
       </div>
     </section>

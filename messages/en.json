@@ -15,9 +15,10 @@
     "currentStatus": "I am currently an advanced student in the Information Technology Analyst program at ORT Uruguay University.",
     "description": "I am an Information Technology Analysis student, with a meticulous and demanding approach both in my studies and in my work. I constantly strive to achieve a high level of knowledge, developing both technical and soft skills that allow me to excel in the technological, academic, and professional fields.",
     "downloadCV": "Download CV",
-    "cvTitle": "Resume / CV",
+    "cvTitle": "CV",
     "cvDescription": "Download my curriculum vitae to learn more about my experience and qualifications",
     "escolaridadTitle": "Education",
+    "scrollToEducation": "View my studies",
     "languages": {
       "title": "Languages",
       "spanish": "Native Spanish",
@@ -130,7 +131,7 @@
         "react": {
           "title": "Baby Tracker",
           "description": "A baby daily events tracking app built with React JS, CSS, and React Charts. This application helps parents track and monitor their baby's daily activities and events.",
-          "stack": "React JS, CSS, React Charts"
+          "stack": "React JS, CSS"
         },
         "portfolioViejo": {
           "title": "Old Portfolio",
@@ -246,6 +247,25 @@
       "title": "High School - Physics / Mathematics Orientation",
       "institution": "Liceo Santos Rabaquino Pacini",
       "location": "Santa Lucía, Canelones"
-    }
+    },
+    "contactMe": "Contact me!"
+  },
+  "contact": {
+    "title": "Get in Touch",
+    "subtitle": "Feel free to reach out if you have any questions or opportunities!",
+    "name": "Name",
+    "namePlaceholder": "Your name",
+    "email": "Email",
+    "emailPlaceholder": "your.email@example.com",
+    "subject": "Subject",
+    "subjectPlaceholder": "Message subject",
+    "message": "Message",
+    "messagePlaceholder": "Your message...",
+    "send": "Send Message",
+    "sending": "Sending message",
+    "success": "Message sent successfully!",
+    "successSubtext": "I'll get back to you soon. Thank you for reaching out!",
+    "error": "Failed to send message. Please try again later.",
+    "configError": "Email service is not configured. Please contact the site administrator."
   }
 }

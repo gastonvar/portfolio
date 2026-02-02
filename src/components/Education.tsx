@@ -10,6 +10,7 @@ const Education = () => {
   const t = useTranslations('education');
   const { primaryColor, secondaryColor } = useColors();
   const [isOrtOpen, setIsOrtOpen] = useState(false);
+  const [hoveredContactButton, setHoveredContactButton] = useState(false);
 
   const ortEntries = [
     {
@@ -243,6 +244,47 @@ const Education = () => {
                 )}
               </div>
             ))}
+          </div>
+
+          {/* Contact Me Button */}
+          <div className="mt-8 flex justify-center">
+            <button
+              onClick={() => {
+                const contactSection = document.getElementById('contact');
+                if (contactSection) {
+                  contactSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                } else {
+                  // If contact section doesn't exist, scroll to top or show a message
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }
+              }}
+              className="group flex flex-col items-center gap-2 transition-all duration-300 hover:scale-110"
+              aria-label={t('contactMe')}
+              onMouseEnter={() => setHoveredContactButton(true)}
+              onMouseLeave={() => setHoveredContactButton(false)}
+            >
+              <span
+                className="text-sm font-medium transition-colors duration-300"
+                style={{
+                  color: hoveredContactButton ? primaryColor : 'rgb(113, 113, 122)',
+                }}
+              >
+                {t('contactMe')}
+              </span>
+              <div
+                className="flex h-12 w-8 items-start justify-center rounded-full border-2 p-2 transition-all duration-300"
+                style={{
+                  borderColor: hoveredContactButton ? primaryColor : 'rgb(161, 161, 170)',
+                }}
+              >
+                <div
+                  className="h-2 w-2 animate-bounce rounded-full transition-colors duration-300"
+                  style={{
+                    backgroundColor: hoveredContactButton ? primaryColor : 'rgb(161, 161, 170)',
+                  }}
+                />
+              </div>
+            </button>
           </div>
         </div>
       </div>
