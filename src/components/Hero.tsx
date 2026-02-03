@@ -89,7 +89,7 @@ const Hero = () => {
   return (
     <section
       ref={heroRef}
-      className="relative block flex h-screen items-center justify-center overflow-hidden"
+      className="relative block flex min-h-screen items-center justify-center overflow-hidden py-8"
       style={{
         background: 'linear-gradient(to bottom, #000000, #0a0a1a, #050510)',
       }}

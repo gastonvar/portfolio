@@ -449,7 +449,7 @@ const Projects = () => {
   return (
     <section
       id="projects"
-      className="relative block flex h-screen items-center overflow-hidden"
+      className="relative block flex min-h-screen items-center overflow-hidden py-8"
       style={{
         background: 'linear-gradient(to bottom, #050510, #0a0a1a, #000000)',
       }}
