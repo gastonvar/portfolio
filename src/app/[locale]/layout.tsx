@@ -1,10 +1,25 @@
 import { NextIntlClientProvider } from 'next-intl';
-import { getMessages } from 'next-intl/server';
+import { getMessages, getTranslations } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { routing } from '@/i18n/routing';
 import Header from '@/components/Header';
 import FloatingEyes from '@/components/FloatingEyes';
 import { ColorProvider } from '@/contexts/ColorContext';
+import type { Metadata } from 'next';
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale });
+  
+  return {
+    title: t('metadata.title'),
+    description: 'Full Stack Developer Portfolio',
+  };
+}
 
 export default async function LocaleLayout({
   children,
