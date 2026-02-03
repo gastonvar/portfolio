@@ -261,18 +261,31 @@ const Contact = () => {
                 </div>
 
                 {/* Submit Button / Envelope Animation */}
-                <div className="flex justify-center">
+                <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                   {!isSubmitting && submitStatus === 'idle' ? (
-                    <Button
-                      type="submit"
-                      className="min-w-[120px] transition-all duration-300 hover:scale-105"
-                      style={{
-                        backgroundColor: primaryColor,
-                        color: 'white',
-                      }}
-                    >
-                      {t('send')}
-                    </Button>
+                    <>
+                      <Button
+                        type="submit"
+                        className="min-w-[120px] transition-all duration-300 hover:scale-105"
+                        style={{
+                          backgroundColor: primaryColor,
+                          color: 'black',
+                        }}
+                      >
+                        {t('send')}
+                      </Button>
+                      <Button
+                        type="button"
+                        onClick={() => window.location.href = 'mailto:varelagaston58@gmail.com'}
+                        className="min-w-[120px] transition-all duration-300 hover:scale-105"
+                        style={{
+                          backgroundColor: primaryColor,
+                          color: 'black',
+                        }}
+                      >
+                        {t('orDirectEmail')}
+                      </Button>
+                    </>
                   ) : isSubmitting ? (
                     <div className="relative w-full max-w-md overflow-hidden rounded-lg border-2 p-3" style={{
                       borderColor: primaryColor,

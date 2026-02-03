@@ -273,6 +273,7 @@
     "sending": "Enviando...",
     "success": "¡Mensaje enviado con éxito! Te responderé pronto.",
     "error": "Error al enviar el mensaje. Por favor, intenta de nuevo más tarde.",
-    "configError": "El servicio de correo no está configurado. Por favor, contacta al administrador del sitio."
+    "configError": "El servicio de correo no está configurado. Por favor, contacta al administrador del sitio.",
+    "orDirectEmail": "O envíame un mail directo"
   }
 }
