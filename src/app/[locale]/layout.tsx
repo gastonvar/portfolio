@@ -3,6 +3,7 @@ import { getMessages } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { routing } from '@/i18n/routing';
 import Header from '@/components/Header';
+import FloatingEyes from '@/components/FloatingEyes';
 import { ColorProvider } from '@/contexts/ColorContext';
 
 export default async function LocaleLayout({
@@ -25,6 +26,7 @@ export default async function LocaleLayout({
       <ColorProvider>
         <Header />
         {children}
+        <FloatingEyes />
       </ColorProvider>
     </NextIntlClientProvider>
   );

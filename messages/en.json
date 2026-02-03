@@ -262,9 +262,8 @@
     "message": "Message",
     "messagePlaceholder": "Your message...",
     "send": "Send Message",
-    "sending": "Sending message",
-    "success": "Message sent successfully!",
-    "successSubtext": "I'll get back to you soon. Thank you for reaching out!",
+    "sending": "Sending...",
+    "success": "Message sent successfully! I'll get back to you soon.",
     "error": "Failed to send message. Please try again later.",
     "configError": "Email service is not configured. Please contact the site administrator."
   }

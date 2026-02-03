@@ -267,9 +267,8 @@
     "message": "Mensaje",
     "messagePlaceholder": "Tu mensaje...",
     "send": "Enviar Mensaje",
-    "sending": "Enviando el mensaje",
-    "success": "¡Mensaje enviado con éxito!",
-    "successSubtext": "Te responderé pronto. ¡Gracias por contactarme!",
+    "sending": "Enviando...",
+    "success": "¡Mensaje enviado con éxito! Te responderé pronto.",
     "error": "Error al enviar el mensaje. Por favor, intenta de nuevo más tarde.",
     "configError": "El servicio de correo no está configurado. Por favor, contacta al administrador del sitio."
   }

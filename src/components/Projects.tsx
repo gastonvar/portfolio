@@ -418,7 +418,7 @@ const Projects = () => {
       id="projects"
       className="relative block flex h-screen items-center bg-white dark:bg-black"
     >
-      <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 mt-25">
         <div className="mb-4 text-center">
           <HoverableText
             as="h2"
@@ -544,7 +544,7 @@ const Projects = () => {
         }
 
         {/* Scroll to About Section Button */}
-        <div className="mt-8 flex justify-center">
+        <div className="mt-12 flex flex-col items-center gap-4">
           <button
             onClick={() => {
               const aboutSection = document.getElementById('about');
@@ -552,33 +552,46 @@ const Projects = () => {
                 aboutSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
               }
             }}
-            className="group flex flex-col items-center gap-2 transition-all duration-300 hover:scale-110"
+            className="group flex items-center gap-3 rounded-full px-8 py-4 text-lg font-semibold transition-all duration-300 hover:scale-105 hover:shadow-2xl"
             aria-label={t('scrollToAbout')}
             onMouseEnter={() => setHoveredScrollButton(true)}
             onMouseLeave={() => setHoveredScrollButton(false)}
+            style={{
+              backgroundColor: hoveredScrollButton ? primaryColor : 'rgba(98, 250, 215, 0.1)',
+              borderWidth: '2px',
+              borderStyle: 'solid',
+              borderColor: hoveredScrollButton ? primaryColor : 'rgba(98, 250, 215, 0.3)',
+              color: hoveredScrollButton ? '#000000' : primaryColor,
+            }}
           >
-            <span
-              className="text-sm font-medium transition-colors duration-300"
-              style={{
-                color: hoveredScrollButton ? primaryColor : 'rgb(113, 113, 122)',
-              }}
-            >
+            <span className="transition-colors duration-300">
               {t('scrollToAbout')}
             </span>
-            <div
-              className="flex h-12 w-8 items-start justify-center rounded-full border-2 p-2 transition-all duration-300"
-              style={{
-                borderColor: hoveredScrollButton ? primaryColor : 'rgb(161, 161, 170)',
-              }}
+            <svg 
+              className="h-5 w-5 transition-transform duration-300 group-hover:translate-y-1" 
+              fill="none" 
+              stroke="currentColor" 
+              viewBox="0 0 24 24"
             >
-              <div
-                className="h-2 w-2 animate-bounce rounded-full transition-colors duration-300"
-                style={{
-                  backgroundColor: hoveredScrollButton ? primaryColor : 'rgb(161, 161, 170)',
-                }}
-              />
-            </div>
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+            </svg>
           </button>
+          
+          {/* Scroll indicator */}
+          <div className="flex flex-col items-center gap-2 animate-bounce">
+            <div
+              className="h-1 w-1 rounded-full"
+              style={{ backgroundColor: primaryColor, opacity: 0.6 }}
+            />
+            <div
+              className="h-1 w-1 rounded-full"
+              style={{ backgroundColor: primaryColor, opacity: 0.4 }}
+            />
+            <div
+              className="h-1 w-1 rounded-full"
+              style={{ backgroundColor: primaryColor, opacity: 0.2 }}
+            />
+          </div>
         </div>
       </div>
     </section>
