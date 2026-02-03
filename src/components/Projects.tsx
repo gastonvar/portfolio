@@ -45,25 +45,27 @@ const ImageGallery = ({ images, title, primaryColor }: { images: string[]; title
   };
 
   return (
-    <div className="relative h-full w-full">
+    <div className="absolute inset-0 h-full w-full overflow-hidden">
       <Carousel
         setApi={setApi}
         opts={{
           align: "start",
           loop: true,
         }}
-        className="absolute inset-0 h-full w-full"
+        className="h-full w-full [&>*]:h-full"
       >
         <CarouselContent className="h-full -ml-0">
           {images.map((image, index) => (
-            <CarouselItem key={index} className="pl-0 basis-full">
-              <div className="relative h-full w-full">
+            <CarouselItem key={index} className="pl-0 basis-full h-full">
+              <div className="relative h-full w-full overflow-hidden">
                 <Image
                   src={image}
                   alt={`${title} - Image ${index + 1}`}
                   fill
                   className="object-cover transition-transform duration-500 group-hover:scale-110"
                   sizes="(max-width: 768px) 100vw, 50vw"
+                  unoptimized
+                  priority={index === 0}
                 />
               </div>
             </CarouselItem>
@@ -325,7 +327,7 @@ const Projects = () => {
                   {/* Image Section */}
                   <div className="relative aspect-[16/9] w-full max-h-64 overflow-hidden rounded-xl bg-gradient-to-br from-zinc-800 to-zinc-900 shadow-inner">
 
-                    {(project as any).images && (project as any).images.length > 1 ? (
+                    {(project as any).images && Array.isArray((project as any).images) && (project as any).images.length > 0 ? (
                       <ImageGallery 
                         images={(project as any).images} 
                         title={project.title}
@@ -339,6 +341,7 @@ const Projects = () => {
                           fill
                           className="object-cover transition-transform duration-500 group-hover:scale-110"
                           sizes="(max-width: 768px) 100vw, 50vw"
+                          unoptimized
                         />
                       </div>
                     ) : (
