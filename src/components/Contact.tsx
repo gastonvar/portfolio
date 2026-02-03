@@ -107,7 +107,7 @@ const Contact = () => {
   return (
     <section
       id="contact"
-      className="relative block flex min-h-screen items-center bg-gradient-to-b from-white to-zinc-50 py-20 dark:from-black dark:to-zinc-950"
+      className="relative block flex min-h-screen items-center bg-gradient-to-b from-white to-zinc-50 py-20 dark:from-black dark:to-zinc-950 overflow-hidden"
     >
       <div className="relative z-10 mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-2xl">
@@ -137,64 +137,67 @@ const Contact = () => {
           <Card className="border-zinc-200 bg-gradient-to-br from-white via-zinc-50 to-white shadow-lg transition-all duration-500 hover:shadow-xl dark:border-zinc-800 dark:from-zinc-950 dark:via-zinc-900 dark:to-zinc-950">
             <CardContent className="p-6 sm:p-8">
               <form onSubmit={handleSubmit} className="space-y-6">
-                {/* Name Input */}
-                <div>
-                  <label
-                    htmlFor="nombre"
-                    className="mb-2 block text-sm font-medium text-zinc-700 dark:text-zinc-300"
-                  >
-                    {t('name')}
-                  </label>
-                  <input
-                    type="text"
-                    id="nombre"
-                    name="nombre"
-                    value={formData.nombre}
-                    onChange={handleChange}
-                    required
-                    className="w-full rounded-lg border border-zinc-300 bg-white px-4 py-3 text-zinc-900 placeholder-zinc-400 transition-all duration-200 focus:outline-none focus:ring-2 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-100 dark:placeholder-zinc-500"
-                    style={{
-                      '--tw-ring-color': primaryColor,
-                      borderColor: 'inherit',
-                    } as React.CSSProperties & { '--tw-ring-color': string }}
-                    onFocus={(e) => {
-                      e.currentTarget.style.borderColor = primaryColor;
-                    }}
-                    onBlur={(e) => {
-                      e.currentTarget.style.borderColor = '';
-                    }}
-                    placeholder={t('namePlaceholder')}
-                  />
-                </div>
+                {/* Name and Email Inputs - Side by Side */}
+                <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                  {/* Name Input */}
+                  <div>
+                    <label
+                      htmlFor="nombre"
+                      className="mb-2 block text-sm font-medium text-zinc-700 dark:text-zinc-300"
+                    >
+                      {t('name')}
+                    </label>
+                    <input
+                      type="text"
+                      id="nombre"
+                      name="nombre"
+                      value={formData.nombre}
+                      onChange={handleChange}
+                      required
+                      className="w-full rounded-lg border border-zinc-300 bg-white px-4 py-3 text-zinc-900 placeholder-zinc-400 transition-all duration-200 focus:outline-none focus:ring-2 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-100 dark:placeholder-zinc-500"
+                      style={{
+                        '--tw-ring-color': primaryColor,
+                        borderColor: 'inherit',
+                      } as React.CSSProperties & { '--tw-ring-color': string }}
+                      onFocus={(e) => {
+                        e.currentTarget.style.borderColor = primaryColor;
+                      }}
+                      onBlur={(e) => {
+                        e.currentTarget.style.borderColor = '';
+                      }}
+                      placeholder={t('namePlaceholder')}
+                    />
+                  </div>
 
-                {/* Email Input */}
-                <div>
-                  <label
-                    htmlFor="email"
-                    className="mb-2 block text-sm font-medium text-zinc-700 dark:text-zinc-300"
-                  >
-                    {t('email')}
-                  </label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    required
-                    className="w-full rounded-lg border border-zinc-300 bg-white px-4 py-3 text-zinc-900 placeholder-zinc-400 transition-all duration-200 focus:outline-none focus:ring-2 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-100 dark:placeholder-zinc-500"
-                    style={{
-                      '--tw-ring-color': primaryColor,
-                      borderColor: 'inherit',
-                    } as React.CSSProperties & { '--tw-ring-color': string }}
-                    onFocus={(e) => {
-                      e.currentTarget.style.borderColor = primaryColor;
-                    }}
-                    onBlur={(e) => {
-                      e.currentTarget.style.borderColor = '';
-                    }}
-                    placeholder={t('emailPlaceholder')}
-                  />
+                  {/* Email Input */}
+                  <div>
+                    <label
+                      htmlFor="email"
+                      className="mb-2 block text-sm font-medium text-zinc-700 dark:text-zinc-300"
+                    >
+                      {t('email')}
+                    </label>
+                    <input
+                      type="email"
+                      id="email"
+                      name="email"
+                      value={formData.email}
+                      onChange={handleChange}
+                      required
+                      className="w-full rounded-lg border border-zinc-300 bg-white px-4 py-3 text-zinc-900 placeholder-zinc-400 transition-all duration-200 focus:outline-none focus:ring-2 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-100 dark:placeholder-zinc-500"
+                      style={{
+                        '--tw-ring-color': primaryColor,
+                        borderColor: 'inherit',
+                      } as React.CSSProperties & { '--tw-ring-color': string }}
+                      onFocus={(e) => {
+                        e.currentTarget.style.borderColor = primaryColor;
+                      }}
+                      onBlur={(e) => {
+                        e.currentTarget.style.borderColor = '';
+                      }}
+                      placeholder={t('emailPlaceholder')}
+                    />
+                  </div>
                 </div>
 
                 {/* Subject Input */}

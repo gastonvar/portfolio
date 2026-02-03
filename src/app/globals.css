@@ -81,3 +81,48 @@ body {
   scrollbar-width: thin;
   scrollbar-color: var(--scrollbar-color) transparent;
 }
+
+/* Wave Animation - Seamless infinite loop */
+@keyframes wave-move-1 {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-1440px);
+  }
+}
+
+@keyframes wave-move-2 {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-1440px);
+  }
+}
+
+@keyframes wave-move-3 {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-1440px);
+  }
+}
+
+.wave-group-1 {
+  animation: wave-move-1 8s linear infinite;
+  will-change: transform;
+}
+
+.wave-group-2 {
+  animation: wave-move-2 12s linear infinite;
+  animation-delay: -2s;
+  will-change: transform;
+}
+
+.wave-group-3 {
+  animation: wave-move-3 16s linear infinite;
+  animation-delay: -4s;
+  will-change: transform;
+}

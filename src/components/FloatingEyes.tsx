@@ -8,15 +8,24 @@ const FloatingEyes = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [cursorDistance, setCursorDistance] = useState(1);
   const [currentSection, setCurrentSection] = useState(0);
+  const [scrollProgress, setScrollProgress] = useState(0);
   const circleRef = useRef<HTMLDivElement>(null);
 
   // Section IDs in order
   const sections = ['', 'projects', 'about', 'education', 'contact'];
 
-  // Detect which section is currently in view
+  // Detect which section is currently in view and calculate scroll progress
   useEffect(() => {
     const handleScroll = () => {
       const scrollPosition = window.scrollY + window.innerHeight / 2;
+      
+      // Calculate scroll progress (0 = start, 1 = end)
+      const windowHeight = window.innerHeight;
+      const documentHeight = document.documentElement.scrollHeight;
+      const scrollTop = window.scrollY;
+      const maxScroll = documentHeight - windowHeight;
+      const progress = maxScroll > 0 ? Math.min(scrollTop / maxScroll, 1) : 0;
+      setScrollProgress(progress);
       
       // Check each section to see which one is in view
       for (let i = sections.length - 1; i >= 0; i--) {
@@ -182,8 +191,34 @@ const FloatingEyes = () => {
           ref={circleRef}
           className="relative flex h-20 w-20 sm:h-24 sm:w-24 items-center justify-center"
         >
-          {/* Outer ring */}
-          <div className="absolute inset-0 rounded-full border-2 sm:border-3 border-zinc-500 transition-colors duration-300 shadow-lg" style={{ borderColor: `${primaryColor}40` }} />
+          {/* Circular progress bar */}
+          <svg className="absolute inset-0 w-full h-full -rotate-90" style={{ overflow: 'visible' }}>
+            {/* Background circle (gray) */}
+            <circle
+              cx="50%"
+              cy="50%"
+              r="38"
+              fill="none"
+              stroke="rgb(113, 113, 122)"
+              strokeWidth="2"
+              opacity="0.3"
+            />
+            {/* Progress circle (light blue) */}
+            <circle
+              cx="50%"
+              cy="50%"
+              r="38"
+              fill="none"
+              stroke="rgb(98, 250, 215)"
+              strokeWidth="2"
+              strokeLinecap="round"
+              style={{
+                strokeDasharray: `${2 * Math.PI * 38}`,
+                strokeDashoffset: `${2 * Math.PI * 38 * (1 - scrollProgress)}`,
+                transition: 'stroke-dashoffset 0.3s ease-out',
+              }}
+            />
+          </svg>
           
           {/* Inner circle with dynamic color */}
           <div 
