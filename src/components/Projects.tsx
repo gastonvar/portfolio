@@ -18,27 +18,57 @@ import HoverableText from './HoverableText';
 import { useColors } from '@/contexts/ColorContext';
 
 const ImageGallery = ({ images, title, primaryColor }: { images: string[]; title: string; primaryColor: string }) => {
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const [api, setApi] = useState<CarouselApi>();
+  const [current, setCurrent] = useState(0);
+  const [canScrollPrev, setCanScrollPrev] = useState(false);
+  const [canScrollNext, setCanScrollNext] = useState(false);
 
-  const nextImage = () => {
-    setCurrentIndex((prev) => (prev + 1) % images.length);
-  };
+  useEffect(() => {
+    if (!api) {
+      return;
+    }
 
-  const prevImage = () => {
-    setCurrentIndex((prev) => (prev - 1 + images.length) % images.length);
+    setCurrent(api.selectedScrollSnap());
+    setCanScrollPrev(api.canScrollPrev());
+    setCanScrollNext(api.canScrollNext());
+
+    api.on("select", () => {
+      setCurrent(api.selectedScrollSnap());
+      setCanScrollPrev(api.canScrollPrev());
+      setCanScrollNext(api.canScrollNext());
+    });
+  }, [api]);
+
+  const scrollTo = (index: number) => {
+    api?.scrollTo(index);
   };
 
   return (
     <div className="relative h-full w-full">
-      <div className="relative h-full w-full">
-        <Image
-          src={images[currentIndex]}
-          alt={`${title} - Image ${currentIndex + 1}`}
-          fill
-          className="object-cover transition-transform duration-500 group-hover:scale-110"
-          sizes="(max-width: 768px) 100vw, 50vw"
-        />
-      </div>
+      <Carousel
+        setApi={setApi}
+        opts={{
+          align: "start",
+          loop: true,
+        }}
+        className="absolute inset-0 h-full w-full"
+      >
+        <CarouselContent className="h-full -ml-0">
+          {images.map((image, index) => (
+            <CarouselItem key={index} className="pl-0 basis-full">
+              <div className="relative h-full w-full">
+                <Image
+                  src={image}
+                  alt={`${title} - Image ${index + 1}`}
+                  fill
+                  className="object-cover transition-transform duration-500 group-hover:scale-110"
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                />
+              </div>
+            </CarouselItem>
+          ))}
+        </CarouselContent>
+      </Carousel>
       
       {/* Navigation buttons */}
       {images.length > 1 && (
@@ -46,14 +76,15 @@ const ImageGallery = ({ images, title, primaryColor }: { images: string[]; title
           <button
             onClick={(e) => {
               e.stopPropagation();
-              prevImage();
+              api?.scrollPrev();
             }}
-            className="absolute left-2 top-1/2 -translate-y-1/2 rounded-full border-2 bg-white/80 p-2 backdrop-blur-sm transition-all duration-300 hover:bg-white hover:scale-110 dark:bg-zinc-900/80 dark:hover:bg-zinc-900 z-20"
+            disabled={!canScrollPrev}
+            className="absolute left-2 top-1/2 -translate-y-1/2 rounded-full border-2 bg-zinc-900/80 p-2 backdrop-blur-sm transition-all duration-300 hover:bg-zinc-900 hover:scale-110 disabled:opacity-50 disabled:cursor-not-allowed z-20"
             style={{ borderColor: `${primaryColor}40` }}
             aria-label="Previous image"
           >
             <svg
-              className="h-4 w-4 text-zinc-700 dark:text-zinc-300"
+              className="h-4 w-4 text-zinc-300"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -64,14 +95,15 @@ const ImageGallery = ({ images, title, primaryColor }: { images: string[]; title
           <button
             onClick={(e) => {
               e.stopPropagation();
-              nextImage();
+              api?.scrollNext();
             }}
-            className="absolute right-2 top-1/2 -translate-y-1/2 rounded-full border-2 bg-white/80 p-2 backdrop-blur-sm transition-all duration-300 hover:bg-white hover:scale-110 dark:bg-zinc-900/80 dark:hover:bg-zinc-900 z-20"
+            disabled={!canScrollNext}
+            className="absolute right-2 top-1/2 -translate-y-1/2 rounded-full border-2 bg-zinc-900/80 p-2 backdrop-blur-sm transition-all duration-300 hover:bg-zinc-900 hover:scale-110 disabled:opacity-50 disabled:cursor-not-allowed z-20"
             style={{ borderColor: `${primaryColor}40` }}
             aria-label="Next image"
           >
             <svg
-              className="h-4 w-4 text-zinc-700 dark:text-zinc-300"
+              className="h-4 w-4 text-zinc-300"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -87,13 +119,13 @@ const ImageGallery = ({ images, title, primaryColor }: { images: string[]; title
                 key={idx}
                 onClick={(e) => {
                   e.stopPropagation();
-                  setCurrentIndex(idx);
+                  scrollTo(idx);
                 }}
                 className={`h-1.5 rounded-full transition-all duration-300 ${
-                  idx === currentIndex ? 'w-6' : 'w-1.5'
+                  idx === current ? 'w-6' : 'w-1.5'
                 }`}
                 style={{
-                  backgroundColor: idx === currentIndex ? primaryColor : 'rgba(255, 255, 255, 0.5)',
+                  backgroundColor: idx === current ? primaryColor : 'rgba(255, 255, 255, 0.5)',
                 }}
                 aria-label={`Go to image ${idx + 1}`}
               />
@@ -278,7 +310,7 @@ const Projects = () => {
         <CarouselContent>
           {projects.map((project) => (
             <CarouselItem key={project.id} className="md:basis-1/2 lg:basis-2/3">
-              <Card className="group relative h-full overflow-hidden border-zinc-200 bg-gradient-to-br from-white via-zinc-50 to-white shadow-xl transition-all duration-500 hover:shadow-2xl dark:border-zinc-800 dark:from-zinc-950 dark:via-zinc-900 dark:to-zinc-950">
+              <Card className="group relative h-full overflow-hidden border-zinc-800 bg-gradient-to-br from-zinc-950 via-zinc-900 to-zinc-950 shadow-xl transition-all duration-500 hover:shadow-2xl">
                 {/* Animated gradient border effect */}
                 <div 
                   className="absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
@@ -290,7 +322,7 @@ const Projects = () => {
 
                 <div className="relative z-10 flex flex-col gap-4 p-5 pb-4">
                   {/* Image Section */}
-                  <div className="relative aspect-[16/9] w-full max-h-64 overflow-hidden rounded-xl bg-gradient-to-br from-zinc-200 to-zinc-100 shadow-inner dark:from-zinc-800 dark:to-zinc-900">
+                  <div className="relative aspect-[16/9] w-full max-h-64 overflow-hidden rounded-xl bg-gradient-to-br from-zinc-800 to-zinc-900 shadow-inner">
 
                     {(project as any).images && (project as any).images.length > 1 ? (
                       <ImageGallery 
@@ -318,7 +350,7 @@ const Projects = () => {
                             }}
                           >
                             <svg
-                              className="h-10 w-10 text-zinc-600 dark:text-zinc-300"
+                              className="h-10 w-10 text-zinc-300"
                               fill="none"
                               stroke="currentColor"
                               viewBox="0 0 24 24"
@@ -331,7 +363,7 @@ const Projects = () => {
                               />
                             </svg>
                           </div>
-                          <p className="text-sm font-medium text-zinc-500 dark:text-zinc-400">
+                          <p className="text-sm font-medium text-zinc-400">
                             {t('noImage')}
                           </p>
                         </div>
@@ -343,7 +375,7 @@ const Projects = () => {
                   <div className="flex flex-col space-y-3">
                     <CardHeader className="px-0 pt-0">
                       <div className="mb-2 flex flex-wrap items-start gap-3">
-                        <CardTitle className="flex-1 text-xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50">
+                        <CardTitle className="flex-1 text-xl font-bold tracking-tight text-zinc-50">
                           {project.title}
                         </CardTitle>
                         {project.role && (
@@ -359,7 +391,7 @@ const Projects = () => {
                           </Badge>
                         )}
                       </div>
-                      <CardDescription className="whitespace-pre-line text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
+                      <CardDescription className="whitespace-pre-line text-sm leading-relaxed text-zinc-400">
                         {project.description}
                       </CardDescription>
                     </CardHeader>
@@ -373,7 +405,7 @@ const Projects = () => {
                               className="h-1 w-1 rounded-full"
                               style={{ backgroundColor: primaryColor }}
                             />
-                            <h4 className="text-sm font-semibold text-zinc-700 dark:text-zinc-300">
+                            <h4 className="text-sm font-semibold text-zinc-300">
                               {t('techStack')}
                             </h4>
                           </div>
@@ -382,7 +414,7 @@ const Projects = () => {
                               <Badge
                                 key={index}
                                 variant="outline"
-                                className="border-zinc-300 bg-white/50 px-3 py-1 text-xs font-medium backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:border-zinc-400 hover:shadow-md dark:border-zinc-700 dark:bg-zinc-900/50 dark:hover:border-zinc-600"
+                                className="border-zinc-700 bg-zinc-900/50 px-3 py-1 text-xs font-medium backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:border-zinc-600 hover:shadow-md"
                               >
                                 {tech}
                               </Badge>
@@ -398,13 +430,13 @@ const Projects = () => {
           ))}
         </CarouselContent>
         <CarouselPrevious 
-          className="left-4 border-2 bg-white shadow-lg backdrop-blur-sm transition-all duration-300 hover:scale-110 hover:shadow-xl dark:bg-zinc-900"
+          className="left-4 border-2 bg-zinc-900 shadow-lg backdrop-blur-sm transition-all duration-300 hover:scale-110 hover:shadow-xl"
           style={{
             borderColor: `${primaryColor}40`,
           }}
         />
         <CarouselNext 
-          className="right-4 border-2 bg-white shadow-lg backdrop-blur-sm transition-all duration-300 hover:scale-110 hover:shadow-xl dark:bg-zinc-900"
+          className="right-4 border-2 bg-zinc-900 shadow-lg backdrop-blur-sm transition-all duration-300 hover:scale-110 hover:shadow-xl"
           style={{
             borderColor: `${primaryColor}40`,
           }}
@@ -416,7 +448,7 @@ const Projects = () => {
   return (
     <section
       id="projects"
-      className="relative block flex h-screen items-center bg-white dark:bg-black"
+      className="relative block flex h-screen items-center bg-black"
     >
       <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 mt-25">
         <div className="mb-4 text-center">
@@ -429,17 +461,17 @@ const Projects = () => {
           >
             {activeTab === 'professional' ? t('title') : t('personal.title')}
           </HoverableText>
-          <p className="text-base text-zinc-600 dark:text-zinc-400">
+          <p className="text-base text-zinc-400">
             {activeTab === 'professional' ? t('subtitle') : t('personal.subtitle')}
           </p>
         </div>
 
         {/* Tab Navigation */}
-        <div className="mb-4 flex justify-center gap-4">
+        <div className="mb-4 flex flex-wrap justify-center gap-2 sm:gap-4">
           <Button
             onClick={() => setActiveTab('professional')}
             variant={activeTab === 'professional' ? 'default' : 'outline'}
-            className="transition-all duration-300"
+            className="text-xs sm:text-sm px-3 sm:px-4 py-2 transition-all duration-300"
             style={
               activeTab === 'professional'
                 ? {
@@ -457,7 +489,7 @@ const Projects = () => {
           <Button
             onClick={() => setActiveTab('personal')}
             variant={activeTab === 'personal' ? 'default' : 'outline'}
-            className="transition-all duration-300"
+            className="text-xs sm:text-sm px-3 sm:px-4 py-2 transition-all duration-300"
             style={
               activeTab === 'personal'
                 ? {
@@ -476,12 +508,12 @@ const Projects = () => {
 
         {/* Personal Projects Category Tabs */}
         {activeTab === 'personal' && (
-          <div className="mb-4 flex justify-center gap-3">
+          <div className="mb-4 flex flex-wrap justify-center gap-2 sm:gap-3">
             <Button
               onClick={() => setPersonalCategory('programacion')}
               variant={personalCategory === 'programacion' ? 'default' : 'outline'}
               size="sm"
-              className="transition-all duration-300"
+              className="text-xs sm:text-sm px-2 sm:px-3 py-1.5 sm:py-2 transition-all duration-300"
               style={
                 personalCategory === 'programacion'
                   ? {
@@ -500,7 +532,7 @@ const Projects = () => {
               onClick={() => setPersonalCategory('disenoWeb')}
               variant={personalCategory === 'disenoWeb' ? 'default' : 'outline'}
               size="sm"
-              className="transition-all duration-300"
+              className="text-xs sm:text-sm px-2 sm:px-3 py-1.5 sm:py-2 transition-all duration-300"
               style={
                 personalCategory === 'disenoWeb'
                   ? {
@@ -519,7 +551,7 @@ const Projects = () => {
               onClick={() => setPersonalCategory('baseDatos')}
               variant={personalCategory === 'baseDatos' ? 'default' : 'outline'}
               size="sm"
-              className="transition-all duration-300"
+              className="text-xs sm:text-sm px-2 sm:px-3 py-1.5 sm:py-2 transition-all duration-300"
               style={
                 personalCategory === 'baseDatos'
                   ? {

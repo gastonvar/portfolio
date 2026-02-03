@@ -149,7 +149,7 @@ const About = () => {
   const [hoveredScrollButton, setHoveredScrollButton] = useState(false);
 
   return (
-    <section id="about" className="relative block flex min-h-screen items-center bg-gradient-to-b from-white to-zinc-50 py-20 dark:from-black dark:to-zinc-950">
+    <section id="about" className="relative block flex min-h-screen items-center bg-gradient-to-b from-black to-zinc-950 py-20">
       <div className="relative z-10 mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-6xl">
           {/* Header Section - Enhanced */}
@@ -172,9 +172,9 @@ const About = () => {
           </div>
           
           {/* Introduction Card - Inspired by Projects cards */}
-          <Card className="group relative mb-6 overflow-hidden border-zinc-200 bg-gradient-to-br from-white via-zinc-50 to-white shadow-xl transition-all duration-500 hover:shadow-2xl dark:border-zinc-800 dark:from-zinc-950 dark:via-zinc-900 dark:to-zinc-950">
+          <Card className="group relative mb-6 overflow-hidden border-zinc-800 bg-gradient-to-br from-zinc-950 via-zinc-900 to-zinc-950 shadow-xl transition-all duration-500 hover:shadow-2xl">
             <CardContent className="relative z-10 p-8 sm:p-10">
-              <div className="space-y-6 text-lg leading-relaxed text-zinc-700 dark:text-zinc-300">
+              <div className="space-y-6 text-lg leading-relaxed text-zinc-300">
                 <p className="text-2xl font-medium sm:text-3xl">
                   {t('greeting')}{' '}
                   <HoverableText
@@ -195,7 +195,7 @@ const About = () => {
           {/* Languages & Technologies Grid */}
           <div className="mb-6 grid gap-8 md:grid-cols-2">
             {/* Languages Card */}
-            <Card className="group relative overflow-hidden border-zinc-200 bg-gradient-to-br from-white via-zinc-50 to-white shadow-lg transition-all duration-500 hover:shadow-xl dark:border-zinc-800 dark:from-zinc-950 dark:via-zinc-900 dark:to-zinc-950">
+            <Card className="group relative overflow-hidden border-zinc-800 bg-gradient-to-br from-zinc-950 via-zinc-900 to-zinc-950 shadow-lg transition-all duration-500 hover:shadow-xl">
               <CardContent className="p-6 sm:p-8">
                 <div className="mb-4 flex items-center gap-3">
                   <div 
@@ -205,7 +205,7 @@ const About = () => {
                     }}
                   >
                     <svg
-                      className="h-6 w-6 text-zinc-700 dark:text-zinc-300"
+                      className="h-6 w-6 text-zinc-300"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -218,17 +218,17 @@ const About = () => {
                       />
                     </svg>
                   </div>
-                  <h3 className="text-2xl font-bold text-zinc-900 dark:text-zinc-50">
+                  <h3 className="text-2xl font-bold text-zinc-50">
                     {t('languages.title')}
                   </h3>
                 </div>
                 <div className="space-y-3">
-                  <div className="flex items-center gap-3 rounded-lg bg-zinc-100/50 p-3 transition-colors duration-300 hover:bg-zinc-100 dark:bg-zinc-800/50 dark:hover:bg-zinc-800">
+                  <div className="flex items-center gap-3 rounded-lg bg-zinc-800/50 p-3 transition-colors duration-300 hover:bg-zinc-800">
                     <div 
                       className="h-2 w-2 rounded-full"
                       style={{ backgroundColor: primaryColor }}
                     />
-                    <span className="text-base font-medium text-zinc-700 dark:text-zinc-300">
+                    <span className="text-base font-medium text-zinc-300">
                       {t('languages.spanish')}
                     </span>
                   </div>
@@ -236,7 +236,7 @@ const About = () => {
                     href="https://cert.efset.org/6upzXT"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-3 rounded-lg bg-zinc-100/50 p-3 transition-all duration-300 hover:scale-[1.02] hover:bg-zinc-100 hover:shadow-md dark:bg-zinc-800/50 dark:hover:bg-zinc-800"
+                    className="flex items-center gap-3 rounded-lg bg-zinc-800/50 p-3 transition-all duration-300 hover:scale-[1.02] hover:bg-zinc-800 hover:shadow-md"
                   >
                     <div 
                       className="h-2 w-2 rounded-full"
@@ -249,7 +249,7 @@ const About = () => {
                       {t('languages.english')}
                     </span>
                     <svg
-                      className="ml-auto h-4 w-4 text-zinc-500 transition-transform group-hover:translate-x-1 dark:text-zinc-400"
+                      className="ml-auto h-4 w-4 text-zinc-400 transition-transform group-hover:translate-x-1"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -267,7 +267,7 @@ const About = () => {
             </Card>
 
             {/* Download CV and Escolaridad Card */}
-            <Card className="group relative overflow-hidden border-zinc-200 bg-gradient-to-br from-white via-zinc-50 to-white shadow-lg transition-all duration-500 hover:shadow-xl dark:border-zinc-800 dark:from-zinc-950 dark:via-zinc-900 dark:to-zinc-950">
+            <Card className="group relative overflow-hidden border-zinc-800 bg-gradient-to-br from-zinc-950 via-zinc-900 to-zinc-950 shadow-lg transition-all duration-500 hover:shadow-xl">
               <CardContent className="flex h-full flex-col items-center justify-center gap-6 p-6 text-center sm:p-8">
                 <div className="flex flex-col sm:flex-row items-center justify-center gap-6 w-full">
                   {/* CV Link */}
@@ -297,7 +297,7 @@ const About = () => {
                         />
                       </svg>
                     </div>
-                    <h3 className="text-xl font-bold text-zinc-900 dark:text-zinc-50">
+                    <h3 className="text-xl font-bold text-zinc-50">
                       {t('cvTitle')}
                     </h3>
                   </a>
@@ -329,7 +329,7 @@ const About = () => {
                         />
                       </svg>
                     </div>
-                    <h3 className="text-xl font-bold text-zinc-900 dark:text-zinc-50">
+                    <h3 className="text-xl font-bold text-zinc-50">
                       {t('escolaridadTitle')}
                     </h3>
                   </a>
@@ -339,10 +339,10 @@ const About = () => {
           </div>
 
           {/* Technologies Section - Enhanced with hover states */}
-          <Card className="relative overflow-hidden border-zinc-200 bg-gradient-to-br from-white via-zinc-50 to-white shadow-xl transition-all duration-500 hover:shadow-2xl dark:border-zinc-800 dark:from-zinc-950 dark:via-zinc-900 dark:to-zinc-950">
+          <Card className="relative overflow-hidden border-zinc-800 bg-gradient-to-br from-zinc-950 via-zinc-900 to-zinc-950 shadow-xl transition-all duration-500 hover:shadow-2xl">
             <CardContent className="p-8 sm:p-10">
               <div className="mb-2 text-center">
-                <h3 className="mb-2 text-3xl font-bold text-zinc-900 dark:text-zinc-50">
+                <h3 className="mb-2 text-3xl font-bold text-zinc-50">
                   {t('technologies.title')}
                 </h3>
                 <div 
@@ -366,7 +366,7 @@ const About = () => {
                       className="h-1 w-8 rounded-full transition-all duration-300 group-hover/category:w-12"
                       style={{ backgroundColor: primaryColor }}
                     />
-                    <h4 className="text-xl font-bold text-zinc-800 dark:text-zinc-200">
+                    <h4 className="text-xl font-bold text-zinc-200">
                       {t('technologies.frontend.title')}
                     </h4>
                     <div 
@@ -379,7 +379,7 @@ const About = () => {
                       <Badge
                         key={tech}
                         variant="outline"
-                        className="inline-flex items-center gap-2 border-zinc-300 bg-white px-4 py-2 text-sm font-medium shadow-sm backdrop-blur-sm transition-all duration-300 hover:scale-110 hover:shadow-lg dark:border-zinc-700 dark:bg-zinc-900/80"
+                        className="inline-flex items-center gap-2 border-zinc-700 bg-zinc-900/80 px-4 py-2 text-sm font-medium shadow-sm backdrop-blur-sm transition-all duration-300 hover:scale-110 hover:shadow-lg"
                         style={{
                           borderColor: `${primaryColor}40`,
                         }}
@@ -408,7 +408,7 @@ const About = () => {
                       className="h-1 w-8 rounded-full transition-all duration-300 group-hover/category:w-12"
                       style={{ backgroundColor: secondaryColor }}
                     />
-                    <h4 className="text-xl font-bold text-zinc-800 dark:text-zinc-200">
+                    <h4 className="text-xl font-bold text-zinc-200">
                       {t('technologies.backend.title')}
                     </h4>
                     <div 
@@ -421,7 +421,7 @@ const About = () => {
                       <Badge
                         key={tech}
                         variant="outline"
-                        className="inline-flex items-center gap-2 border-zinc-300 bg-white px-4 py-2 text-sm font-medium shadow-sm backdrop-blur-sm transition-all duration-300 hover:scale-110 hover:shadow-lg dark:border-zinc-700 dark:bg-zinc-900/80"
+                        className="inline-flex items-center gap-2 border-zinc-700 bg-zinc-900/80 px-4 py-2 text-sm font-medium shadow-sm backdrop-blur-sm transition-all duration-300 hover:scale-110 hover:shadow-lg"
                         style={{
                           borderColor: `${secondaryColor}40`,
                         }}
@@ -451,7 +451,7 @@ const About = () => {
                         background: `linear-gradient(90deg, ${primaryColor}, ${secondaryColor})`,
                       }}
                     />
-                    <h4 className="text-xl font-bold text-zinc-800 dark:text-zinc-200">
+                    <h4 className="text-xl font-bold text-zinc-200">
                       {t('technologies.devops.title')}
                     </h4>
                     <div 
@@ -466,7 +466,7 @@ const About = () => {
                       <Badge
                         key={tech}
                         variant="outline"
-                        className="inline-flex items-center gap-2 border-zinc-300 bg-white px-4 py-2 text-sm font-medium shadow-sm backdrop-blur-sm transition-all duration-300 hover:scale-110 hover:shadow-lg dark:border-zinc-700 dark:bg-zinc-900/80"
+                        className="inline-flex items-center gap-2 border-zinc-700 bg-zinc-900/80 px-4 py-2 text-sm font-medium shadow-sm backdrop-blur-sm transition-all duration-300 hover:scale-110 hover:shadow-lg"
                         style={{
                           borderColor: `${primaryColor}40`,
                         }}

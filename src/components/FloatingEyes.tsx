@@ -233,7 +233,7 @@ const FloatingEyes = () => {
           {/* Eyes container */}
           <div className="absolute inset-0 flex items-center justify-center gap-3 sm:gap-4">
             {/* Left eye */}
-            <div className="relative h-4 w-4 sm:h-5 sm:w-5 overflow-hidden rounded-full bg-white dark:bg-zinc-200">
+            <div className="relative h-4 w-4 sm:h-5 sm:w-5 overflow-hidden rounded-full bg-zinc-200">
               <div
                 className="absolute h-2 w-2 sm:h-2.5 sm:w-2.5 rounded-full bg-zinc-900 transition-transform duration-200 ease-out"
                 style={{
@@ -249,7 +249,7 @@ const FloatingEyes = () => {
             </div>
 
             {/* Right eye */}
-            <div className="relative h-4 w-4 sm:h-5 sm:w-5 overflow-hidden rounded-full bg-white dark:bg-zinc-200">
+            <div className="relative h-4 w-4 sm:h-5 sm:w-5 overflow-hidden rounded-full bg-zinc-200">
               <div
                 className="absolute h-2 w-2 sm:h-2.5 sm:w-2.5 rounded-full bg-zinc-900 transition-transform duration-200 ease-out"
                 style={{

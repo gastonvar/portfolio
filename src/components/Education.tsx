@@ -57,7 +57,7 @@ const Education = () => {
   return (
     <section
       id="education"
-      className="relative block flex min-h-screen items-center bg-gradient-to-b from-white to-zinc-50 py-20 dark:from-black dark:to-zinc-950"
+      className="relative block flex min-h-screen items-center bg-gradient-to-b from-black to-zinc-950 py-20"
     >
       <div className="relative z-10 mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-4xl">
@@ -83,7 +83,7 @@ const Education = () => {
           {/* Education Timeline */}
           <div className="space-y-6">
             {/* ORT Uruguay - Dropdown */}
-            <Card className="group relative overflow-hidden border-zinc-200 bg-gradient-to-br from-white via-zinc-50 to-white shadow-lg transition-all duration-500 hover:shadow-xl dark:border-zinc-800 dark:from-zinc-950 dark:via-zinc-900 dark:to-zinc-950">
+            <Card className="group relative overflow-hidden border-zinc-800 bg-gradient-to-br from-zinc-950 via-zinc-900 to-zinc-950 shadow-lg transition-all duration-500 hover:shadow-xl">
               <CardContent className="p-6 sm:p-8">
                 <button
                   onClick={() => setIsOrtOpen(!isOrtOpen)}
@@ -92,14 +92,14 @@ const Education = () => {
                   <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:gap-6">
                     {/* Period - Show range from first to last */}
                     <div className="shrink-0">
-                      <span className="text-lg font-bold text-zinc-900 dark:text-zinc-50 sm:text-xl">
+                      <span className="text-lg font-bold text-zinc-50 sm:text-xl">
                         {t('ort.period')}
                       </span>
                     </div>
 
                     {/* Content */}
                     <div className="flex-1 flex items-start justify-between gap-4">
-                      <p className="text-base leading-relaxed text-zinc-700 dark:text-zinc-300 sm:text-lg">
+                      <p className="text-base leading-relaxed text-zinc-300 sm:text-lg">
                         <span
                           className="font-semibold"
                           style={{ color: '#EF4444' }}
@@ -107,13 +107,13 @@ const Education = () => {
                           {t('ort.institution')}
                         </span>
                         {' - '}
-                        <span className="text-zinc-600 dark:text-zinc-400">
+                        <span className="text-zinc-400">
                           {t('ort.location')}
                         </span>
                       </p>
                       {/* Chevron Icon */}
                       <svg
-                        className={`h-5 w-5 shrink-0 text-zinc-500 transition-transform duration-300 dark:text-zinc-400 ${
+                        className={`h-5 w-5 shrink-0 text-zinc-400 transition-transform duration-300 ${
                           isOrtOpen ? 'rotate-180' : ''
                         }`}
                         fill="none"
@@ -137,13 +137,13 @@ const Education = () => {
                     isOrtOpen ? 'max-h-96 opacity-100 mt-4' : 'max-h-0 opacity-0'
                   }`}
                 >
-                  <div className="space-y-2 pt-2 border-t border-zinc-200 dark:border-zinc-800">
+                  <div className="space-y-2 pt-2 border-t border-zinc-800">
                     {ortEntries.map((entry) => (
                       <div key={entry.id} className="flex flex-col gap-1 sm:flex-row sm:gap-2">
-                        <span className="text-sm font-medium text-zinc-500 dark:text-zinc-400 sm:text-base">
+                        <span className="text-sm font-medium text-zinc-400 sm:text-base">
                           {entry.period}:
                         </span>
-                        <span className="text-sm text-zinc-700 dark:text-zinc-300 sm:text-base">
+                        <span className="text-sm text-zinc-300 sm:text-base">
                           {entry.title}
                         </span>
                       </div>
@@ -181,20 +181,20 @@ const Education = () => {
             {/* Other Education Entries */}
             {otherEntries.map((entry, index) => (
               <div key={entry.id}>
-                <Card className="group relative overflow-hidden border-zinc-200 bg-gradient-to-br from-white via-zinc-50 to-white shadow-lg transition-all duration-500 hover:shadow-xl dark:border-zinc-800 dark:from-zinc-950 dark:via-zinc-900 dark:to-zinc-950">
+                <Card className="group relative overflow-hidden border-zinc-800 bg-gradient-to-br from-zinc-950 via-zinc-900 to-zinc-950 shadow-lg transition-all duration-500 hover:shadow-xl">
                   <CardContent className="p-6 sm:p-8">
                     <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:gap-6">
                       {/* Period */}
                       <div className="shrink-0">
-                        <span className="text-lg font-bold text-zinc-900 dark:text-zinc-50 sm:text-xl">
+                        <span className="text-lg font-bold text-zinc-50 sm:text-xl">
                           {entry.period}
                         </span>
                       </div>
 
                       {/* Content */}
                       <div className="flex-1">
-                        <p className="text-base leading-relaxed text-zinc-700 dark:text-zinc-300 sm:text-lg">
-                          <span className="text-zinc-900 dark:text-zinc-50">{entry.title}</span>
+                        <p className="text-base leading-relaxed text-zinc-300 sm:text-lg">
+                          <span className="text-zinc-50">{entry.title}</span>
                           {' - '}
                           <span
                             className="font-semibold"
@@ -205,7 +205,7 @@ const Education = () => {
                           {entry.location && (
                             <>
                               {' - '}
-                              <span className="text-zinc-600 dark:text-zinc-400">
+                              <span className="text-zinc-400">
                                 {entry.location}
                               </span>
                             </>

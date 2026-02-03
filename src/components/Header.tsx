@@ -88,7 +88,7 @@ const Header = () => {
   }
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-zinc-200 bg-white/80 backdrop-blur-sm dark:border-zinc-800 dark:bg-black/80">
+    <header className="sticky top-0 z-50 w-full border-b border-zinc-800 bg-black/80 backdrop-blur-sm">
       <nav className="mx-auto flex max-w-7xl items-center justify-center px-4 py-4 sm:px-6 lg:px-8 relative">
         {/* Desktop Navigation - Centered */}
         <div className="hidden md:flex md:items-center md:gap-6">
@@ -97,19 +97,19 @@ const Header = () => {
               key={link.href}
               href={link.href}
               onClick={(e) => handleNavClick(e, link.href)}
-              className="text-sm font-medium text-zinc-600 transition-colors hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-50"
+              className="text-sm font-medium text-zinc-400 transition-colors hover:text-zinc-50"
             >
               {link.label}
             </a>
           ))}
 
           {/* CV and Escolaridad Links */}
-          <div className="ml-4 flex items-center gap-2 border-l border-zinc-200 pl-4 dark:border-zinc-800">
+          <div className="ml-4 flex items-center gap-2 border-l border-zinc-800 pl-4">
             <a
               href={locale === 'es' ? '/Curriculum/CV_PFP_ES.pdf' : '/Curriculum/CV_EN.pdf'}
               target="_blank"
               rel="noopener noreferrer"
-              className="rounded-md px-3 py-1.5 text-sm font-medium text-zinc-600 transition-colors hover:bg-zinc-100 dark:text-zinc-400 dark:hover:bg-zinc-800"
+              className="rounded-md px-3 py-1.5 text-sm font-medium text-zinc-400 transition-colors hover:bg-zinc-800"
               style={{
                 color: 'inherit',
               }}
@@ -126,7 +126,7 @@ const Header = () => {
               href="/Escolaridad/Escolaridad.png"
               target="_blank"
               rel="noopener noreferrer"
-              className="rounded-md px-3 py-1.5 text-sm font-medium text-zinc-600 transition-colors hover:bg-zinc-100 dark:text-zinc-400 dark:hover:bg-zinc-800"
+              className="rounded-md px-3 py-1.5 text-sm font-medium text-zinc-400 transition-colors hover:bg-zinc-800"
               style={{
                 color: 'inherit',
               }}
@@ -142,14 +142,14 @@ const Header = () => {
           </div>
 
           {/* Social Links */}
-          <div className="ml-4 flex items-center gap-4 border-l border-zinc-200 pl-4 dark:border-zinc-800">
+          <div className="ml-4 flex items-center gap-4 border-l border-zinc-800 pl-4">
             {socialLinks.map((social) => (
               <a
                 key={social.href}
                 href={social.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-zinc-600 transition-colors hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-50"
+                className="text-zinc-400 transition-colors hover:text-zinc-50"
                 aria-label={social.label}
               >
                 {social.icon}
@@ -160,7 +160,7 @@ const Header = () => {
           {/* Language Toggle */}
           <button
             onClick={handleLanguageToggle}
-            className="ml-4 flex items-center gap-2 rounded-md px-3 py-1.5 text-sm font-medium text-zinc-600 transition-colors hover:bg-zinc-100 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-800 dark:hover:text-zinc-50"
+            className="ml-4 flex items-center gap-2 rounded-md px-3 py-1.5 text-sm font-medium text-zinc-400 transition-colors hover:bg-zinc-800 hover:text-zinc-50"
             aria-label="Toggle language"
           >
             <svg
@@ -186,7 +186,7 @@ const Header = () => {
           {/* Language Toggle - Mobile */}
           <button
             onClick={handleLanguageToggle}
-            className="flex items-center gap-2 rounded-md px-2 py-1 text-sm font-medium text-zinc-600 transition-colors hover:bg-zinc-100 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-800 dark:hover:text-zinc-50"
+            className="flex items-center gap-2 rounded-md px-2 py-1 text-sm font-medium text-zinc-400 transition-colors hover:bg-zinc-800 hover:text-zinc-50"
             aria-label="Toggle language"
           >
             <svg
@@ -208,7 +208,7 @@ const Header = () => {
 
           <button
             onClick={handleToggleMenu}
-            className="rounded-md p-2 text-zinc-600 transition-colors hover:bg-zinc-100 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-800 dark:hover:text-zinc-50"
+            className="rounded-md p-2 text-zinc-400 transition-colors hover:bg-zinc-800 hover:text-zinc-50"
             aria-label="Toggle menu"
             aria-expanded={isMenuOpen}
           >
@@ -246,78 +246,80 @@ const Header = () => {
       </nav>
 
       {/* Mobile Menu */}
-      {isMenuOpen && (
-        <div className="border-t border-zinc-200 bg-white dark:border-zinc-800 dark:bg-black md:hidden">
-          <div className="px-4 py-4 space-y-3">
-            {navLinks.map((link) => (
+      <div
+        className={`overflow-hidden transition-all duration-300 border-t border-zinc-800 bg-black md:hidden ${
+          isMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
+        }`}
+      >
+        <div className="px-4 py-4 space-y-3">
+          {navLinks.map((link) => (
+            <a
+              key={link.href}
+              href={link.href}
+              onClick={(e) => handleNavClick(e, link.href)}
+              className="block text-sm font-medium text-zinc-400 transition-colors hover:text-zinc-50"
+            >
+              {link.label}
+            </a>
+          ))}
+
+          {/* CV and Escolaridad Links - Mobile */}
+          <div className="pt-4 border-t border-zinc-800 space-y-2">
+            <a
+              href={locale === 'es' ? '/Curriculum/CV_PFP_ES.pdf' : '/Curriculum/CV_EN.pdf'}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={handleCloseMenu}
+              className="block text-sm font-medium text-zinc-400 transition-colors"
+              style={{
+                color: 'inherit',
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.color = primaryColor;
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.color = '';
+              }}
+            >
+              {t('cv')}
+            </a>
+            <a
+              href="/Escolaridad/Escolaridad.png"
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={handleCloseMenu}
+              className="block text-sm font-medium text-zinc-400 transition-colors"
+              style={{
+                color: 'inherit',
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.color = primaryColor;
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.color = '';
+              }}
+            >
+              {t('education')}
+            </a>
+          </div>
+
+          {/* Social Links - Mobile */}
+          <div className="flex items-center gap-4 pt-4 border-t border-zinc-800">
+            {socialLinks.map((social) => (
               <a
-                key={link.href}
-                href={link.href}
-                onClick={(e) => handleNavClick(e, link.href)}
-                className="block text-sm font-medium text-zinc-600 transition-colors hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-50"
+                key={social.href}
+                href={social.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-zinc-400 transition-colors hover:text-zinc-50"
+                aria-label={social.label}
               >
-                {link.label}
+                {social.icon}
               </a>
             ))}
-
-            {/* CV and Escolaridad Links - Mobile */}
-            <div className="pt-4 border-t border-zinc-200 dark:border-zinc-800 space-y-2">
-              <a
-                href={locale === 'es' ? '/Curriculum/CV_PFP_ES.pdf' : '/Curriculum/CV_EN.pdf'}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={handleCloseMenu}
-                className="block text-sm font-medium text-zinc-600 transition-colors dark:text-zinc-400"
-                style={{
-                  color: 'inherit',
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.color = primaryColor;
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.color = '';
-                }}
-              >
-                {t('cv')}
-              </a>
-              <a
-                href="/Escolaridad/Escolaridad.png"
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={handleCloseMenu}
-                className="block text-sm font-medium text-zinc-600 transition-colors dark:text-zinc-400"
-                style={{
-                  color: 'inherit',
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.color = primaryColor;
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.color = '';
-                }}
-              >
-                {t('education')}
-              </a>
-            </div>
-
-            {/* Social Links - Mobile */}
-            <div className="flex items-center gap-4 pt-4 border-t border-zinc-200 dark:border-zinc-800">
-              {socialLinks.map((social) => (
-                <a
-                  key={social.href}
-                  href={social.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-zinc-600 transition-colors hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-50"
-                  aria-label={social.label}
-                >
-                  {social.icon}
-                </a>
-              ))}
-            </div>
           </div>
         </div>
-      )}
+      </div>
     </header>
   );
 };

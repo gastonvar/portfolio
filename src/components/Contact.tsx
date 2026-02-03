@@ -107,7 +107,7 @@ const Contact = () => {
   return (
     <section
       id="contact"
-      className="relative block flex min-h-screen items-center bg-gradient-to-b from-white to-zinc-50 py-20 dark:from-black dark:to-zinc-950 overflow-hidden"
+      className="relative block flex min-h-screen items-center bg-gradient-to-b from-black to-zinc-950 py-20 overflow-hidden"
     >
       <div className="relative z-10 mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-2xl">
@@ -128,13 +128,13 @@ const Contact = () => {
                 background: `linear-gradient(90deg, ${primaryColor}, ${secondaryColor})`,
               }}
             />
-            <p className="mt-6 text-lg text-zinc-600 dark:text-zinc-400">
+            <p className="mt-6 text-lg text-zinc-400">
               {t('subtitle')}
             </p>
           </div>
 
           {/* Contact Form */}
-          <Card className="border-zinc-200 bg-gradient-to-br from-white via-zinc-50 to-white shadow-lg transition-all duration-500 hover:shadow-xl dark:border-zinc-800 dark:from-zinc-950 dark:via-zinc-900 dark:to-zinc-950">
+          <Card className="border-zinc-800 bg-gradient-to-br from-zinc-950 via-zinc-900 to-zinc-950 shadow-lg transition-all duration-500 hover:shadow-xl">
             <CardContent className="p-6 sm:p-8">
               <form onSubmit={handleSubmit} className="space-y-6">
                 {/* Name and Email Inputs - Side by Side */}
@@ -143,7 +143,7 @@ const Contact = () => {
                   <div>
                     <label
                       htmlFor="nombre"
-                      className="mb-2 block text-sm font-medium text-zinc-700 dark:text-zinc-300"
+                      className="mb-2 block text-sm font-medium text-zinc-300"
                     >
                       {t('name')}
                     </label>
@@ -154,7 +154,7 @@ const Contact = () => {
                       value={formData.nombre}
                       onChange={handleChange}
                       required
-                      className="w-full rounded-lg border border-zinc-300 bg-white px-4 py-3 text-zinc-900 placeholder-zinc-400 transition-all duration-200 focus:outline-none focus:ring-2 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-100 dark:placeholder-zinc-500"
+                      className="w-full rounded-lg border border-zinc-700 bg-zinc-900 px-4 py-3 text-zinc-100 placeholder-zinc-500 transition-all duration-200 focus:outline-none focus:ring-2"
                       style={{
                         '--tw-ring-color': primaryColor,
                         borderColor: 'inherit',
@@ -173,7 +173,7 @@ const Contact = () => {
                   <div>
                     <label
                       htmlFor="email"
-                      className="mb-2 block text-sm font-medium text-zinc-700 dark:text-zinc-300"
+                      className="mb-2 block text-sm font-medium text-zinc-300"
                     >
                       {t('email')}
                     </label>
@@ -184,7 +184,7 @@ const Contact = () => {
                       value={formData.email}
                       onChange={handleChange}
                       required
-                      className="w-full rounded-lg border border-zinc-300 bg-white px-4 py-3 text-zinc-900 placeholder-zinc-400 transition-all duration-200 focus:outline-none focus:ring-2 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-100 dark:placeholder-zinc-500"
+                      className="w-full rounded-lg border border-zinc-700 bg-zinc-900 px-4 py-3 text-zinc-100 placeholder-zinc-500 transition-all duration-200 focus:outline-none focus:ring-2"
                       style={{
                         '--tw-ring-color': primaryColor,
                         borderColor: 'inherit',
@@ -204,7 +204,7 @@ const Contact = () => {
                 <div>
                   <label
                     htmlFor="asunto"
-                    className="mb-2 block text-sm font-medium text-zinc-700 dark:text-zinc-300"
+                    className="mb-2 block text-sm font-medium text-zinc-300"
                   >
                     {t('subject')}
                   </label>
@@ -215,7 +215,7 @@ const Contact = () => {
                     value={formData.asunto}
                     onChange={handleChange}
                     required
-                    className="w-full rounded-lg border border-zinc-300 bg-white px-4 py-3 text-zinc-900 placeholder-zinc-400 transition-all duration-200 focus:outline-none focus:ring-2 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-100 dark:placeholder-zinc-500"
+                    className="w-full rounded-lg border border-zinc-700 bg-zinc-900 px-4 py-3 text-zinc-100 placeholder-zinc-500 transition-all duration-200 focus:outline-none focus:ring-2"
                     style={{
                       '--tw-ring-color': primaryColor,
                       borderColor: 'inherit',
@@ -234,7 +234,7 @@ const Contact = () => {
                 <div>
                   <label
                     htmlFor="mensaje"
-                    className="mb-2 block text-sm font-medium text-zinc-700 dark:text-zinc-300"
+                    className="mb-2 block text-sm font-medium text-zinc-300"
                   >
                     {t('message')}
                   </label>
@@ -245,7 +245,7 @@ const Contact = () => {
                     onChange={handleChange}
                     required
                     rows={6}
-                    className="w-full rounded-lg border border-zinc-300 bg-white px-4 py-3 text-zinc-900 placeholder-zinc-400 transition-all duration-200 focus:outline-none focus:ring-2 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-100 dark:placeholder-zinc-500"
+                    className="w-full rounded-lg border border-zinc-700 bg-zinc-900 px-4 py-3 text-zinc-100 placeholder-zinc-500 transition-all duration-200 focus:outline-none focus:ring-2"
                     style={{
                       '--tw-ring-color': primaryColor,
                       borderColor: 'inherit',
@@ -522,13 +522,13 @@ const Contact = () => {
                 )}
 
                 {submitStatus === 'error' && (
-                  <div className="rounded-lg border-2 border-red-500 bg-red-50 p-4 text-center text-sm font-medium text-red-600 dark:bg-red-950 dark:text-red-400">
+                  <div className="rounded-lg border-2 border-red-500 bg-red-950 p-4 text-center text-sm font-medium text-red-400">
                     {t('error')}
                   </div>
                 )}
 
                 {submitStatus === 'configError' && (
-                  <div className="rounded-lg border-2 border-yellow-500 bg-yellow-50 p-4 text-center text-sm font-medium text-yellow-600 dark:bg-yellow-950 dark:text-yellow-400">
+                  <div className="rounded-lg border-2 border-yellow-500 bg-yellow-950 p-4 text-center text-sm font-medium text-yellow-400">
                     {t('configError')}
                   </div>
                 )}
