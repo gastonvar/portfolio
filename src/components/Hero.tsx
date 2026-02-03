@@ -1,9 +1,10 @@
 'use client';
 
-import { useState, useEffect, useRef, useMemo } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useTranslations } from 'next-intl';
 import HoverableText from './HoverableText';
 import { useColors } from '@/contexts/ColorContext';
+import StarsBackground from './StarsBackground';
 
 // Planet data based on our solar system
 const planets = [
@@ -25,28 +26,9 @@ const Hero = () => {
   const [typingIndex, setTypingIndex] = useState(0);
   const [displayedText, setDisplayedText] = useState('');
   const [isDeleting, setIsDeleting] = useState(false);
-  const [isMounted, setIsMounted] = useState(false);
   const heroRef = useRef<HTMLDivElement>(null);
   const scrollButtonRef = useRef<HTMLButtonElement>(null);
   const typingPhrases = t.raw('typing') as string[];
-
-  // Generate random stars for the galaxy background (only on client to avoid hydration mismatch)
-  const stars = useMemo(() => {
-    if (!isMounted) return [];
-    return Array.from({ length: 200 }, (_, i) => ({
-      id: i,
-      x: Math.random() * 100,
-      y: Math.random() * 100,
-      size: Math.random() * 2 + 0.5,
-      opacity: Math.random() * 0.7 + 0.3,
-      twinkleDelay: Math.random() * 5,
-    }));
-  }, [isMounted]);
-
-  // Set mounted state after component mounts (client-side only)
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
 
   // Mouse tracking for cursor aura on scroll button
   useEffect(() => {
@@ -113,23 +95,15 @@ const Hero = () => {
       }}
     >
       {/* Stars Background */}
-      <div className="absolute inset-0 overflow-hidden">
-        {stars.map((star) => (
-          <div
-            key={star.id}
-            className="absolute rounded-full bg-white animate-twinkle"
-            style={{
-              left: `${star.x}%`,
-              top: `${star.y}%`,
-              width: `${star.size}px`,
-              height: `${star.size}px`,
-              opacity: star.opacity,
-              animationDelay: `${star.twinkleDelay}s`,
-              boxShadow: `0 0 ${star.size * 2}px rgba(255, 255, 255, ${star.opacity})`,
-            }}
-          />
-        ))}
-      </div>
+      <StarsBackground starCount={200} showComets={true} />
+      
+      {/* Fade transition to next section */}
+      <div 
+        className="absolute bottom-0 left-0 right-0 h-32 pointer-events-none z-10"
+        style={{
+          background: 'linear-gradient(to top, rgba(5, 5, 16, 0.8), transparent)',
+        }}
+      />
 
       {/* Solar System Container */}
       <div className="absolute inset-0 flex items-center justify-center">
@@ -364,18 +338,6 @@ const Hero = () => {
           }
         }
 
-        @keyframes twinkle {
-          0%, 100% {
-            opacity: 0.3;
-          }
-          50% {
-            opacity: 1;
-          }
-        }
-
-        .animate-twinkle {
-          animation: twinkle 3s ease-in-out infinite;
-        }
       `}</style>
     </section>
   );

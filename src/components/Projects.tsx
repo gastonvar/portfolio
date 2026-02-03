@@ -16,6 +16,7 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import HoverableText from './HoverableText';
 import { useColors } from '@/contexts/ColorContext';
+import StarsBackground from './StarsBackground';
 
 const ImageGallery = ({ images, title, primaryColor }: { images: string[]; title: string; primaryColor: string }) => {
   const [api, setApi] = useState<CarouselApi>();
@@ -448,9 +449,31 @@ const Projects = () => {
   return (
     <section
       id="projects"
-      className="relative block flex h-screen items-center bg-black"
+      className="relative block flex h-screen items-center overflow-hidden"
+      style={{
+        background: 'linear-gradient(to bottom, #050510, #0a0a1a, #000000)',
+      }}
     >
-      <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 mt-25">
+      {/* Stars Background */}
+      <StarsBackground starCount={150} showComets={true} />
+      
+      {/* Fade transition from Hero section */}
+      <div 
+        className="absolute top-0 left-0 right-0 h-40 pointer-events-none z-10"
+        style={{
+          background: 'linear-gradient(to bottom, rgba(5, 5, 16, 1), rgba(5, 5, 16, 0.6), transparent)',
+        }}
+      />
+      
+      {/* Fade transition to next section */}
+      <div 
+        className="absolute bottom-0 left-0 right-0 h-32 pointer-events-none z-10"
+        style={{
+          background: 'linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent)',
+        }}
+      />
+      
+      <div className="relative z-10 mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 mt-25">
         <div className="mb-4 text-center">
           <HoverableText
             as="h2"

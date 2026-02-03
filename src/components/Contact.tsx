@@ -7,6 +7,7 @@ import HoverableText from './HoverableText';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import emailjs from '@emailjs/browser';
+import StarsBackground from './StarsBackground';
 
 const Contact = () => {
   const t = useTranslations('contact');
@@ -107,8 +108,22 @@ const Contact = () => {
   return (
     <section
       id="contact"
-      className="relative block flex min-h-screen items-center bg-gradient-to-b from-black to-zinc-950 py-20 overflow-hidden"
+      className="relative block flex min-h-screen items-center overflow-hidden py-20"
+      style={{
+        background: 'linear-gradient(to bottom, #000000, #0a0a1a, #050510)',
+      }}
     >
+      {/* Stars Background */}
+      <StarsBackground starCount={150} showComets={true} />
+      
+      {/* Fade transition from Education section */}
+      <div 
+        className="absolute top-0 left-0 right-0 h-40 pointer-events-none z-10"
+        style={{
+          background: 'linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.6), transparent)',
+        }}
+      />
+      
       <div className="relative z-10 mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-2xl">
           {/* Header Section */}
