@@ -102,7 +102,7 @@
       "title": "Horizon",
       "description": "Complete internal management system. \nProject where I inherited the frontend and performed UI/UX improvements across all pages, overall fixes, and added a complete filtering and searching feature that doubled query speeds.",
       "role": "Full-Stack Developer",
-      "stack": "Sass, CSS, .NET, Razor, Bootstrap",
+      "stack": "Sass, CSS, .NET, Razor, Bootstrap, Azure",
       "features": [
         "UI/UX improvements across all pages",
         "Filtering and searching system",
@@ -114,7 +114,7 @@
       "title": "Barberias Simois",
       "description": "Complete management system for a barber shop business.\nImplemented comprehensive management of appointments, clients, branches, barbers, stakeholders, products, services, discounts, and schedules, including operational control metrics.\nDeveloped separate applications for clients and employees, tailored to distinct workflows and access requirements.",
       "role": "Full-Stack Developer",
-      "stack": "React, TypeScript, .NET, SQL Server",
+      "stack": "React, TypeScript, .NET, SQL Server, AWS",
       "features": [
         "Appointment and client management",
         "Multi-branch support",
@@ -160,6 +160,11 @@
           "title": "Social Network",
           "description": "A social network project built with Razor, .NET, CSS, and JavaScript. Features include session management, posts, comments, reactions, friends, and other typical social network features.",
           "stack": "Razor, .NET, CSS, JavaScript"
+        },
+        "votingApp": {
+          "title": "Voting App",
+          "description": "Voting application with microservices, dockerized and deployed on AWS using ECS, ECR, GitHub Actions and a CI/CD pipeline.",
+          "stack": "Python, AWS, Terraform"
         }
       },
       "disenoWeb": {

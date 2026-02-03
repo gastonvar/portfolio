@@ -3,15 +3,16 @@
 import { useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { useColors } from '@/contexts/ColorContext';
-import HoverableText from './HoverableText';
 import { Card, CardContent } from '@/components/ui/card';
 import StarsBackground from './StarsBackground';
+import { SectionTitle } from './ui/SectionTitle';
+import { ScrollButton } from './ui/ScrollButton';
+import { ScrollIndicator } from './ui/ScrollIndicator';
 
 const Education = () => {
   const t = useTranslations('education');
   const { primaryColor, secondaryColor } = useColors();
   const [isOrtOpen, setIsOrtOpen] = useState(false);
-  const [hoveredContactButton, setHoveredContactButton] = useState(false);
 
   const ortEntries = [
     {
@@ -85,23 +86,11 @@ const Education = () => {
       <div className="relative z-10 mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-4xl">
           {/* Header Section */}
-          <div className="mb-12 text-center">
-            <HoverableText
-              as="h2"
-              primaryColor={primaryColor}
-              secondaryColor={secondaryColor}
-              defaultColor="rgb(98, 250, 215)"
-              className="mb-4 text-4xl font-bold tracking-tight sm:text-5xl"
-            >
-              {t('title')}
-            </HoverableText>
-            <div
-              className="mx-auto h-1 w-24 rounded-full transition-all duration-300"
-              style={{
-                background: `linear-gradient(90deg, ${primaryColor}, ${secondaryColor})`,
-              }}
-            />
-          </div>
+          <SectionTitle
+            title={t('title')}
+            primaryColor={primaryColor}
+            secondaryColor={secondaryColor}
+          />
 
           {/* Education Timeline */}
           <div className="space-y-6">
@@ -271,56 +260,15 @@ const Education = () => {
 
           {/* Contact Me Button */}
           <div className="mt-12 flex flex-col items-center gap-4">
-            <button
-              onClick={() => {
-                const contactSection = document.getElementById('contact');
-                if (contactSection) {
-                  contactSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                } else {
-                  // If contact section doesn't exist, scroll to top or show a message
-                  window.scrollTo({ top: 0, behavior: 'smooth' });
-                }
-              }}
-              className="group flex items-center gap-3 rounded-full px-8 py-4 text-lg font-semibold transition-all duration-300 hover:scale-105 hover:shadow-2xl"
-              aria-label={t('contactMe')}
-              onMouseEnter={() => setHoveredContactButton(true)}
-              onMouseLeave={() => setHoveredContactButton(false)}
-              style={{
-                backgroundColor: hoveredContactButton ? primaryColor : 'rgba(98, 250, 215, 0.1)',
-                borderWidth: '2px',
-                borderStyle: 'solid',
-                borderColor: hoveredContactButton ? primaryColor : 'rgba(98, 250, 215, 0.3)',
-                color: hoveredContactButton ? '#000000' : primaryColor,
-              }}
-            >
-              <span className="transition-colors duration-300">
-                {t('contactMe')}
-              </span>
-              <svg 
-                className="h-5 w-5 transition-transform duration-300 group-hover:translate-y-1" 
-                fill="none" 
-                stroke="currentColor" 
-                viewBox="0 0 24 24"
-              >
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-              </svg>
-            </button>
+            <ScrollButton
+              targetId="contact"
+              label={t('contactMe')}
+              primaryColor={primaryColor}
+              ariaLabel={t('contactMe')}
+            />
             
             {/* Scroll indicator */}
-            <div className="flex flex-col items-center gap-2 animate-bounce">
-              <div
-                className="h-1 w-1 rounded-full"
-                style={{ backgroundColor: primaryColor, opacity: 0.6 }}
-              />
-              <div
-                className="h-1 w-1 rounded-full"
-                style={{ backgroundColor: primaryColor, opacity: 0.4 }}
-              />
-              <div
-                className="h-1 w-1 rounded-full"
-                style={{ backgroundColor: primaryColor, opacity: 0.2 }}
-              />
-            </div>
+            <ScrollIndicator primaryColor={primaryColor} />
           </div>
         </div>
       </div>

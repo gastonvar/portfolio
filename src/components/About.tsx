@@ -7,6 +7,9 @@ import HoverableText from './HoverableText';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent } from '@/components/ui/card';
 import StarsBackground from './StarsBackground';
+import { SectionTitle } from './ui/SectionTitle';
+import { ScrollButton } from './ui/ScrollButton';
+import { ScrollIndicator } from './ui/ScrollIndicator';
 
 // Technology icon mapping
 const getTechIcon = (tech: string) => {
@@ -147,7 +150,6 @@ const About = () => {
   const locale = useLocale();
   const { primaryColor, secondaryColor } = useColors();
   const [hoveredCategory, setHoveredCategory] = useState<string | null>(null);
-  const [hoveredScrollButton, setHoveredScrollButton] = useState(false);
 
   return (
     <section id="about" className="relative block flex min-h-screen items-center overflow-hidden py-20" style={{
@@ -175,23 +177,12 @@ const About = () => {
       <div className="relative z-10 mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-6xl">
           {/* Header Section - Enhanced */}
-          <div className="mb-6 text-center">
-            <HoverableText
-              as="h2"
-              primaryColor={primaryColor}
-              secondaryColor={secondaryColor}
-              defaultColor="rgb(98, 250, 215)"
-              className="mb-4 text-4xl font-bold tracking-tight sm:text-5xl"
-            >
-              {t('title')}
-            </HoverableText>
-            <div 
-              className="mx-auto h-1 w-24 rounded-full transition-all duration-300"
-              style={{ 
-                background: `linear-gradient(90deg, ${primaryColor}, ${secondaryColor})`,
-              }}
-            />
-          </div>
+          <SectionTitle
+            title={t('title')}
+            primaryColor={primaryColor}
+            secondaryColor={secondaryColor}
+            className="mb-6"
+          />
           
           {/* Introduction Card - Inspired by Projects cards */}
           <Card className="group relative mb-6 overflow-hidden border-zinc-800 bg-gradient-to-br from-zinc-950 via-zinc-900 to-zinc-950 shadow-xl transition-all duration-500 hover:shadow-2xl">
@@ -508,53 +499,15 @@ const About = () => {
 
         {/* Scroll to Education Section Button */}
         <div className="mt-12 flex flex-col items-center gap-4">
-          <button
-            onClick={() => {
-              const educationSection = document.getElementById('education');
-              if (educationSection) {
-                educationSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-              }
-            }}
-            className="group flex items-center gap-3 rounded-full px-8 py-4 text-lg font-semibold transition-all duration-300 hover:scale-105 hover:shadow-2xl"
-            aria-label={t('scrollToEducation')}
-            onMouseEnter={() => setHoveredScrollButton(true)}
-            onMouseLeave={() => setHoveredScrollButton(false)}
-            style={{
-              backgroundColor: hoveredScrollButton ? primaryColor : 'rgba(98, 250, 215, 0.1)',
-              borderWidth: '2px',
-              borderStyle: 'solid',
-              borderColor: hoveredScrollButton ? primaryColor : 'rgba(98, 250, 215, 0.3)',
-              color: hoveredScrollButton ? '#000000' : primaryColor,
-            }}
-          >
-            <span className="transition-colors duration-300">
-              {t('scrollToEducation')}
-            </span>
-            <svg 
-              className="h-5 w-5 transition-transform duration-300 group-hover:translate-y-1" 
-              fill="none" 
-              stroke="currentColor" 
-              viewBox="0 0 24 24"
-            >
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-            </svg>
-          </button>
+          <ScrollButton
+            targetId="education"
+            label={t('scrollToEducation')}
+            primaryColor={primaryColor}
+            ariaLabel={t('scrollToEducation')}
+          />
           
           {/* Scroll indicator */}
-          <div className="flex flex-col items-center gap-2 animate-bounce">
-            <div
-              className="h-1 w-1 rounded-full"
-              style={{ backgroundColor: primaryColor, opacity: 0.6 }}
-            />
-            <div
-              className="h-1 w-1 rounded-full"
-              style={{ backgroundColor: primaryColor, opacity: 0.4 }}
-            />
-            <div
-              className="h-1 w-1 rounded-full"
-              style={{ backgroundColor: primaryColor, opacity: 0.2 }}
-            />
-          </div>
+          <ScrollIndicator primaryColor={primaryColor} />
         </div>
       </div>
     </section>

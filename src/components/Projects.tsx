@@ -14,9 +14,11 @@ import {
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import HoverableText from './HoverableText';
 import { useColors } from '@/contexts/ColorContext';
 import StarsBackground from './StarsBackground';
+import { SectionTitle } from './ui/SectionTitle';
+import { ScrollButton } from './ui/ScrollButton';
+import { ScrollIndicator } from './ui/ScrollIndicator';
 
 const ImageGallery = ({ images, title, primaryColor }: { images: string[]; title: string; primaryColor: string }) => {
   const [api, setApi] = useState<CarouselApi>();
@@ -146,14 +148,44 @@ const Projects = () => {
   const [activeTab, setActiveTab] = useState<'professional' | 'personal'>('professional');
   const [personalCategory, setPersonalCategory] = useState<'programacion' | 'disenoWeb' | 'baseDatos'>('programacion');
   const [api, setApi] = useState<CarouselApi>();
-  const [hoveredScrollButton, setHoveredScrollButton] = useState(false);
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [canScrollPrev, setCanScrollPrev] = useState(false);
+  const [canScrollNext, setCanScrollNext] = useState(true);
 
   // Reset carousel to first slide when tab or category changes
   useEffect(() => {
     if (api) {
       api.scrollTo(0);
+      setCurrentSlide(0);
+      setCanScrollPrev(false);
+      setCanScrollNext(true);
     }
   }, [activeTab, personalCategory, api]);
+
+  // Track carousel position
+  useEffect(() => {
+    if (!api) {
+      return;
+    }
+
+    const updateState = () => {
+      setCurrentSlide(api.selectedScrollSnap());
+      setCanScrollPrev(api.canScrollPrev());
+      setCanScrollNext(api.canScrollNext());
+    };
+
+    // Initial state
+    updateState();
+    
+    // Listen for changes
+    api.on('select', updateState);
+    api.on('reInit', updateState);
+
+    return () => {
+      api.off('select', updateState);
+      api.off('reInit', updateState);
+    };
+  }, [api]);
 
   const professionalProjects = [
     {
@@ -189,6 +221,17 @@ const Projects = () => {
   ];
 
   const programmingProjects = [
+    {
+      id: 'votingApp',
+      image: '/Programacion/DevOps/1.png',
+      images: [
+        '/Programacion/DevOps/1.png',
+        '/Programacion/DevOps/2.png',
+      ],
+      title: t('personal.programacion.votingApp.title'),
+      description: t('personal.programacion.votingApp.description'),
+      stack: t('personal.programacion.votingApp.stack'),
+    },
     {
       id: 'react',
       image: '/Programacion/REACT/babytracker.png',
@@ -229,7 +272,7 @@ const Projects = () => {
       title: t('personal.programacion.socialNetwork.title'),
       description: t('personal.programacion.socialNetwork.description'),
       stack: t('personal.programacion.socialNetwork.stack'),
-    },
+    }
   ];
 
   const webDesignProjects = [
@@ -311,7 +354,7 @@ const Projects = () => {
     return (
       <Carousel className="w-full" setApi={setApi}>
         <CarouselContent>
-          {projects.map((project) => (
+          {projects.map((project, index) => (
             <CarouselItem key={project.id} className="md:basis-1/2 lg:basis-2/3">
               <Card className="group relative h-full overflow-hidden border-zinc-800 bg-gradient-to-br from-zinc-950 via-zinc-900 to-zinc-950 shadow-xl transition-all duration-500 hover:shadow-2xl">
                 {/* Animated gradient border effect */}
@@ -433,18 +476,22 @@ const Projects = () => {
             </CarouselItem>
           ))}
         </CarouselContent>
-        <CarouselPrevious 
-          className="left-4 border-2 bg-zinc-900 shadow-lg backdrop-blur-sm transition-all duration-300 hover:scale-110 hover:shadow-xl"
-          style={{
-            borderColor: `${primaryColor}40`,
-          }}
-        />
-        <CarouselNext 
-          className="right-4 border-2 bg-zinc-900 shadow-lg backdrop-blur-sm transition-all duration-300 hover:scale-110 hover:shadow-xl"
-          style={{
-            borderColor: `${primaryColor}40`,
-          }}
-        />
+        {canScrollPrev && (
+          <CarouselPrevious 
+            className="left-4 border-2 bg-zinc-900 shadow-lg backdrop-blur-sm transition-all duration-300 hover:scale-110 hover:shadow-xl"
+            style={{
+              borderColor: `${primaryColor}40`,
+            }}
+          />
+        )}
+        {canScrollNext && (
+          <CarouselNext 
+            className="right-4 border-2 bg-zinc-900 shadow-lg backdrop-blur-sm transition-all duration-300 hover:scale-110 hover:shadow-xl"
+            style={{
+              borderColor: `${primaryColor}40`,
+            }}
+          />
+        )}
       </Carousel>
     );
   };
@@ -477,20 +524,14 @@ const Projects = () => {
       />
       
       <div className="relative z-10 mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 mt-25">
-        <div className="mb-4 text-center">
-          <HoverableText
-            as="h2"
-            primaryColor={primaryColor}
-            secondaryColor={secondaryColor}
-            defaultColor="rgb(98, 250, 215)"
-            className="mb-2 text-3xl font-bold tracking-tight sm:text-4xl"
-          >
-            {activeTab === 'professional' ? t('title') : t('personal.title')}
-          </HoverableText>
-          <p className="text-base text-zinc-400">
-            {activeTab === 'professional' ? t('subtitle') : t('personal.subtitle')}
-          </p>
-        </div>
+        <SectionTitle
+          title={activeTab === 'professional' ? t('title') : t('personal.title')}
+          primaryColor={primaryColor}
+          secondaryColor={secondaryColor}
+          subtitle={activeTab === 'professional' ? t('subtitle') : t('personal.subtitle')}
+          titleClassName="mb-2 text-3xl font-bold tracking-tight sm:text-4xl"
+          className="mb-4 text-center"
+        />
 
         {/* Tab Navigation */}
         <div className="mb-4 flex flex-wrap justify-center gap-2 sm:gap-4">
@@ -603,53 +644,15 @@ const Projects = () => {
 
         {/* Scroll to About Section Button */}
         <div className="mt-12 flex flex-col items-center gap-4">
-          <button
-            onClick={() => {
-              const aboutSection = document.getElementById('about');
-              if (aboutSection) {
-                aboutSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-              }
-            }}
-            className="group flex items-center gap-3 rounded-full px-8 py-4 text-lg font-semibold transition-all duration-300 hover:scale-105 hover:shadow-2xl"
-            aria-label={t('scrollToAbout')}
-            onMouseEnter={() => setHoveredScrollButton(true)}
-            onMouseLeave={() => setHoveredScrollButton(false)}
-            style={{
-              backgroundColor: hoveredScrollButton ? primaryColor : 'rgba(98, 250, 215, 0.1)',
-              borderWidth: '2px',
-              borderStyle: 'solid',
-              borderColor: hoveredScrollButton ? primaryColor : 'rgba(98, 250, 215, 0.3)',
-              color: hoveredScrollButton ? '#000000' : primaryColor,
-            }}
-          >
-            <span className="transition-colors duration-300">
-              {t('scrollToAbout')}
-            </span>
-            <svg 
-              className="h-5 w-5 transition-transform duration-300 group-hover:translate-y-1" 
-              fill="none" 
-              stroke="currentColor" 
-              viewBox="0 0 24 24"
-            >
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-            </svg>
-          </button>
+          <ScrollButton
+            targetId="about"
+            label={t('scrollToAbout')}
+            primaryColor={primaryColor}
+            ariaLabel={t('scrollToAbout')}
+          />
           
           {/* Scroll indicator */}
-          <div className="flex flex-col items-center gap-2 animate-bounce">
-            <div
-              className="h-1 w-1 rounded-full"
-              style={{ backgroundColor: primaryColor, opacity: 0.6 }}
-            />
-            <div
-              className="h-1 w-1 rounded-full"
-              style={{ backgroundColor: primaryColor, opacity: 0.4 }}
-            />
-            <div
-              className="h-1 w-1 rounded-full"
-              style={{ backgroundColor: primaryColor, opacity: 0.2 }}
-            />
-          </div>
+          <ScrollIndicator primaryColor={primaryColor} />
         </div>
       </div>
     </section>

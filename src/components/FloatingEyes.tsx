@@ -2,60 +2,21 @@
 
 import { useState, useEffect, useRef, useMemo } from 'react';
 import { useColors } from '@/contexts/ColorContext';
+import { useSectionTracker } from '@/hooks/useSectionTracker';
 
 const FloatingEyes = () => {
   const { setColors } = useColors();
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [cursorDistance, setCursorDistance] = useState(1);
-  const [currentSection, setCurrentSection] = useState(0);
-  const [scrollProgress, setScrollProgress] = useState(0);
   const [isWaving, setIsWaving] = useState(false);
   const circleRef = useRef<HTMLDivElement>(null);
 
   // Section IDs in order
   const sections = ['', 'projects', 'about', 'education', 'contact'];
 
-  // Detect which section is currently in view and calculate scroll progress
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollPosition = window.scrollY + window.innerHeight / 2;
-      
-      // Calculate scroll progress (0 = start, 1 = end)
-      const windowHeight = window.innerHeight;
-      const documentHeight = document.documentElement.scrollHeight;
-      const scrollTop = window.scrollY;
-      const maxScroll = documentHeight - windowHeight;
-      const progress = maxScroll > 0 ? Math.min(scrollTop / maxScroll, 1) : 0;
-      setScrollProgress(progress);
-      
-      // Check each section to see which one is in view
-      for (let i = sections.length - 1; i >= 0; i--) {
-        let element: HTMLElement | null = null;
-        
-        if (i === 0) {
-          // Hero section (first section, no id)
-          element = document.querySelector('section:first-of-type');
-        } else {
-          element = document.getElementById(sections[i]);
-        }
-        
-        if (element) {
-          const rect = element.getBoundingClientRect();
-          const elementTop = rect.top + window.scrollY;
-          const elementBottom = elementTop + rect.height;
-          
-          if (scrollPosition >= elementTop && scrollPosition <= elementBottom) {
-            setCurrentSection(i);
-            break;
-          }
-        }
-      }
-    };
-
-    handleScroll(); // Initial check
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [currentSection]);
+  const { currentSection, scrollProgress, goToPrevious: baseGoToPrevious, goToNext: baseGoToNext } = useSectionTracker({
+    sections,
+  });
 
   // Navigate to previous section or scroll to top if in contact section
   const goToPrevious = () => {
@@ -64,19 +25,7 @@ const FloatingEyes = () => {
       window.scrollTo({ top: 0, behavior: 'smooth' });
       return;
     }
-    
-    if (currentSection > 0) {
-      const prevIndex = currentSection - 1;
-      if (prevIndex === 0) {
-        // Scroll to top (Hero section)
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      } else {
-        const element = document.getElementById(sections[prevIndex]);
-        if (element) {
-          element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-      }
-    }
+    baseGoToPrevious();
   };
 
   // Navigate to next section or scroll to top if in contact section
@@ -86,14 +35,7 @@ const FloatingEyes = () => {
       window.scrollTo({ top: 0, behavior: 'smooth' });
       return;
     }
-    
-    if (currentSection < sections.length - 1) {
-      const nextIndex = currentSection + 1;
-      const element = document.getElementById(sections[nextIndex]);
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
-    }
+    baseGoToNext();
   };
 
   // Scroll to bottom of page
