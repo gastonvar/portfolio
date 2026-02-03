@@ -89,7 +89,7 @@
       "title": "Buildtracker",
       "description": "Complete management system for a construction company. \nI built the frontend from the ground up, choosing the tech stack, designing components, architecture, folder hierarchy, style, design, and authentication system.\nImplemented specific backend features and fixes.",
       "role": "Lead Frontend Developer",
-      "stack": "NextJS, TailwindCSS, Shadcn, Material UI, TypeScript, .NET",
+      "stack": "NextJS, TailwindCSS, Shadcn, Material UI, TypeScript, .NET, AWS",
       "features": [
         "Frontend built from scratch",
         "Component architecture and design",
