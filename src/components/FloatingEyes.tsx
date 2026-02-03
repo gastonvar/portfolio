@@ -9,6 +9,7 @@ const FloatingEyes = () => {
   const [cursorDistance, setCursorDistance] = useState(1);
   const [currentSection, setCurrentSection] = useState(0);
   const [scrollProgress, setScrollProgress] = useState(0);
+  const [isWaving, setIsWaving] = useState(false);
   const circleRef = useRef<HTMLDivElement>(null);
 
   // Section IDs in order
@@ -54,10 +55,16 @@ const FloatingEyes = () => {
     handleScroll(); // Initial check
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [currentSection]);
 
-  // Navigate to previous section
+  // Navigate to previous section or scroll to top if in contact section
   const goToPrevious = () => {
+    // If in contact section, scroll to top
+    if (currentSection === 4) {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
+    
     if (currentSection > 0) {
       const prevIndex = currentSection - 1;
       if (prevIndex === 0) {
@@ -72,8 +79,14 @@ const FloatingEyes = () => {
     }
   };
 
-  // Navigate to next section
+  // Navigate to next section or scroll to top if in contact section
   const goToNext = () => {
+    // If in contact section, scroll to top
+    if (currentSection === 4) {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
+    
     if (currentSection < sections.length - 1) {
       const nextIndex = currentSection + 1;
       const element = document.getElementById(sections[nextIndex]);
@@ -159,6 +172,19 @@ const FloatingEyes = () => {
     setColors(primaryColor, secondaryColor);
   }, [primaryColor, secondaryColor, setColors]);
 
+  // Wave animation periodically
+  useEffect(() => {
+    const waveInterval = setInterval(() => {
+      setIsWaving(true);
+      // Wave animation lasts 1.5 seconds
+      setTimeout(() => {
+        setIsWaving(false);
+      }, 1500);
+    }, Math.random() * 10000 + 8000); // Wave every 8-18 seconds
+
+    return () => clearInterval(waveInterval);
+  }, []);
+
   return (
     <div className="fixed bottom-6 right-6 z-30 pointer-events-none">
       {/* Glow effect */}
@@ -168,9 +194,9 @@ const FloatingEyes = () => {
 
       {/* Code container */}
       <div className="relative flex items-center justify-center gap-2 sm:gap-3">
-        {/* Left bracket */}
+        {/* Left bracket or ^ when in contact section */}
         <div 
-          className="text-3xl sm:text-4xl font-bold text-zinc-400 transition-all duration-300 drop-shadow-lg pointer-events-auto cursor-pointer hover:scale-110"
+          className={`relative text-3xl sm:text-4xl font-bold text-zinc-400 transition-all duration-300 drop-shadow-lg pointer-events-auto cursor-pointer hover:scale-110 ${isWaving ? 'animate-wave' : ''}`}
           onClick={goToPrevious}
           onMouseEnter={(e) => {
             e.currentTarget.style.color = primaryColor;
@@ -181,9 +207,34 @@ const FloatingEyes = () => {
           style={{
             opacity: currentSection === 0 ? 0.4 : 1,
             cursor: currentSection === 0 ? 'not-allowed' : 'pointer',
+            transformOrigin: 'bottom right',
+            width: '1em',
+            height: '1em',
+            display: 'inline-flex',
+            alignItems: 'center',
+            justifyContent: 'center',
           }}
         >
-          {'<'}
+          <span
+            className="absolute transition-all duration-500 ease-in-out"
+            style={{
+              opacity: currentSection === 4 ? 0 : 1,
+              transform: currentSection === 4 ? 'rotate(45deg) scale(0.8)' : 'rotate(0deg) scale(1)',
+              pointerEvents: currentSection === 4 ? 'none' : 'auto',
+            }}
+          >
+            {'<'}
+          </span>
+          <span
+            className="absolute transition-all duration-500 ease-in-out"
+            style={{
+              opacity: currentSection === 4 ? 1 : 0,
+              transform: currentSection === 4 ? 'rotate(0deg) scale(1)' : 'rotate(-45deg) scale(0.8)',
+              pointerEvents: currentSection === 4 ? 'auto' : 'none',
+            }}
+          >
+            {'^'}
+          </span>
         </div>
 
         {/* Center element with eyes */}
@@ -274,9 +325,9 @@ const FloatingEyes = () => {
           </div>
         </div>
 
-        {/* Right bracket */}
+        {/* Right bracket or ^ when in contact section */}
         <div 
-          className="text-3xl sm:text-4xl font-bold text-zinc-400 transition-all duration-300 drop-shadow-lg pointer-events-auto cursor-pointer hover:scale-110"
+          className={`relative text-3xl sm:text-4xl font-bold text-zinc-400 transition-all duration-300 drop-shadow-lg pointer-events-auto cursor-pointer hover:scale-110`}
           onClick={goToNext}
           onMouseEnter={(e) => {
             e.currentTarget.style.color = primaryColor;
@@ -285,26 +336,66 @@ const FloatingEyes = () => {
             e.currentTarget.style.color = '';
           }}
           style={{
-            opacity: currentSection === sections.length - 1 ? 0.4 : 1,
-            cursor: currentSection === sections.length - 1 ? 'not-allowed' : 'pointer',
+            opacity: currentSection === sections.length - 1 && currentSection !== 4 ? 0.4 : 1,
+            cursor: currentSection === sections.length - 1 && currentSection !== 4 ? 'not-allowed' : 'pointer',
+            transformOrigin: 'bottom left',
+            width: '1em',
+            height: '1em',
+            display: 'inline-flex',
+            alignItems: 'center',
+            justifyContent: 'center',
           }}
         >
-          {'>'}
+          <span
+            className="absolute transition-all duration-500 ease-in-out"
+            style={{
+              opacity: currentSection === 4 ? 0 : 1,
+              transform: currentSection === 4 ? 'rotate(-45deg) scale(0.8)' : 'rotate(0deg) scale(1)',
+              pointerEvents: currentSection === 4 ? 'none' : 'auto',
+            }}
+          >
+            {'>'}
+          </span>
+          <span
+            className="absolute transition-all duration-500 ease-in-out"
+            style={{
+              opacity: currentSection === 4 ? 1 : 0,
+              transform: currentSection === 4 ? 'rotate(0deg) scale(1)' : 'rotate(45deg) scale(0.8)',
+              pointerEvents: currentSection === 4 ? 'auto' : 'none',
+            }}
+          >
+            {'^'}
+          </span>
         </div>
       </div>
 
-      {/* U U text below */}
+      {/* U U text below - individual elements */}
       <div 
-        className="mt-2 text-center text-2xl sm:text-3xl font-bold text-zinc-400 transition-all duration-300 drop-shadow-lg pointer-events-auto cursor-pointer hover:scale-110"
+        className="mt-2 flex items-center justify-center gap-1 sm:gap-2 pointer-events-auto"
         onClick={scrollToBottom}
-        onMouseEnter={(e) => {
-          e.currentTarget.style.color = primaryColor;
-        }}
-        onMouseLeave={(e) => {
-          e.currentTarget.style.color = '';
-        }}
       >
-        U U
+        <span 
+          className="text-2xl sm:text-3xl font-bold text-zinc-400 transition-all duration-300 drop-shadow-lg cursor-pointer hover:scale-110"
+          onMouseEnter={(e) => {
+            e.currentTarget.style.color = primaryColor;
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.color = '';
+          }}
+        >
+          U
+        </span>
+        <span 
+          className="text-2xl sm:text-3xl font-bold text-zinc-400 transition-all duration-300 drop-shadow-lg cursor-pointer hover:scale-110"
+          onMouseEnter={(e) => {
+            e.currentTarget.style.color = primaryColor;
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.color = '';
+          }}
+        >
+          U
+        </span>
       </div>
     </div>
   );
