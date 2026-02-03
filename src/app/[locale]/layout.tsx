@@ -3,7 +3,7 @@ import { getMessages, getTranslations } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { routing } from '@/i18n/routing';
 import Header from '@/components/Header';
-import FloatingEyes from '@/components/FloatingEyes';
+import FloatingEyes from '@/components/ui/FloatingEyes';
 import { ColorProvider } from '@/contexts/ColorContext';
 import type { Metadata } from 'next';
 

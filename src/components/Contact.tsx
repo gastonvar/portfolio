@@ -6,7 +6,7 @@ import { useColors } from '@/contexts/ColorContext';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import emailjs from '@emailjs/browser';
-import StarsBackground from './StarsBackground';
+import StarsBackground from './ui/StarsBackground';
 import { SectionTitle } from './ui/SectionTitle';
 import { FormField } from './ui/FormField';
 

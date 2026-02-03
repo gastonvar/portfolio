@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { useColors } from '@/contexts/ColorContext';
 import { Card, CardContent } from '@/components/ui/card';
-import StarsBackground from './StarsBackground';
+import StarsBackground from './ui/StarsBackground';
 import { SectionTitle } from './ui/SectionTitle';
 import { ScrollButton } from './ui/ScrollButton';
 import { ScrollIndicator } from './ui/ScrollIndicator';

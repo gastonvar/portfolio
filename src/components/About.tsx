@@ -3,10 +3,10 @@
 import React, { useState } from 'react';
 import { useTranslations, useLocale } from 'next-intl';
 import { useColors } from '@/contexts/ColorContext';
-import HoverableText from './HoverableText';
+import HoverableText from './ui/HoverableText';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent } from '@/components/ui/card';
-import StarsBackground from './StarsBackground';
+import StarsBackground from './ui/StarsBackground';
 import { SectionTitle } from './ui/SectionTitle';
 import { ScrollButton } from './ui/ScrollButton';
 import { ScrollIndicator } from './ui/ScrollIndicator';
@@ -181,7 +181,7 @@ const About = () => {
             title={t('title')}
             primaryColor={primaryColor}
             secondaryColor={secondaryColor}
-            className="mb-6"
+            className="mb-6 text-center"
           />
           
           {/* Introduction Card - Inspired by Projects cards */}

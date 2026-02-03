@@ -1,6 +1,6 @@
 'use client';
 
-import HoverableText from '../HoverableText';
+import HoverableText from './HoverableText';
 import { SectionDivider } from './SectionDivider';
 
 interface SectionTitleProps {

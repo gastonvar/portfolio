@@ -2,9 +2,9 @@
 
 import { useState, useEffect, useRef } from 'react';
 import { useTranslations } from 'next-intl';
-import HoverableText from './HoverableText';
+import HoverableText from './ui/HoverableText';
 import { useColors } from '@/contexts/ColorContext';
-import StarsBackground from './StarsBackground';
+import StarsBackground from './ui/StarsBackground';
 import { ScrollIndicator } from './ui/ScrollIndicator';
 import { ScrollButton } from './ui/ScrollButton';
 

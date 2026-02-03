@@ -15,7 +15,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { useColors } from '@/contexts/ColorContext';
-import StarsBackground from './StarsBackground';
+import StarsBackground from './ui/StarsBackground';
 import { SectionTitle } from './ui/SectionTitle';
 import { ScrollButton } from './ui/ScrollButton';
 import { ScrollIndicator } from './ui/ScrollIndicator';
@@ -529,7 +529,6 @@ const Projects = () => {
           primaryColor={primaryColor}
           secondaryColor={secondaryColor}
           subtitle={activeTab === 'professional' ? t('subtitle') : t('personal.subtitle')}
-          titleClassName="mb-2 text-3xl font-bold tracking-tight sm:text-4xl"
           className="mb-4 text-center"
         />
 
