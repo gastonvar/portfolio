@@ -220,7 +220,7 @@ const Projects = () => {
     },
     {
       id: 'algorico',
-      image: '/TrabajosReales/Freelance/Algorico/1.png',
+      image: '/TrabajosReales/Freelance/AlgoRico/1.png',
       title: t('algorico.title'),
       description: t('algorico.description'),
       role: t('algorico.role'),

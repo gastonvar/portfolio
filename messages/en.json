@@ -87,9 +87,9 @@
     "subtitle": "Corporate projects I've worked on",
     "blimann": {
       "title": "Buildtracker",
-      "description": "Complete management system for a construction company. \nI built the frontend from the ground up, choosing the tech stack, designing components, architecture, folder hierarchy, style, design, and authentication system.\nImplemented specific backend features and fixes.",
+      "description": "Complete management system for a construction company. \nI built the frontend from the ground up, choosing the tech stack, designing components, architecture, folder hierarchy, style, design, and authentication system.\nImplemented specific backend features and fixes. \nAdjusted and updated Docker images and CI/CD, added infrastructure.",
       "role": "Lead Frontend Developer",
-      "stack": "NextJS, TailwindCSS, Shadcn, Material UI, TypeScript, .NET, AWS",
+      "stack": "NextJS, TailwindCSS, Shadcn, Material UI, TypeScript, .NET, AWS, Terraform",
       "features": [
         "Frontend built from scratch",
         "Component architecture and design",
