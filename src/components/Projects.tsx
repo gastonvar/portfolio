@@ -217,6 +217,14 @@ const Projects = () => {
       description: t('horizon.description'),
       role: t('horizon.role'),
       stack: t('horizon.stack'),
+    },
+    {
+      id: 'algorico',
+      image: '/TrabajosReales/Freelance/Algorico/1.png',
+      title: t('algorico.title'),
+      description: t('algorico.description'),
+      role: t('algorico.role'),
+      stack: t('algorico.stack'),
     }
   ];
 

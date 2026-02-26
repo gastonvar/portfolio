@@ -110,6 +110,18 @@
         "Overall fixes"
       ]
     },
+    "algorico": {
+      "title": "Algorico",
+      "description": "Built and maintained a tailored management system for a pastry business to streamline daily operations. Developed an agenda and internal management system with email integration, order tracking, inventory management, and multiple additional implementations aligned with evolving client requests and business workflows.",
+      "role": "Full-Stack Developer",
+      "stack": "HTML, JS, CSS, Node.js, SQLServer",
+      "features": [
+        "Agenda and internal management system",
+        "Email integration",
+        "Order tracking",
+        "Inventory management"
+      ]
+    },
     "simois": {
       "title": "Barberias Simois",
       "description": "Complete management system for a barber shop business.\nImplemented comprehensive management of appointments, clients, branches, barbers, stakeholders, products, services, discounts, and schedules, including operational control metrics.\nDeveloped separate applications for clients and employees, tailored to distinct workflows and access requirements.",
