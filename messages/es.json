@@ -100,7 +100,7 @@
     },
     "horizon": {
       "title": "Horizon",
-      "description": "Sistema completo de gestión interna. \nProyecto donde heredé el frontend y realicé mejoras de UI/UX en todas las páginas, correcciones generales, y agregué un sistema completo de filtrado y búsqueda que duplicó la velocidad de las consultas. \nDesplegado en Azure.",
+      "description": "Sistema completo de gestión interna. \nProyecto donde heredé el frontend y realicé mejoras de UI/UX en todas las páginas, correcciones generales, y agregué un sistema completo de filtrado y búsqueda que duplicó la velocidad de las consultas. \nRepensé y reimplemente el sistema de registro de reservas de escritorios, haciendolo office-agnostic, aplicable a cualquier oficina, entre otras adiciones. \nDesplegado en Azure.",
       "role": "Desarrollador Full-Stack",
       "stack": "Sass, CSS, .NET, Razor, Bootstrap, Azure",
       "features": [

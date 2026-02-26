@@ -100,7 +100,7 @@
     },
     "horizon": {
       "title": "Horizon",
-      "description": "Complete internal management system. \nProject where I inherited the frontend and performed UI/UX improvements across all pages, overall fixes, and added a complete filtering and searching feature that doubled query speeds.",
+      "description": "Complete internal management system. \nProject where I inherited the frontend and performed UI/UX improvements across all pages, overall fixes, and added a complete filtering and searching feature that doubled query speeds. \nRethought and reimplemented the desk reservation system, making it office-agnostic, applicable to any office, among other additions.",
       "role": "Full-Stack Developer",
       "stack": "Sass, CSS, .NET, Razor, Bootstrap, Azure",
       "features": [

@@ -212,7 +212,7 @@ const Projects = () => {
     },    
     {
       id: 'horizon',
-      image: null,
+      image: '/TrabajosReales/Auren/Horizon.png',
       title: t('horizon.title'),
       description: t('horizon.description'),
       role: t('horizon.role'),
