@@ -9,6 +9,7 @@ import emailjs from '@emailjs/browser';
 import StarsBackground from './ui/StarsBackground';
 import { SectionTitle } from './ui/SectionTitle';
 import { FormField } from './ui/FormField';
+import { SECTION_INNER_CLASS } from '@/constants/sectionLayout';
 
 const Contact = () => {
   const t = useTranslations('contact');
@@ -126,7 +127,7 @@ const Contact = () => {
       />
       
       <div className="relative z-10 mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-2xl">
+        <div className={SECTION_INNER_CLASS}>
           {/* Header Section */}
           <SectionTitle
             title={t('title')}

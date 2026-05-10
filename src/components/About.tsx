@@ -10,6 +10,7 @@ import StarsBackground from './ui/StarsBackground';
 import { SectionTitle } from './ui/SectionTitle';
 import { ScrollButton } from './ui/ScrollButton';
 import { ScrollIndicator } from './ui/ScrollIndicator';
+import { SECTION_INNER_CLASS } from '@/constants/sectionLayout';
 
 // Technology icon mapping
 const getTechIcon = (tech: string) => {
@@ -175,7 +176,7 @@ const About = () => {
       />
       
       <div className="relative z-10 mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-6xl">
+        <div className={SECTION_INNER_CLASS}>
           {/* Header Section - Enhanced */}
           <SectionTitle
             title={t('title')}

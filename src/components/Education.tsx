@@ -8,6 +8,7 @@ import StarsBackground from './ui/StarsBackground';
 import { SectionTitle } from './ui/SectionTitle';
 import { ScrollButton } from './ui/ScrollButton';
 import { ScrollIndicator } from './ui/ScrollIndicator';
+import { SECTION_INNER_CLASS } from '@/constants/sectionLayout';
 
 const Education = () => {
   const t = useTranslations('education');
@@ -84,7 +85,7 @@ const Education = () => {
       />
       
       <div className="relative z-10 mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-4xl">
+        <div className={SECTION_INNER_CLASS}>
           {/* Header Section */}
           <SectionTitle
             title={t('title')}

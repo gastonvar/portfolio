@@ -19,6 +19,7 @@ import StarsBackground from './ui/StarsBackground';
 import { SectionTitle } from './ui/SectionTitle';
 import { ScrollButton } from './ui/ScrollButton';
 import { ScrollIndicator } from './ui/ScrollIndicator';
+import { SECTION_INNER_CLASS } from '@/constants/sectionLayout';
 
 const ImageGallery = ({ images, title, primaryColor }: { images: string[]; title: string; primaryColor: string }) => {
   const [api, setApi] = useState<CarouselApi>();
@@ -534,6 +535,7 @@ const Projects = () => {
       />
       
       <div className="relative z-10 mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 mt-25">
+        <div className={SECTION_INNER_CLASS}>
         <SectionTitle
           title={
             activeTab === 'professional'
@@ -695,6 +697,7 @@ const Projects = () => {
           
           {/* Scroll indicator */}
           <ScrollIndicator primaryColor={primaryColor} />
+        </div>
         </div>
       </div>
     </section>
