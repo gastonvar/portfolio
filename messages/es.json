@@ -87,7 +87,7 @@
     "subtitle": "Proyectos corporativos en los que he trabajado",
     "blimann": {
       "title": "Buildtracker",
-      "description": "Sistema completo de gestión para empresa de construcción. \nDesarrollé el frontend desde cero, eligiendo el stack tecnológico, diseñando componentes, arquitectura, jerarquía de carpetas, estilo, diseño y sistema de autenticación.\nImplementé características específicas de backend y correcciones. \nAjusté y actualicé docker images y CI/CD, agregue infraestructura. \nDesplegado en AWS.",
+      "description": "Sistema de gestión para empresa de construcción. \nDesarrollé el frontend desde cero, eligiendo el stack tecnológico, diseñando componentes, arquitectura, jerarquía de carpetas, estilo, diseño y sistema de autenticación.\nImplementé características específicas de backend y correcciones. \nAjusté y actualicé docker images y CI/CD, agregue infraestructura. \nDesplegado en AWS.",
       "role": "Desarrollador Frontend Lead",
       "stack": "NextJS, TailwindCSS, Shadcn, Material UI, TypeScript, .NET, AWS, Terraform",
       "features": [
@@ -100,7 +100,7 @@
     },
     "horizon": {
       "title": "Horizon",
-      "description": "Sistema completo de gestión interna. \nProyecto donde heredé el frontend y realicé mejoras de UI/UX en todas las páginas, correcciones generales, y agregué un sistema completo de filtrado y búsqueda que duplicó la velocidad de las consultas. \nRepensé y reimplemente el sistema de registro de reservas de escritorios, haciendolo office-agnostic, aplicable a cualquier oficina, entre otras adiciones. \nDesplegado en Azure.",
+      "description": "Sistema de gestión interna. \nProyecto donde heredé el frontend y realicé mejoras de UI/UX en todas las páginas, correcciones generales, y agregué un sistema completo de filtrado y búsqueda que duplicó la velocidad de las consultas. \nRepensé y reimplemente el sistema de registro de reservas de escritorios, haciendolo office-agnostic, aplicable a cualquier oficina, entre otras adiciones. \nDesplegado en Azure.",
       "role": "Desarrollador Full-Stack",
       "stack": "Sass, CSS, .NET, Razor, Bootstrap, Azure",
       "features": [
@@ -110,21 +110,9 @@
         "Correcciones generales"
       ]
     },
-    "algorico": {
-      "title": "Algorico",
-      "description": "Construí y mantuve un sistema de gestión personalizado para un negocio de pastelería para optimizar las operaciones diarias. Desarrollé un sistema de agenda y gestión interna con integración de correo electrónico, seguimiento de pedidos, gestión de inventario y múltiples implementaciones adicionales alineadas con las solicitudes en evolución del cliente y los flujos de trabajo del negocio.",
-      "role": "Desarrollador Full-Stack",
-      "stack": "HTML, JS, CSS, Node.js, SQLServer",
-      "features": [
-        "Sistema de agenda y gestión interna",
-        "Integración de correo electrónico",
-        "Seguimiento de pedidos",
-        "Gestión de inventario"
-      ]
-    },
     "simois": {
       "title": "Barberias Simois",
-      "description": "Sistema completo de gestión para una empresa de barberías.\nImplementé gestión integral de citas, clientes, sucursales, barberos, stakeholders, productos, servicios, descuentos y horarios, incluyendo métricas de control operacional.\nDesarrollé aplicaciones separadas para clientes y empleados, adaptadas a flujos de trabajo y requisitos de acceso distintos. \nDesplegado en AWS.",
+      "description": "Sistema de gestión para una empresa de barberías.\nImplementé gestión integral de citas, clientes, sucursales, barberos, stakeholders, productos, servicios, descuentos y horarios, incluyendo métricas de control operacional.\nDesarrollé aplicaciones separadas para clientes y empleados, adaptadas a flujos de trabajo y requisitos de acceso distintos. \nDesplegado en AWS.",
       "role": "Desarrollador Full-Stack",
       "stack": "React, TypeScript, .NET, SQL Server, AWS",
       "features": [

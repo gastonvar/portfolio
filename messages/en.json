@@ -87,7 +87,7 @@
     "subtitle": "Corporate projects I've worked on",
     "blimann": {
       "title": "Buildtracker",
-      "description": "Complete management system for a construction company. \nI built the frontend from the ground up, choosing the tech stack, designing components, architecture, folder hierarchy, style, design, and authentication system.\nImplemented specific backend features and fixes. \nAdjusted and updated Docker images and CI/CD, added infrastructure.",
+      "description": "Management system for a construction company. \nI built the frontend from the ground up, choosing the tech stack, designing components, architecture, folder hierarchy, style, design, and authentication system.\nImplemented specific backend features and fixes. \nAdjusted and updated Docker images and CI/CD, added infrastructure.",
       "role": "Lead Frontend Developer",
       "stack": "NextJS, TailwindCSS, Shadcn, Material UI, TypeScript, .NET, AWS, Terraform",
       "features": [
@@ -100,7 +100,7 @@
     },
     "horizon": {
       "title": "Horizon",
-      "description": "Complete internal management system. \nProject where I inherited the frontend and performed UI/UX improvements across all pages, overall fixes, and added a complete filtering and searching feature that doubled query speeds. \nRethought and reimplemented the desk reservation system, making it office-agnostic, applicable to any office, among other additions.",
+      "description": "Internal management system. \nProject where I inherited the frontend and performed UI/UX improvements across all pages, overall fixes, and added a complete filtering and searching feature that doubled query speeds. \nRethought and reimplemented the desk reservation system, making it office-agnostic, applicable to any office, among other additions.",
       "role": "Full-Stack Developer",
       "stack": "Sass, CSS, .NET, Razor, Bootstrap, Azure",
       "features": [
@@ -110,21 +110,9 @@
         "Overall fixes"
       ]
     },
-    "algorico": {
-      "title": "Algorico",
-      "description": "Built and maintained a tailored management system for a pastry business to streamline daily operations. Developed an agenda and internal management system with email integration, order tracking, inventory management, and multiple additional implementations aligned with evolving client requests and business workflows.",
-      "role": "Full-Stack Developer",
-      "stack": "HTML, JS, CSS, Node.js, SQLServer",
-      "features": [
-        "Agenda and internal management system",
-        "Email integration",
-        "Order tracking",
-        "Inventory management"
-      ]
-    },
     "simois": {
       "title": "Barberias Simois",
-      "description": "Complete management system for a barber shop business.\nImplemented comprehensive management of appointments, clients, branches, barbers, stakeholders, products, services, discounts, and schedules, including operational control metrics.\nDeveloped separate applications for clients and employees, tailored to distinct workflows and access requirements.",
+      "description": "Management system for a barber shop business.\nImplemented comprehensive management of appointments, clients, branches, barbers, stakeholders, products, services, discounts, and schedules, including operational control metrics.\nDeveloped separate applications for clients and employees, tailored to distinct workflows and access requirements.",
       "role": "Full-Stack Developer",
       "stack": "React, TypeScript, .NET, SQL Server, AWS",
       "features": [
