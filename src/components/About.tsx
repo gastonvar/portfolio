@@ -317,7 +317,7 @@ const About = () => {
 
                   {/* Escolaridad Link */}
                   <a
-                    href="/Escolaridad/Escolaridad.png"
+                    href="/Escolaridad/Escolaridad.pdf"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="group/icon flex flex-col items-center gap-4 transition-all duration-300 hover:scale-110"

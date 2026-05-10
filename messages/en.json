@@ -138,8 +138,24 @@
     "techStack": "Tech Stack",
     "mainFeatures": "Main Features",
     "scrollToAbout": "View about me",
+    "personalProjects": {
+      "tab": "Personal Projects",
+      "title": "Personal Projects",
+      "subtitle": "Self-hosted infrastructure I run and maintain at home"
+    },
+    "university": {
+      "tab": "University Projects",
+      "title": "University Projects",
+      "subtitle": "Projects I've developed for learning and coursework"
+    },
+    "homelab": {
+      "ubuntu": {
+        "title": "Ubuntu Server Homelab",
+        "description": "An Ubuntu server homelab where I manage multiple self-hosted applications—all dockerized—including Actual Budget for personal finance, Portainer for container operations, and a Minecraft server for gaming with friends. The host uses a fixed private IP on my LAN so services stay reachable reliably inside the network.",
+        "stack": "Ubuntu Server, Docker, Docker Compose, Portainer, Actual Budget, Minecraft"
+      }
+    },
     "personal": {
-      "title": "Personal & University Projects",
       "subtitle": "Projects I've developed for learning and personal use",
       "programacion": {
         "title": "Programming",

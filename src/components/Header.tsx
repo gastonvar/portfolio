@@ -123,7 +123,7 @@ const Header = () => {
               {t('cv')}
             </a>
             <a
-              href="/Escolaridad/Escolaridad.png"
+              href="/Escolaridad/Escolaridad.pdf"
               target="_blank"
               rel="noopener noreferrer"
               className="rounded-md px-3 py-1.5 text-sm font-medium text-zinc-400 transition-colors hover:bg-zinc-800"
@@ -284,7 +284,7 @@ const Header = () => {
               {t('cv')}
             </a>
             <a
-              href="/Escolaridad/Escolaridad.png"
+              href="/Escolaridad/Escolaridad.pdf"
               target="_blank"
               rel="noopener noreferrer"
               onClick={handleCloseMenu}

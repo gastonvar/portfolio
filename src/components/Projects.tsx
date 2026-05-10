@@ -145,7 +145,7 @@ const ImageGallery = ({ images, title, primaryColor }: { images: string[]; title
 const Projects = () => {
   const t = useTranslations('projects');
   const { primaryColor, secondaryColor } = useColors();
-  const [activeTab, setActiveTab] = useState<'professional' | 'personal'>('professional');
+  const [activeTab, setActiveTab] = useState<'professional' | 'personal' | 'university'>('professional');
   const [personalCategory, setPersonalCategory] = useState<'programacion' | 'disenoWeb' | 'baseDatos'>('programacion');
   const [api, setApi] = useState<CarouselApi>();
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -161,6 +161,7 @@ const Projects = () => {
       setCanScrollNext(true);
     }
   }, [activeTab, personalCategory, api]);
+
 
   // Track carousel position
   useEffect(() => {
@@ -186,7 +187,16 @@ const Projects = () => {
       api.off('reInit', updateState);
     };
   }, [api]);
-
+  
+  const homelabProjects = [
+    {
+      id: 'ubuntuHomelab',
+      image: '/trabajospersonales/ubuntuserver.png',
+      title: t('homelab.ubuntu.title'),
+      description: t('homelab.ubuntu.description'),
+      stack: t('homelab.ubuntu.stack'),
+    },
+  ];
   const professionalProjects = [
     {
       id: 'blimann',
@@ -533,15 +543,20 @@ const Projects = () => {
       
       <div className="relative z-10 mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 mt-25">
         <SectionTitle
-          title={activeTab === 'professional' ? t('title') : t('personal.title')}
+          title={
+            activeTab === 'professional'
+              ? t('title')
+              : activeTab === 'personal'
+                ? t('personalProjects.title')
+                : t('university.title')
+          }
           primaryColor={primaryColor}
           secondaryColor={secondaryColor}
-          subtitle={activeTab === 'professional' ? t('subtitle') : t('personal.subtitle')}
           className="mb-4 text-center"
         />
 
         {/* Tab Navigation */}
-        <div className="mb-4 flex flex-wrap justify-center gap-2 sm:gap-4">
+        <div className="mb-2 flex flex-wrap justify-center gap-2 sm:gap-4">
           <Button
             onClick={() => setActiveTab('professional')}
             variant={activeTab === 'professional' ? 'default' : 'outline'}
@@ -576,12 +591,38 @@ const Projects = () => {
                   }
             }
           >
-            {t('personal.title')}
+            {t('personalProjects.tab')}
+          </Button>
+          <Button
+            onClick={() => setActiveTab('university')}
+            variant={activeTab === 'university' ? 'default' : 'outline'}
+            className="text-xs sm:text-sm px-3 sm:px-4 py-2 transition-all duration-300"
+            style={
+              activeTab === 'university'
+                ? {
+                    backgroundColor: primaryColor,
+                    borderColor: primaryColor,
+                    color: '#000000',
+                  }
+                : {
+                    borderColor: `${primaryColor}40`,
+                  }
+            }
+          >
+            {t('university.tab')}
           </Button>
         </div>
 
-        {/* Personal Projects Category Tabs */}
-        {activeTab === 'personal' && (
+        <p className="mb-6 text-center text-lg text-zinc-400">
+          {activeTab === 'professional'
+            ? t('subtitle')
+            : activeTab === 'personal'
+              ? t('personalProjects.subtitle')
+              : t('university.subtitle')}
+        </p>
+
+        {/* University Projects Category Tabs */}
+        {activeTab === 'university' && (
           <div className="mb-4 flex flex-wrap justify-center gap-2 sm:gap-3">
             <Button
               onClick={() => setPersonalCategory('programacion')}
@@ -644,9 +685,11 @@ const Projects = () => {
         )}
 
         {/* Projects Carousel */}
-        {activeTab === 'professional' 
+        {activeTab === 'professional'
           ? renderProjects(professionalProjects)
-          : renderProjects(getPersonalProjects())
+          : activeTab === 'personal'
+            ? renderProjects(homelabProjects)
+            : renderProjects(getPersonalProjects())
         }
 
         {/* Scroll to About Section Button */}
