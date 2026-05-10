@@ -24,28 +24,6 @@ body {
   overflow-x: hidden;
 }
 
-
-/* HoverableText animations */
-@keyframes hoverable-shimmer {
-  0% { background-position: -200% 0; }
-  100% { background-position: 200% 0; }
-}
-
-@keyframes hoverable-float {
-  0%, 100% { transform: translateY(0) scale(1); opacity: 0.6; }
-  50% { transform: translateY(-10px) scale(1.2); opacity: 1; }
-}
-
-@keyframes hoverable-pulse {
-  0%, 100% { opacity: 0.4; transform: scale(1.5); }
-  50% { opacity: 0.8; transform: scale(1.8); }
-}
-
-@keyframes hoverable-rotate {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-
 /* Custom Scrollbar Styling */
 /* Webkit browsers (Chrome, Safari, Edge) */
 ::-webkit-scrollbar {
