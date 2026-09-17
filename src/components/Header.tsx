@@ -3,14 +3,13 @@
 import { useState, useEffect } from 'react';
 import { useTranslations, useLocale } from 'next-intl';
 import { useRouter, usePathname } from '@/i18n/routing';
-import { useColors } from '@/contexts/ColorContext';
+import { scrollToSection } from '@/lib/scroll';
 
 const Header = () => {
   const t = useTranslations('nav');
   const locale = useLocale();
   const router = useRouter();
   const pathname = usePathname();
-  const { primaryColor } = useColors();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
 
@@ -34,16 +33,19 @@ const Header = () => {
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
     const targetId = href.replace('#', '');
-    const element = document.getElementById(targetId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
+    scrollToSection(targetId);
+    setIsMenuOpen(false);
+  };
+
+  const handleHomeClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    scrollToSection('hero');
     setIsMenuOpen(false);
   };
 
   const navLinks = [
-    { href: '#about', label: t('about') },
     { href: '#projects', label: t('projects') },
+    { href: '#about', label: t('about') },
     { href: '#education', label: t('studies') },
     { href: '#contact', label: t('contact') },
   ];
@@ -54,7 +56,7 @@ const Header = () => {
       label: 'GitHub',
       icon: (
         <svg
-          className="h-5 w-5"
+          className="h-4 w-4"
           fill="currentColor"
           viewBox="0 0 24 24"
           aria-hidden="true"
@@ -72,7 +74,7 @@ const Header = () => {
       label: 'LinkedIn',
       icon: (
         <svg
-          className="h-5 w-5"
+          className="h-4 w-4"
           fill="currentColor"
           viewBox="0 0 24 24"
           aria-hidden="true"
@@ -88,68 +90,54 @@ const Header = () => {
   }
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-zinc-800 bg-black/80 backdrop-blur-sm">
-      <nav className="mx-auto flex max-w-7xl items-center justify-center px-4 py-4 sm:px-6 lg:px-8 relative">
-        {/* Desktop Navigation - Centered */}
-        <div className="hidden md:flex md:items-center md:gap-6">
+    <header className="sticky top-0 z-50 w-full border-b border-zinc-800/80 bg-[#0c0c0c]/80 backdrop-blur-md">
+      <nav className="mx-auto flex max-w-6xl items-center justify-between px-5 py-3 sm:px-8 lg:px-10">
+        <a
+          href="#hero"
+          onClick={handleHomeClick}
+          className="text-sm font-semibold tracking-tight text-zinc-100"
+          aria-label="Gastón Varela"
+        >
+          GV
+        </a>
+
+        <div className="hidden items-center gap-7 md:flex">
           {navLinks.map((link) => (
             <a
               key={link.href}
               href={link.href}
               onClick={(e) => handleNavClick(e, link.href)}
-              className="text-sm font-medium text-zinc-400 transition-colors hover:text-zinc-50"
+              className="text-[13px] text-zinc-400 transition-colors hover:text-zinc-50"
             >
               {link.label}
             </a>
           ))}
 
-          {/* CV and Escolaridad Links */}
-          <div className="ml-4 flex items-center gap-2 border-l border-zinc-800 pl-4">
-            <a
-              href={locale === 'es' ? '/Curriculum/CV_PFP_ES.pdf' : '/Curriculum/CV_EN.pdf'}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="rounded-md px-3 py-1.5 text-sm font-medium text-zinc-400 transition-colors hover:bg-zinc-800"
-              style={{
-                color: 'inherit',
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.color = primaryColor;
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.color = '';
-              }}
-            >
-              {t('cv')}
-            </a>
-            <a
-              href="/Escolaridad/Escolaridad.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="rounded-md px-3 py-1.5 text-sm font-medium text-zinc-400 transition-colors hover:bg-zinc-800"
-              style={{
-                color: 'inherit',
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.color = primaryColor;
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.color = '';
-              }}
-            >
-              {t('education')}
-            </a>
-          </div>
+          <a
+            href={locale === 'es' ? '/Curriculum/CV_PFP_ES.pdf' : '/Curriculum/CV_EN.pdf'}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-[13px] text-zinc-400 transition-colors hover:text-zinc-50"
+          >
+            {t('cv')}
+          </a>
+          <a
+            href="/Escolaridad/Escolaridad.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-[13px] text-zinc-400 transition-colors hover:text-zinc-50"
+          >
+            {t('education')}
+          </a>
 
-          {/* Social Links */}
-          <div className="ml-4 flex items-center gap-4 border-l border-zinc-800 pl-4">
+          <div className="flex items-center gap-3 border-l border-zinc-800 pl-5">
             {socialLinks.map((social) => (
               <a
                 key={social.href}
                 href={social.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-zinc-400 transition-colors hover:text-zinc-50"
+                className="text-zinc-500 transition-colors hover:text-zinc-50"
                 aria-label={social.label}
               >
                 {social.icon}
@@ -157,154 +145,83 @@ const Header = () => {
             ))}
           </div>
 
-          {/* Language Toggle */}
           <button
+            type="button"
             onClick={handleLanguageToggle}
-            className="ml-4 flex items-center gap-2 rounded-md px-3 py-1.5 text-sm font-medium text-zinc-400 transition-colors hover:bg-zinc-800 hover:text-zinc-50"
+            className="font-mono text-[11px] tracking-wider text-zinc-500 transition-colors hover:text-zinc-200"
             aria-label="Toggle language"
           >
-            <svg
-              className="h-4 w-4"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              aria-hidden="true"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"
-              />
-            </svg>
             {locale === 'es' ? 'EN' : 'ES'}
           </button>
         </div>
 
-        {/* Mobile Menu Button - Right aligned */}
-        <div className="flex items-center gap-4 md:hidden absolute right-4">
-          {/* Language Toggle - Mobile */}
+        <div className="flex items-center gap-3 md:hidden">
           <button
+            type="button"
             onClick={handleLanguageToggle}
-            className="flex items-center gap-2 rounded-md px-2 py-1 text-sm font-medium text-zinc-400 transition-colors hover:bg-zinc-800 hover:text-zinc-50"
+            className="font-mono text-[11px] tracking-wider text-zinc-500"
             aria-label="Toggle language"
           >
-            <svg
-              className="h-4 w-4"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              aria-hidden="true"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"
-              />
-            </svg>
             {locale === 'es' ? 'EN' : 'ES'}
           </button>
 
           <button
+            type="button"
             onClick={handleToggleMenu}
-            className="rounded-md p-2 text-zinc-400 transition-colors hover:bg-zinc-800 hover:text-zinc-50"
+            className="rounded-md p-2 text-zinc-400 transition-colors hover:text-zinc-50"
             aria-label="Toggle menu"
             aria-expanded={isMenuOpen}
           >
             {isMenuOpen ? (
-              <svg
-                className="h-6 w-6"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M6 18L18 6M6 6l12 12"
-                />
+              <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M6 18L18 6M6 6l12 12" />
               </svg>
             ) : (
-              <svg
-                className="h-6 w-6"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M4 6h16M4 12h16M4 18h16"
-                />
+              <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 7h16M4 12h16M4 17h16" />
               </svg>
             )}
           </button>
         </div>
       </nav>
 
-      {/* Mobile Menu */}
       <div
-        className={`overflow-hidden transition-all duration-300 border-t border-zinc-800 bg-black md:hidden ${
-          isMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
+        className={`border-t border-zinc-800 bg-[#0c0c0c] md:hidden ${
+          isMenuOpen ? 'block' : 'hidden'
         }`}
       >
-        <div className="px-4 py-4 space-y-3">
+        <div className="space-y-3 px-5 py-4">
           {navLinks.map((link) => (
             <a
               key={link.href}
               href={link.href}
               onClick={(e) => handleNavClick(e, link.href)}
-              className="block text-sm font-medium text-zinc-400 transition-colors hover:text-zinc-50"
+              className="block text-sm text-zinc-400 transition-colors hover:text-zinc-50"
             >
               {link.label}
             </a>
           ))}
 
-          {/* CV and Escolaridad Links - Mobile */}
-          <div className="pt-4 border-t border-zinc-800 space-y-2">
-            <a
-              href={locale === 'es' ? '/Curriculum/CV_PFP_ES.pdf' : '/Curriculum/CV_EN.pdf'}
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={handleCloseMenu}
-              className="block text-sm font-medium text-zinc-400 transition-colors"
-              style={{
-                color: 'inherit',
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.color = primaryColor;
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.color = '';
-              }}
-            >
-              {t('cv')}
-            </a>
-            <a
-              href="/Escolaridad/Escolaridad.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={handleCloseMenu}
-              className="block text-sm font-medium text-zinc-400 transition-colors"
-              style={{
-                color: 'inherit',
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.color = primaryColor;
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.color = '';
-              }}
-            >
-              {t('education')}
-            </a>
-          </div>
+          <a
+            href={locale === 'es' ? '/Curriculum/CV_PFP_ES.pdf' : '/Curriculum/CV_EN.pdf'}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={handleCloseMenu}
+            className="block text-sm text-zinc-400"
+          >
+            {t('cv')}
+          </a>
+          <a
+            href="/Escolaridad/Escolaridad.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={handleCloseMenu}
+            className="block text-sm text-zinc-400 transition-colors hover:text-zinc-50"
+          >
+            {t('education')}
+          </a>
 
-          {/* Social Links - Mobile */}
-          <div className="flex items-center gap-4 pt-4 border-t border-zinc-800">
+          <div className="flex items-center gap-4 pt-3">
             {socialLinks.map((social) => (
               <a
                 key={social.href}

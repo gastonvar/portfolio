@@ -1,47 +1,31 @@
-'use client';
-
-import HoverableText from './HoverableText';
-import { SectionDivider } from './SectionDivider';
-
 interface SectionTitleProps {
   title: string;
-  primaryColor: string;
-  secondaryColor: string;
+  primaryColor?: string;
+  secondaryColor?: string;
   subtitle?: string;
   defaultColor?: string;
   className?: string;
   titleClassName?: string;
+  index?: string;
 }
 
-/**
- * Reusable section title with HoverableText and gradient divider
- */
 export const SectionTitle = ({
   title,
-  primaryColor,
-  secondaryColor,
   subtitle,
-  defaultColor = 'rgb(98, 250, 215)',
-  className = 'mb-12 text-center',
-  titleClassName = 'mb-4 text-4xl font-bold tracking-tight sm:text-5xl',
+  className = 'mb-10',
+  titleClassName = 'text-3xl font-semibold tracking-tight text-zinc-50 sm:text-4xl',
+  index,
 }: SectionTitleProps) => {
   return (
     <div className={className}>
-      <HoverableText
-        as="h2"
-        primaryColor={primaryColor}
-        secondaryColor={secondaryColor}
-        defaultColor={defaultColor}
-        className={titleClassName}
-      >
-        {title}
-      </HoverableText>
-      <SectionDivider 
-        primaryColor={primaryColor} 
-        secondaryColor={secondaryColor}
-      />
+      {index && (
+        <p className="mb-3 font-mono text-[11px] uppercase tracking-[0.28em] text-zinc-500">
+          {index}
+        </p>
+      )}
+      <h2 className={titleClassName}>{title}</h2>
       {subtitle && (
-        <p className="mt-6 text-lg text-zinc-400">
+        <p className="mt-4 max-w-lg text-[15px] leading-relaxed text-zinc-400">
           {subtitle}
         </p>
       )}

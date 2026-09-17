@@ -17,7 +17,9 @@ export async function generateMetadata({
   
   return {
     title: t('metadata.title'),
-    description: 'Full Stack Developer Portfolio',
+    description: locale === 'es'
+      ? 'Software desde Montevideo. Aplicaciones web para negocios chicos.'
+      : 'Software from Montevideo. Web apps for small businesses.',
   };
 }
 

@@ -12,7 +12,8 @@ const FloatingEyes = () => {
   const circleRef = useRef<HTMLDivElement>(null);
 
   // Section IDs in order
-  const sections = ['', 'projects', 'about', 'education', 'contact'];
+  const sections = ['hero', 'projects', 'personal-projects', 'about', 'education', 'contact'];
+  const lastSectionIndex = sections.length - 1;
 
   const { currentSection, scrollProgress, goToPrevious: baseGoToPrevious, goToNext: baseGoToNext } = useSectionTracker({
     sections,
@@ -21,7 +22,7 @@ const FloatingEyes = () => {
   // Navigate to previous section or scroll to top if in contact section
   const goToPrevious = () => {
     // If in contact section, scroll to top
-    if (currentSection === 4) {
+    if (currentSection === lastSectionIndex) {
       window.scrollTo({ top: 0, behavior: 'smooth' });
       return;
     }
@@ -31,7 +32,7 @@ const FloatingEyes = () => {
   // Navigate to next section or scroll to top if in contact section
   const goToNext = () => {
     // If in contact section, scroll to top
-    if (currentSection === 4) {
+    if (currentSection === lastSectionIndex) {
       window.scrollTo({ top: 0, behavior: 'smooth' });
       return;
     }
@@ -128,17 +129,12 @@ const FloatingEyes = () => {
   }, []);
 
   return (
-    <div className="fixed bottom-6 right-6 z-30 pointer-events-none">
-      {/* Glow effect */}
-      <div className="absolute inset-0 -z-10 flex items-center justify-center">
-        <div className="h-32 w-32 animate-pulse rounded-full blur-2xl" style={{ backgroundColor: `${primaryColor}30` }} />
-      </div>
-
+    <div className="fixed bottom-4 right-4 z-30 origin-bottom-right scale-75 pointer-events-none sm:bottom-6 sm:right-6 sm:scale-90 lg:scale-100">
       {/* Code container */}
       <div className="relative flex items-center justify-center gap-2 sm:gap-3">
         {/* Left bracket or ^ when in contact section */}
         <div 
-          className={`relative text-3xl sm:text-4xl font-bold text-zinc-400 transition-all duration-300 drop-shadow-lg pointer-events-auto cursor-pointer hover:scale-110 ${isWaving ? 'animate-wave' : ''}`}
+          className={`relative text-3xl sm:text-4xl font-bold text-zinc-400 transition-colors duration-300 pointer-events-auto cursor-pointer ${isWaving ? 'animate-wave' : ''}`}
           onClick={goToPrevious}
           onMouseEnter={(e) => {
             e.currentTarget.style.color = primaryColor;
@@ -160,9 +156,9 @@ const FloatingEyes = () => {
           <span
             className="absolute transition-all duration-500 ease-in-out"
             style={{
-              opacity: currentSection === 4 ? 0 : 1,
-              transform: currentSection === 4 ? 'rotate(45deg) scale(0.8)' : 'rotate(0deg) scale(1)',
-              pointerEvents: currentSection === 4 ? 'none' : 'auto',
+              opacity: currentSection === lastSectionIndex ? 0 : 1,
+              transform: currentSection === lastSectionIndex ? 'rotate(45deg) scale(0.8)' : 'rotate(0deg) scale(1)',
+              pointerEvents: currentSection === lastSectionIndex ? 'none' : 'auto',
             }}
           >
             {'<'}
@@ -170,9 +166,9 @@ const FloatingEyes = () => {
           <span
             className="absolute transition-all duration-500 ease-in-out"
             style={{
-              opacity: currentSection === 4 ? 1 : 0,
-              transform: currentSection === 4 ? 'rotate(0deg) scale(1)' : 'rotate(-45deg) scale(0.8)',
-              pointerEvents: currentSection === 4 ? 'auto' : 'none',
+              opacity: currentSection === lastSectionIndex ? 1 : 0,
+              transform: currentSection === lastSectionIndex ? 'rotate(0deg) scale(1)' : 'rotate(-45deg) scale(0.8)',
+              pointerEvents: currentSection === lastSectionIndex ? 'auto' : 'none',
             }}
           >
             {'^'}
@@ -215,11 +211,10 @@ const FloatingEyes = () => {
           
           {/* Inner circle with dynamic color */}
           <div 
-            className="absolute inset-3 sm:inset-4 rounded-full shadow-xl"
+            className="absolute inset-3 sm:inset-4 rounded-full"
             style={{
-              background: `linear-gradient(135deg, ${primaryColor}, ${secondaryColor})`,
+              background: primaryColor,
               transition: 'background 0.2s ease-out',
-              boxShadow: `0 0 20px ${primaryColor}, 0 0 40px ${secondaryColor}`,
             }}
           />
 
@@ -257,19 +252,11 @@ const FloatingEyes = () => {
               </div>
             </div>
           </div>
-
-          {/* Animated particles */}
-          <div className="absolute inset-0 animate-spin" style={{ animationDuration: '20s' }}>
-            <div className="absolute top-0 left-1/2 h-1 w-1 sm:h-1.5 sm:w-1.5 -translate-x-1/2 rounded-full" style={{ backgroundColor: primaryColor }} />
-          </div>
-          <div className="absolute inset-0 animate-spin" style={{ animationDuration: '15s', animationDirection: 'reverse' }}>
-            <div className="absolute bottom-0 left-1/2 h-1 w-1 sm:h-1.5 sm:w-1.5 -translate-x-1/2 rounded-full" style={{ backgroundColor: secondaryColor }} />
-          </div>
         </div>
 
         {/* Right bracket or ^ when in contact section */}
         <div 
-          className={`relative text-3xl sm:text-4xl font-bold text-zinc-400 transition-all duration-300 drop-shadow-lg pointer-events-auto cursor-pointer hover:scale-110`}
+          className={`relative text-3xl sm:text-4xl font-bold text-zinc-400 transition-colors duration-300 pointer-events-auto cursor-pointer`}
           onClick={goToNext}
           onMouseEnter={(e) => {
             e.currentTarget.style.color = primaryColor;
@@ -278,8 +265,6 @@ const FloatingEyes = () => {
             e.currentTarget.style.color = '';
           }}
           style={{
-            opacity: currentSection === sections.length - 1 && currentSection !== 4 ? 0.4 : 1,
-            cursor: currentSection === sections.length - 1 && currentSection !== 4 ? 'not-allowed' : 'pointer',
             transformOrigin: 'bottom left',
             width: '1em',
             height: '1em',
@@ -291,9 +276,9 @@ const FloatingEyes = () => {
           <span
             className="absolute transition-all duration-500 ease-in-out"
             style={{
-              opacity: currentSection === 4 ? 0 : 1,
-              transform: currentSection === 4 ? 'rotate(-45deg) scale(0.8)' : 'rotate(0deg) scale(1)',
-              pointerEvents: currentSection === 4 ? 'none' : 'auto',
+              opacity: currentSection === lastSectionIndex ? 0 : 1,
+              transform: currentSection === lastSectionIndex ? 'rotate(-45deg) scale(0.8)' : 'rotate(0deg) scale(1)',
+              pointerEvents: currentSection === lastSectionIndex ? 'none' : 'auto',
             }}
           >
             {'>'}
@@ -301,9 +286,9 @@ const FloatingEyes = () => {
           <span
             className="absolute transition-all duration-500 ease-in-out"
             style={{
-              opacity: currentSection === 4 ? 1 : 0,
-              transform: currentSection === 4 ? 'rotate(0deg) scale(1)' : 'rotate(45deg) scale(0.8)',
-              pointerEvents: currentSection === 4 ? 'auto' : 'none',
+              opacity: currentSection === lastSectionIndex ? 1 : 0,
+              transform: currentSection === lastSectionIndex ? 'rotate(0deg) scale(1)' : 'rotate(45deg) scale(0.8)',
+              pointerEvents: currentSection === lastSectionIndex ? 'auto' : 'none',
             }}
           >
             {'^'}
@@ -317,7 +302,7 @@ const FloatingEyes = () => {
         onClick={scrollToBottom}
       >
         <span 
-          className="text-2xl sm:text-3xl font-bold text-zinc-400 transition-all duration-300 drop-shadow-lg cursor-pointer hover:scale-110"
+          className="text-2xl sm:text-3xl font-bold text-zinc-400 transition-colors duration-300 cursor-pointer"
           onMouseEnter={(e) => {
             e.currentTarget.style.color = primaryColor;
           }}
@@ -328,7 +313,7 @@ const FloatingEyes = () => {
           U
         </span>
         <span 
-          className="text-2xl sm:text-3xl font-bold text-zinc-400 transition-all duration-300 drop-shadow-lg cursor-pointer hover:scale-110"
+          className="text-2xl sm:text-3xl font-bold text-zinc-400 transition-colors duration-300 cursor-pointer"
           onMouseEnter={(e) => {
             e.currentTarget.style.color = primaryColor;
           }}

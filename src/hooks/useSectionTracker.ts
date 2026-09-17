@@ -1,4 +1,5 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
+import { scrollToSection } from '@/lib/scroll';
 
 export interface UseSectionTrackerOptions {
   sections: string[];
@@ -19,88 +20,70 @@ export const useSectionTracker = ({
 }: UseSectionTrackerOptions): UseSectionTrackerReturn => {
   const [currentSection, setCurrentSection] = useState(0);
   const [scrollProgress, setScrollProgress] = useState(0);
+  const currentSectionRef = useRef(0);
 
-  // Detect which section is currently in view and calculate scroll progress
   useEffect(() => {
     const handleScroll = () => {
-      const scrollPosition = window.scrollY + window.innerHeight / 2;
-      
-      // Calculate scroll progress (0 = start, 1 = end)
       const windowHeight = window.innerHeight;
       const documentHeight = document.documentElement.scrollHeight;
       const scrollTop = window.scrollY;
       const maxScroll = documentHeight - windowHeight;
       const progress = maxScroll > 0 ? Math.min(scrollTop / maxScroll, 1) : 0;
       setScrollProgress(progress);
-      
-      // Check each section to see which one is in view
-      for (let i = sections.length - 1; i >= 0; i--) {
-        let element: HTMLElement | null = null;
-        
-        if (i === 0) {
-          // Hero section (first section, no id)
-          element = document.querySelector('section:first-of-type');
-        } else {
-          element = document.getElementById(sections[i]);
+
+      const headerOffset = 80;
+      const probeY = scrollTop + headerOffset + 1;
+      let nextSection = 0;
+
+      for (let i = sections.length - 1; i >= 0; i -= 1) {
+        const element = document.getElementById(sections[i]);
+        if (!element) {
+          continue;
         }
-        
-        if (element) {
-          const rect = element.getBoundingClientRect();
-          const elementTop = rect.top + window.scrollY;
-          const elementBottom = elementTop + rect.height;
-          
-          if (scrollPosition >= elementTop && scrollPosition <= elementBottom) {
-            if (currentSection !== i) {
-              setCurrentSection(i);
-              onSectionChange?.(i);
-            }
-            break;
-          }
+
+        const elementTop = element.getBoundingClientRect().top + window.scrollY;
+        if (probeY >= elementTop) {
+          nextSection = i;
+          break;
         }
+      }
+
+      if (currentSectionRef.current !== nextSection) {
+        currentSectionRef.current = nextSection;
+        setCurrentSection(nextSection);
+        onSectionChange?.(nextSection);
       }
     };
 
-    handleScroll(); // Initial check
-    window.addEventListener('scroll', handleScroll);
+    handleScroll();
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [sections, currentSection, onSectionChange]);
+  }, [sections, onSectionChange]);
 
   const goToPrevious = () => {
-    if (currentSection > 0) {
-      const prevIndex = currentSection - 1;
-      if (prevIndex === 0) {
-        // Scroll to top (Hero section)
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      } else {
-        const element = document.getElementById(sections[prevIndex]);
-        if (element) {
-          element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-      }
+    if (currentSectionRef.current <= 0) {
+      return;
     }
+
+    const prevIndex = currentSectionRef.current - 1;
+    scrollToSection(sections[prevIndex]);
   };
 
   const goToNext = () => {
-    if (currentSection < sections.length - 1) {
-      const nextIndex = currentSection + 1;
-      const element = document.getElementById(sections[nextIndex]);
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
+    if (currentSectionRef.current >= sections.length - 1) {
+      return;
     }
+
+    const nextIndex = currentSectionRef.current + 1;
+    scrollToSection(sections[nextIndex]);
   };
 
   const goToSection = (index: number) => {
-    if (index >= 0 && index < sections.length) {
-      if (index === 0) {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      } else {
-        const element = document.getElementById(sections[index]);
-        if (element) {
-          element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-      }
+    if (index < 0 || index >= sections.length) {
+      return;
     }
+
+    scrollToSection(sections[index]);
   };
 
   return {

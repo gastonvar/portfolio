@@ -40,7 +40,7 @@ const HoverableText = ({
   const style: React.CSSProperties = {
     transition:
       'color 0.4s cubic-bezier(0.4, 0, 0.2, 1), background-image 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
-    cursor: 'pointer',
+    cursor: 'default',
     position: 'relative',
     display: 'inline-block',
   };

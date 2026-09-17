@@ -1,19 +1,24 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, type KeyboardEvent } from 'react';
 import { useTranslations } from 'next-intl';
-import { useColors } from '@/contexts/ColorContext';
-import { Card, CardContent } from '@/components/ui/card';
-import StarsBackground from './ui/StarsBackground';
 import { SectionTitle } from './ui/SectionTitle';
-import { ScrollButton } from './ui/ScrollButton';
-import { ScrollIndicator } from './ui/ScrollIndicator';
-import { SECTION_INNER_CLASS } from '@/constants/sectionLayout';
+import { SECTION_GRADIENT_BLACK_TO_NAVY, SECTION_INNER_CLASS } from '@/constants/sectionLayout';
 
 const Education = () => {
   const t = useTranslations('education');
-  const { primaryColor, secondaryColor } = useColors();
   const [isOrtOpen, setIsOrtOpen] = useState(false);
+
+  const handleToggleOrt = () => {
+    setIsOrtOpen((prev) => !prev);
+  };
+
+  const handleOrtKeyDown = (event: KeyboardEvent<HTMLButtonElement>) => {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      handleToggleOrt();
+    }
+  };
 
   const ortEntries = [
     {
@@ -45,7 +50,6 @@ const Education = () => {
       title: t('ingenieria.title'),
       institution: t('ingenieria.institution'),
       location: t('ingenieria.location'),
-      color: '#3B82F6', // Blue - UDELAR
     },
     {
       id: 'bachillerato',
@@ -53,223 +57,65 @@ const Education = () => {
       title: t('bachillerato.title'),
       institution: t('bachillerato.institution'),
       location: t('bachillerato.location'),
-      color: '#F97316', // Orange - Liceo
     },
   ];
 
   return (
     <section
       id="education"
-      className="relative block flex min-h-screen items-center overflow-hidden py-20"
+      className="relative scroll-mt-20 overflow-hidden border-t border-zinc-800/70 py-16 sm:py-20"
       style={{
-        background: 'linear-gradient(to bottom, #050510, #0a0a1a, #000000)',
+        background: SECTION_GRADIENT_BLACK_TO_NAVY,
       }}
     >
-      {/* Stars Background */}
-      <StarsBackground starCount={150} showComets={true} />
-      
-      {/* Fade transition from About section */}
-      <div 
-        className="absolute top-0 left-0 right-0 h-40 pointer-events-none z-10"
-        style={{
-          background: 'linear-gradient(to bottom, rgba(5, 5, 16, 1), rgba(5, 5, 16, 0.6), transparent)',
-        }}
-      />
-      
-      {/* Fade transition to next section */}
-      <div 
-        className="absolute bottom-0 left-0 right-0 h-32 pointer-events-none z-10"
-        style={{
-          background: 'linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent)',
-        }}
-      />
-      
-      <div className="relative z-10 mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div className="relative z-10 mx-auto w-full max-w-6xl px-5 sm:px-8 lg:px-10">
         <div className={SECTION_INNER_CLASS}>
-          {/* Header Section */}
-          <SectionTitle
-            title={t('title')}
-            primaryColor={primaryColor}
-            secondaryColor={secondaryColor}
-          />
+          <SectionTitle title={t('title')} index="04" className="mb-12" />
 
-          {/* Education Timeline */}
-          <div className="space-y-6">
-            {/* ORT Uruguay - Dropdown */}
-            <Card className="group relative overflow-hidden border-zinc-800 bg-gradient-to-br from-zinc-950 via-zinc-900 to-zinc-950 shadow-lg transition-all duration-500 hover:shadow-xl">
-              <CardContent className="p-6 sm:p-8">
-                <button
-                  onClick={() => setIsOrtOpen(!isOrtOpen)}
-                  className="w-full text-left"
-                >
-                  <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:gap-6">
-                    {/* Period - Show range from first to last */}
-                    <div className="shrink-0">
-                      <span className="text-lg font-bold text-zinc-50 sm:text-xl">
-                        {t('ort.period')}
-                      </span>
-                    </div>
-
-                    {/* Content */}
-                    <div className="flex-1 flex items-start justify-between gap-4">
-                      <p className="text-base leading-relaxed text-zinc-300 sm:text-lg">
-                        <span
-                          className="font-semibold"
-                          style={{ color: '#EF4444' }}
-                        >
-                          {t('ort.institution')}
-                        </span>
-                        {' - '}
-                        <span className="text-zinc-400">
-                          {t('ort.location')}
-                        </span>
-                      </p>
-                      {/* Chevron Icon */}
-                      <svg
-                        className={`h-5 w-5 shrink-0 text-zinc-400 transition-transform duration-300 ${
-                          isOrtOpen ? 'rotate-180' : ''
-                        }`}
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M19 9l-7 7-7-7"
-                        />
-                      </svg>
-                    </div>
-                  </div>
-                </button>
-
-                {/* Dropdown Content */}
-                <div
-                  className={`overflow-hidden transition-all duration-300 ${
-                    isOrtOpen ? 'max-h-96 opacity-100 mt-4' : 'max-h-0 opacity-0'
-                  }`}
-                >
-                  <div className="space-y-2 pt-2 border-t border-zinc-800">
-                    {ortEntries.map((entry) => (
-                      <div key={entry.id} className="flex flex-col gap-1 sm:flex-row sm:gap-2">
-                        <span className="text-sm font-medium text-zinc-400 sm:text-base">
-                          {entry.period}:
-                        </span>
-                        <span className="text-sm text-zinc-300 sm:text-base">
-                          {entry.title}
-                        </span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Arrow after ORT */}
-            <div className="flex justify-center py-2">
-              <div
-                className="flex h-10 w-10 items-center justify-center rounded-full border-2 transition-all duration-300"
-                style={{
-                  borderColor: primaryColor,
-                }}
+          <div className="relative border-l border-zinc-800 pl-8">
+            <div className="pb-10">
+              <button
+                type="button"
+                onClick={handleToggleOrt}
+                onKeyDown={handleOrtKeyDown}
+                aria-expanded={isOrtOpen}
+                aria-label={t('ort.institution')}
+                className="group w-full text-left"
               >
-                <svg
-                  className="h-5 w-5 transition-transform duration-300"
-                  style={{ color: primaryColor }}
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M5 15l7-7 7 7"
-                  />
-                </svg>
-              </div>
+                <p className="font-mono text-xs text-zinc-500">{t('ort.period')}</p>
+                <p className="mt-2 text-lg text-zinc-100">
+                  {t('ort.institution')}
+                  <span className="ml-2 text-sm text-zinc-500">
+                    {t('ort.location')}
+                  </span>
+                </p>
+                <p className="mt-1 font-mono text-xs text-zinc-500 group-hover:text-zinc-400">
+                  {isOrtOpen ? '–' : '+'}
+                </p>
+              </button>
+
+              {isOrtOpen && (
+                <ul className="mt-4 space-y-3 border-t border-zinc-800/80 pt-4">
+                  {ortEntries.map((entry) => (
+                    <li key={entry.id} className="text-sm leading-relaxed text-zinc-400">
+                      <span className="font-mono text-xs text-zinc-500">{entry.period}</span>
+                      <span className="mt-0.5 block text-zinc-300">{entry.title}</span>
+                    </li>
+                  ))}
+                </ul>
+              )}
             </div>
 
-            {/* Other Education Entries */}
-            {otherEntries.map((entry, index) => (
-              <div key={entry.id}>
-                <Card className="group relative overflow-hidden border-zinc-800 bg-gradient-to-br from-zinc-950 via-zinc-900 to-zinc-950 shadow-lg transition-all duration-500 hover:shadow-xl">
-                  <CardContent className="p-6 sm:p-8">
-                    <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:gap-6">
-                      {/* Period */}
-                      <div className="shrink-0">
-                        <span className="text-lg font-bold text-zinc-50 sm:text-xl">
-                          {entry.period}
-                        </span>
-                      </div>
-
-                      {/* Content */}
-                      <div className="flex-1">
-                        <p className="text-base leading-relaxed text-zinc-300 sm:text-lg">
-                          <span className="text-zinc-50">{entry.title}</span>
-                          {' - '}
-                          <span
-                            className="font-semibold"
-                            style={{ color: entry.color }}
-                          >
-                            {entry.institution}
-                          </span>
-                          {entry.location && (
-                            <>
-                              {' - '}
-                              <span className="text-zinc-400">
-                                {entry.location}
-                              </span>
-                            </>
-                          )}
-                        </p>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-
-                {/* Arrow between entries (not after the last one) */}
-                {index < otherEntries.length - 1 && (
-                  <div className="flex justify-center py-2">
-                    <div
-                      className="flex h-10 w-10 items-center justify-center rounded-full border-2 transition-all duration-300"
-                      style={{
-                        borderColor: primaryColor,
-                      }}
-                    >
-                      <svg
-                        className="h-5 w-5 transition-transform duration-300"
-                        style={{ color: primaryColor }}
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M5 15l7-7 7 7"
-                        />
-                      </svg>
-                    </div>
-                  </div>
-                )}
+            {otherEntries.map((entry) => (
+              <div key={entry.id} className="pb-10 last:pb-0">
+                <p className="font-mono text-xs text-zinc-500">{entry.period}</p>
+                <p className="mt-2 text-lg text-zinc-100">{entry.title}</p>
+                <p className="mt-1 text-sm text-zinc-500">
+                  {entry.institution}
+                  {entry.location ? ` · ${entry.location}` : ''}
+                </p>
               </div>
             ))}
-          </div>
-
-          {/* Contact Me Button */}
-          <div className="mt-12 flex flex-col items-center gap-4">
-            <ScrollButton
-              targetId="contact"
-              label={t('contactMe')}
-              primaryColor={primaryColor}
-              ariaLabel={t('contactMe')}
-            />
-            
-            {/* Scroll indicator */}
-            <ScrollIndicator primaryColor={primaryColor} />
           </div>
         </div>
       </div>

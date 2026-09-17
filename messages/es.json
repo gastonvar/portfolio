@@ -4,7 +4,7 @@
   },
   "nav": {
     "about": "Sobre mí",
-    "projects": "Proyectos",
+    "projects": "Trabajo",
     "skills": "Habilidades",
     "studies": "Estudios",
     "contact": "Contacto",
@@ -15,8 +15,11 @@
     "title": "Sobre mí",
     "greeting": "Hola, mi nombre es",
     "name": "Gastón Varela",
-    "currentStatus": "Actualmente soy estudiante avanzado de la carrera Analista en tecnologías de la información en la universidad ORT Uruguay.",
-    "description": "Desarrollador Full-Stack con sólida formación en Análisis de Tecnologías de la Información. Experiencia práctica en desarrollo web con tecnologías modernas tanto en frontend como backend. Enfoque meticuloso, orientado a la calidad y al aprendizaje continuo, con capacidad para trabajar en equipo y adaptarse a entornos dinámicos.",
+    "currentStatus": "Analista en Tecnologías de la Información, egresado de ORT Uruguay.",
+    "p1": "Me recibí de Analista en TI en ORT, Montevideo. Laburo full-stack: React y Next.js adelante, .NET o Node atrás, Docker cuando tiene que quedarse prendido.",
+    "p2": "En estos años armé sistemas para una pastelería, una cadena de barberías y una constructora. En casa tengo un servidor con un par de apps mías.",
+    "p3": "Español nativo. Inglés certificado — EF SET, si hace falta el papel.",
+    "description": "Me recibí de Analista en TI en ORT, Montevideo. Laburo full-stack: React y Next.js adelante, .NET o Node atrás, Docker cuando tiene que quedarse prendido.",
     "downloadCV": "Descargar CV",
     "cvTitle": "CV",
     "cvDescription": "Descarga mi curriculum vitae para conocer más sobre mi experiencia y calificaciones",
@@ -24,11 +27,11 @@
     "scrollToEducation": "Ver mis estudios",
     "languages": {
       "title": "Idiomas",
-      "spanish": "Español Nativo",
-      "english": "Inglés Certificado"
+      "spanish": "Español — nativo",
+      "english": "Inglés — certificado"
     },
     "technologies": {
-      "title": "Tecnologías y Habilidades",
+      "title": "Con qué laburo",
       "frontend": {
         "title": "Frontend",
         "list": "HTML, CSS, JavaScript, React, NextJS, Tailwind, Bootstrap, Razor."
@@ -67,24 +70,12 @@
     }
   },
   "hero": {
-    "greeting": "Hola, soy",
-    "role": "Desarrollador Full Stack",
-    "typing": [
-      "Quiero desarrollar",
-      "Quiero aprender",
-      "Quiero ayudar",
-      "Quiero crear",
-      "Quiero innovar",
-      "Quiero compartir",
-      "Quiero construir",
-      "Quiero crecer",
-      "Quiero programar"
-    ],
-    "scrollDown": "Ver proyectos"
+    "intro": "Hago aplicaciones web para negocios chicos, y algunas las hospedo yo.",
+    "scrollDown": "Ver el trabajo"
   },
   "projects": {
-    "title": "Experiencia Profesional",
-    "subtitle": "Proyectos corporativos en los que he trabajado",
+    "title": "Trabajo",
+    "subtitle": "Proyectos para clientes y empresas, del frontend hasta el deploy.",
     "blimann": {
       "title": "Buildtracker",
       "description": "Sistema de gestión para empresa de construcción. \nDesarrollé el frontend desde cero, eligiendo el stack tecnológico, diseñando componentes, arquitectura, jerarquía de carpetas, estilo, diseño y sistema de autenticación.\nImplementé características específicas de backend y correcciones. \nAjusté y actualicé docker images y CI/CD, agregue infraestructura. \nDesplegado en AWS.",
@@ -122,19 +113,26 @@
         "Métricas de control operacional"
       ]
     },
+    "algorico": {
+      "title": "Algo Rico",
+      "description": "Sistema de gestión mobile-first y self-hosted para un negocio de pastelería.\nLo construí de punta a punta para reemplazar una agenda de papel: clientes, historial de conversaciones con capturas adjuntas, pedidos, recetas, ingredientes, calendario (los eventos son pedidos), tareas y un dashboard orientado a la acción.\nDesplegado de forma self-hosted con PostgreSQL y MinIO dockerizados.",
+      "role": "Desarrollador Full-Stack",
+      "stack": "React, Vite, TypeScript, TanStack Query, Tailwind CSS, Zod, React Hook Form, Express, PostgreSQL, Sequelize, MinIO, Docker"
+    },
     "noImage": "Imagen no disponible",
     "techStack": "Stack Tecnológico",
     "mainFeatures": "Características Principales",
+    "tabProfessional": "Profesional",
+    "scrollToPersonalProjects": "Ver proyectos personales desplegados",
     "scrollToAbout": "Ver sobre mí",
     "personalProjects": {
-      "tab": "Proyectos personales",
-      "title": "Proyectos personales",
-      "subtitle": "Infraestructura self-hosted que administro y mantengo en casa"
+      "title": "En casa",
+      "subtitle": "Apps que hospedo en una máquina en el apartamento y mantengo andando."
     },
     "university": {
-      "tab": "Proyectos universitarios",
-      "title": "Proyectos universitarios",
-      "subtitle": "Proyectos que desarrollé para aprendizaje y trabajo académico"
+      "tab": "Universidad",
+      "title": "De la facultad",
+      "subtitle": "Proyectos de curso — los que me dejaron algo que todavía uso."
     },
     "homelab": {
       "ubuntu": {
@@ -142,6 +140,11 @@
         "description": "Un servidor homelab con Ubuntu donde administro varias aplicaciones self-hosted, todas dockerizadas: Actual Budget para finanzas personales, Portainer para la gestión de contenedores y un servidor de Minecraft para jugar con amigos. El equipo tiene una IP privada fija en mi red local para que los servicios sigan accesibles de forma estable dentro de la LAN.",
         "stack": "Ubuntu Server, Docker, Docker Compose, Portainer, Actual Budget, Minecraft"
       }
+    },
+    "scheduly": {
+      "title": "Scheduly",
+      "description": "App mobile-first y self-hosted de gestión para tutores de estudiantes universitarios en Uruguay.\nAdministra alumnos, materias, clases, estado de pago (pago/pendiente/gratis), saldos y un calendario interactivo con reprogramación por arrastre en escritorio.\nDesplegada de forma self-hosted con PostgreSQL dockerizado y autenticación por sesión con cookies.",
+      "stack": "React, Vite, TypeScript, TanStack Query, Tailwind CSS, Zod, React Hook Form, react-big-calendar, Express, PostgreSQL, Sequelize, Docker"
     },
     "personal": {
       "subtitle": "Proyectos que he desarrollado para aprendizaje y uso personal",
@@ -280,21 +283,22 @@
     "contactMe": "¡Contáctame!"
   },
   "contact": {
-    "title": "Contáctame",
-    "subtitle": "¡No dudes en escribirme si tienes alguna pregunta u oportunidad!",
+    "title": "Contacto",
+    "subtitle": "Si algo de acá te sirve, escribime. En general contesto el mismo día.",
+    "emailDirect": "varelagaston58@gmail.com",
     "name": "Nombre",
     "namePlaceholder": "Tu nombre",
-    "email": "Correo electrónico",
-    "emailPlaceholder": "tu.correo@ejemplo.com",
+    "email": "Correo",
+    "emailPlaceholder": "vos@email.com",
     "subject": "Asunto",
-    "subjectPlaceholder": "Asunto del mensaje",
+    "subjectPlaceholder": "¿De qué se trata?",
     "message": "Mensaje",
-    "messagePlaceholder": "Tu mensaje...",
-    "send": "Enviar Mensaje",
-    "sending": "Enviando...",
-    "success": "¡Mensaje enviado con éxito! Te responderé pronto.",
-    "error": "Error al enviar el mensaje. Por favor, intenta de nuevo más tarde.",
-    "configError": "El servicio de correo no está configurado. Por favor, contacta al administrador del sitio.",
-    "orDirectEmail": "O envíame un mail directo"
+    "messagePlaceholder": "Con unas líneas alcanza.",
+    "send": "Enviar",
+    "sending": "Enviando…",
+    "success": "Llegó — te escribo pronto.",
+    "error": "No salió. Probá de nuevo, o mandame un mail directo.",
+    "configError": "El formulario no está configurado. Mejor escribime por mail.",
+    "orDirectEmail": "O mandame un mail directo"
   }
 }

@@ -30,7 +30,7 @@ export const FormField = ({
   primaryColor,
   rows = 6,
 }: FormFieldProps) => {
-  const baseClassName = "w-full rounded-lg border border-zinc-700 bg-zinc-900 px-4 py-3 text-zinc-100 placeholder-zinc-500 transition-all duration-200 focus:outline-none focus:ring-2";
+  const baseClassName = "w-full border-0 border-b border-zinc-800 bg-transparent px-0 py-2.5 text-zinc-100 placeholder-zinc-600 transition-colors duration-200 focus:outline-none";
   const baseStyle: React.CSSProperties & { '--tw-ring-color': string } = {
     '--tw-ring-color': primaryColor,
     borderColor: 'inherit',
@@ -48,7 +48,7 @@ export const FormField = ({
     <div>
       <label
         htmlFor={id}
-        className="mb-2 block text-sm font-medium text-zinc-300"
+        className="mb-1.5 block font-mono text-[11px] uppercase tracking-[0.18em] text-zinc-500"
       >
         {label}
       </label>

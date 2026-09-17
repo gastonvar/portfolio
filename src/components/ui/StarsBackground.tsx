@@ -137,7 +137,7 @@ const StarsBackground = ({ starCount = 200, showComets = true }: StarsBackground
             height: `${star.size}px`,
             opacity: star.opacity,
             animationDelay: `${star.twinkleDelay}s`,
-            boxShadow: `0 0 ${star.size * 2}px rgba(255, 255, 255, ${star.opacity})`,
+            boxShadow: 'none',
           }}
         />
       ))}

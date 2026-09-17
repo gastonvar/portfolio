@@ -3,8 +3,8 @@
     "title": "Gastón's Portfolio"
   },
   "nav": {
-    "about": "About me",
-    "projects": "Projects",
+    "about": "About",
+    "projects": "Work",
     "skills": "Skills",
     "studies": "Studies",
     "contact": "Contact",
@@ -12,23 +12,26 @@
     "cv": "CV"
   },
   "about": {
-    "title": "About me",
+    "title": "About",
     "greeting": "Hello, my name is",
     "name": "Gastón Varela",
-    "currentStatus": "I am currently an advanced student in the Information Technology Analyst program at ORT Uruguay University.",
-    "description": "Full-stack developer with a solid background in Information Technology Analysis. Hands-on experience in web development with modern technologies across frontend and backend. Meticulous, quality-focused, and committed to continuous learning, with strong collaboration skills and adaptability to fast-changing environments.",
+    "currentStatus": "Information Technology Analyst, graduated from ORT Uruguay.",
+    "p1": "I graduated as an IT Analyst from ORT in Montevideo. Most days I work full-stack: React and Next.js on the front, .NET or Node on the back, Docker when something has to stay up.",
+    "p2": "Lately I've built tools for a pastry shop, a barbershop, and a construction company. At home I keep a small server running a couple of my own apps.",
+    "p3": "Spanish is my first language. English is certified — EF SET, if you want the paper.",
+    "description": "I graduated as an IT Analyst from ORT in Montevideo. Most days I work full-stack: React and Next.js on the front, .NET or Node on the back, Docker when something has to stay up.",
     "downloadCV": "Download CV",
     "cvTitle": "CV",
     "cvDescription": "Download my curriculum vitae to learn more about my experience and qualifications",
-    "escolaridadTitle": "Education",
+    "escolaridadTitle": "Academic record",
     "scrollToEducation": "View my studies",
     "languages": {
       "title": "Languages",
-      "spanish": "Native Spanish",
-      "english": "Certified English"
+      "spanish": "Spanish — native",
+      "english": "English — certified"
     },
     "technologies": {
-      "title": "Technologies & Skills",
+      "title": "What I use",
       "frontend": {
         "title": "Frontend",
         "list": "HTML, CSS, JavaScript, React, NextJS, Tailwind, Bootstrap, Razor"
@@ -67,24 +70,12 @@
     }
   },
   "hero": {
-    "greeting": "Hi, I'm",
-    "role": "Full Stack Developer",
-    "typing": [
-      "I want to develop",
-      "I want to learn",
-      "I want to help",
-      "I want to create",
-      "I want to innovate",
-      "I want to share",
-      "I want to build",
-      "I want to grow",
-      "I want to code"
-    ],
-    "scrollDown": "View projects"
+    "intro": "I build web apps for small businesses, and I host a few of them myself.",
+    "scrollDown": "See the work"
   },
   "projects": {
-    "title": "Professional Experience",
-    "subtitle": "Corporate projects I've worked on",
+    "title": "Work",
+    "subtitle": "Client and company projects, from the frontend up through deploy.",
     "blimann": {
       "title": "Buildtracker",
       "description": "Management system for a construction company. \nI built the frontend from the ground up, choosing the tech stack, designing components, architecture, folder hierarchy, style, design, and authentication system.\nImplemented specific backend features and fixes. \nAdjusted and updated Docker images and CI/CD, added infrastructure.",
@@ -122,19 +113,26 @@
         "Operational control metrics"
       ]
     },
+    "algorico": {
+      "title": "Algo Rico",
+      "description": "Mobile-first self-hosted management system for a pastry business.\nBuilt end-to-end to replace a paper customer/order agenda: clients, conversation history with screenshot attachments, orders, recipes, ingredients, calendar (orders as events), tasks, and an action-oriented dashboard.\nSelf-hosted with Dockerized PostgreSQL and MinIO for file storage.",
+      "role": "Full-Stack Developer",
+      "stack": "React, Vite, TypeScript, TanStack Query, Tailwind CSS, Zod, React Hook Form, Express, PostgreSQL, Sequelize, MinIO, Docker"
+    },
     "noImage": "Image not available",
     "techStack": "Tech Stack",
     "mainFeatures": "Main Features",
+    "tabProfessional": "Professional",
+    "scrollToPersonalProjects": "View deployed personal projects",
     "scrollToAbout": "View about me",
     "personalProjects": {
-      "tab": "Personal Projects",
-      "title": "Personal Projects",
-      "subtitle": "Self-hosted infrastructure I run and maintain at home"
+      "title": "At home",
+      "subtitle": "Apps I host on a machine in my apartment and actually keep running."
     },
     "university": {
-      "tab": "University Projects",
-      "title": "University Projects",
-      "subtitle": "Projects I've developed for learning and coursework"
+      "tab": "University",
+      "title": "Schoolwork",
+      "subtitle": "Course projects — the ones that taught me something I still use."
     },
     "homelab": {
       "ubuntu": {
@@ -142,6 +140,11 @@
         "description": "An Ubuntu server homelab where I manage multiple self-hosted applications—all dockerized—including Actual Budget for personal finance, Portainer for container operations, and a Minecraft server for gaming with friends. The host uses a fixed private IP on my LAN so services stay reachable reliably inside the network.",
         "stack": "Ubuntu Server, Docker, Docker Compose, Portainer, Actual Budget, Minecraft"
       }
+    },
+    "scheduly": {
+      "title": "Scheduly",
+      "description": "Mobile-first self-hosted tutor management app for university students in Uruguay.\nManages students, subjects, classes, payment status (paid/pending/free), balances, and an interactive calendar with drag-and-drop rescheduling on desktop.\nSelf-hosted with Dockerized PostgreSQL and cookie-based session auth.",
+      "stack": "React, Vite, TypeScript, TanStack Query, Tailwind CSS, Zod, React Hook Form, react-big-calendar, Express, PostgreSQL, Sequelize, Docker"
     },
     "personal": {
       "subtitle": "Projects I've developed for learning and personal use",
@@ -275,21 +278,22 @@
     "contactMe": "Contact me!"
   },
   "contact": {
-    "title": "Get in Touch",
-    "subtitle": "Feel free to reach out if you have any questions or opportunities!",
+    "title": "Contact",
+    "subtitle": "If something here is useful, write me. I usually answer the same day.",
+    "emailDirect": "varelagaston58@gmail.com",
     "name": "Name",
     "namePlaceholder": "Your name",
     "email": "Email",
-    "emailPlaceholder": "your.email@example.com",
+    "emailPlaceholder": "you@email.com",
     "subject": "Subject",
-    "subjectPlaceholder": "Message subject",
+    "subjectPlaceholder": "What is this about?",
     "message": "Message",
-    "messagePlaceholder": "Your message...",
-    "send": "Send Message",
-    "sending": "Sending...",
-    "success": "Message sent successfully! I'll get back to you soon.",
-    "error": "Failed to send message. Please try again later.",
-    "configError": "Email service is not configured. Please contact the site administrator.",
-    "orDirectEmail": "Or send me a direct email"
+    "messagePlaceholder": "A few lines is enough.",
+    "send": "Send",
+    "sending": "Sending…",
+    "success": "Got it — I'll write back soon.",
+    "error": "That didn't go through. Try again, or email me directly.",
+    "configError": "The form isn't configured right now. Email me instead.",
+    "orDirectEmail": "Or email me directly"
   }
 }

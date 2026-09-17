@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { scrollToSection } from '@/lib/scroll';
 
 interface ScrollButtonProps {
   targetId: string;
@@ -26,17 +27,14 @@ export const ScrollButton = ({
     if (onClick) {
       onClick();
     } else {
-      const targetSection = document.getElementById(targetId);
-      if (targetSection) {
-        targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
+      scrollToSection(targetId);
     }
   };
 
   return (
     <button
       onClick={handleClick}
-      className="group flex items-center gap-3 rounded-full px-8 py-4 text-lg font-semibold transition-all duration-300 hover:scale-105 hover:shadow-2xl"
+      className="group flex max-w-full items-center gap-2 rounded-full px-4 py-3 text-sm font-semibold transition-all duration-300 hover:scale-105 hover:shadow-2xl sm:gap-3 sm:px-8 sm:py-4 sm:text-lg"
       aria-label={ariaLabel || label}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
